@@ -50,13 +50,32 @@ all_years <- unlist(lapply(shard_meta, function(m) m$yearMax), use.names = FALSE
 all_years <- all_years[is.finite(all_years)]
 data_max_year <- if (length(all_years)) max(all_years) else NA_integer_
 
+# Also count Scss shards under web/public/data/starts/ (Housing tab).
+STARTS_DIR <- file.path(WEB_DATA, "starts")
+starts_files <- if (dir.exists(STARTS_DIR)) list.files(STARTS_DIR, pattern = "\\.json$", full.names = TRUE) else character(0)
+starts_meta <- lapply(starts_files, function(f) {
+  payload <- fromJSON(f, simplifyVector = TRUE, simplifyDataFrame = FALSE)
+  records <- payload$records
+  n <- if (is.data.frame(records)) nrow(records) else length(records)
+  list(
+    file        = basename(f),
+    geoUid      = payload$geoUid,
+    geoName     = payload$geoName,
+    geoLevel    = payload$geoLevel,
+    recordCount = as.integer(n)
+  )
+})
+
 manifest <- list(
   version       = 1,
   lastUpdated   = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
   cmhcMaxYear   = data_max_year,
   shardCount    = length(shard_meta),
   totalRecords  = sum(vapply(shard_meta, function(m) m$recordCount, integer(1))),
-  shards        = shard_meta
+  shards        = shard_meta,
+  startsShardCount = length(starts_meta),
+  startsTotalRecords = sum(vapply(starts_meta, function(m) m$recordCount, integer(1))),
+  startsShards  = starts_meta
 )
 
 out_path <- file.path(WEB_DATA, "manifest.json")

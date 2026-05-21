@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CMHC Manitoba Rental Charts</title>
+    <title>CMHC Data</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,18 +14,22 @@
   </head>
   <body class="bg-neutral-50 text-neutral-900 font-sans">
     <header class="bg-primary-700 text-white px-6 py-3 shadow">
-      <h1 class="text-lg font-semibold">CMHC Manitoba Rental Data</h1>
-      <p class="text-sm text-primary-100">Historical trends &amp; comparison tables for Manitoba rental markets.</p>
+      <h1 class="text-lg font-semibold">CMHC Data</h1>
+      <p class="text-sm text-primary-100">Historical trends &amp; comparison tables for Manitoba rental and construction markets.</p>
     </header>
 
     <nav class="bg-neutral-100 border-b border-neutral-200 px-4 flex gap-1" role="tablist" aria-label="Views">
       <button type="button" role="tab" id="tab-btn-charts"
         class="cmhc-tab cmhc-tab-active" data-tab="charts" aria-selected="true">
-        Trend Charts
+        Rental Charts
       </button>
       <button type="button" role="tab" id="tab-btn-tables"
         class="cmhc-tab" data-tab="tables" aria-selected="false">
-        Comparison Tables
+        Rental Tables
+      </button>
+      <button type="button" role="tab" id="tab-btn-starts"
+        class="cmhc-tab" data-tab="starts" aria-selected="false">
+        Housing Starts
       </button>
     </nav>
 
@@ -161,6 +165,80 @@
         <div id="tbl-output" class="space-y-4"></div>
         <footer class="text-xs text-neutral-500 pt-4 border-t border-neutral-200">
           Source: CMHC Rental Market Survey. Data as of <span id="tbl-data-as-of">…</span>.
+        </footer>
+      </main>
+    </div>
+
+    <!-- ============================================================
+         Housing Starts tab — Scss (Starts/Completions/Under
+         Construction) for one geography. Sidebar: level/area, freq
+         (Annual/Quarterly), breakdown (Dwelling Type / Intended
+         Market), year range. Main: 3 chart cards + 3 data tables.
+         ============================================================ -->
+    <div id="tab-panel-starts" class="grid md:grid-cols-[320px_1fr] min-h-[calc(100vh-110px)]" role="tabpanel" aria-labelledby="tab-btn-starts" hidden>
+      <aside class="bg-white border-r border-neutral-200 p-4 space-y-4 overflow-y-auto" aria-label="Housing Starts filters">
+        <section>
+          <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Geography</h2>
+          <label class="block text-xs text-neutral-600 mb-1" for="hs-geo-level">Level</label>
+          <select id="hs-geo-level" class="w-full border border-neutral-300 rounded px-2 py-1 text-sm"></select>
+          <label class="block text-xs text-neutral-600 mt-2 mb-1" for="hs-geo-name">Area</label>
+          <select id="hs-geo-name" class="w-full border border-neutral-300 rounded px-2 py-1 text-sm" disabled>
+            <option>&nbsp;</option>
+          </select>
+        </section>
+
+        <section>
+          <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Frequency</h2>
+          <div id="hs-frequency" class="flex gap-3 text-sm" role="radiogroup" aria-label="Frequency">
+            <label class="flex items-center gap-1"><input type="radio" name="hsFrequency" value="Annual" checked /> Annual</label>
+            <label class="flex items-center gap-1"><input type="radio" name="hsFrequency" value="Quarterly" /> Quarterly</label>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Breakdown</h2>
+          <div id="hs-breakdown" class="grid gap-1 text-sm" role="radiogroup" aria-label="Breakdown">
+            <label class="flex items-center gap-1"><input type="radio" name="hsBreakdown" value="Dwelling Type" checked /> Dwelling Type</label>
+            <label class="flex items-center gap-1"><input type="radio" name="hsBreakdown" value="Intended Market" /> Intended Market</label>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Year range</h2>
+          <div class="flex items-center gap-2 text-sm">
+            <input id="hs-year-from" type="number" class="w-20 border border-neutral-300 rounded px-2 py-1" min="1990" max="2100" />
+            <span>to</span>
+            <input id="hs-year-to"   type="number" class="w-20 border border-neutral-300 rounded px-2 py-1" min="1990" max="2100" />
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Show categories</h2>
+          <div id="hs-category-toggles" class="pl-2 border-l-2 border-neutral-200 grid gap-1 text-sm" aria-label="Show/hide categories"></div>
+        </section>
+
+        <section class="pt-2 border-t border-neutral-200">
+          <button id="hs-download-xlsx" type="button"
+            class="w-full text-sm bg-accent-500 hover:bg-accent-600 text-white rounded px-3 py-1.5">
+            Download Excel (.xlsx)
+          </button>
+        </section>
+      </aside>
+
+      <main class="p-4 space-y-4 overflow-x-hidden">
+        <div id="hs-zone-banner" class="hidden bg-amber-50 border border-amber-200 text-amber-900 text-sm rounded px-3 py-2">
+          Zone &amp; neighbourhood values are stitched from CMHC's annual snapshots; older years may be missing.
+        </div>
+        <div id="hs-empty-state" class="hidden bg-neutral-100 border border-neutral-200 text-neutral-700 text-sm rounded px-3 py-2">
+          No data for this filter combination.
+        </div>
+
+        <section class="grid md:grid-cols-3 gap-4" id="hs-chart-grid"></section>
+
+        <section class="space-y-3" id="hs-table-grid"></section>
+
+        <footer class="text-xs text-neutral-500 pt-4 border-t border-neutral-200">
+          Source: CMHC Starts &amp; Completions Survey. Data as of <span id="hs-data-as-of">…</span>.
         </footer>
       </main>
     </div>

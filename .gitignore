@@ -19,6 +19,9 @@ package-lock.json
 **/*.tmp.[0-9]*
 **/*.tmp.[0-9]*.*
 
+# Claude Code working-state directory (scheduled tasks lockfile, etc.)
+.claude/
+
 # Editor
 .Rproj.user/
 .Rhistory

@@ -153,3 +153,89 @@ writeLines(toJSON(list(version = 1,
                   auto_unbox = TRUE, pretty = TRUE),
            geos_path, useBytes = TRUE)
 message(sprintf("[03] Wrote %s", geos_path))
+
+# =============================================================================
+# --- Scss housing starts shards ---------------------------------------------
+# Read housing_starts.csv (if present) and emit per-geography shards under
+# web/public/data/starts/. Kept in a separate tree from the Rms shards so the
+# Housing Starts tab can load only what it needs.
+# =============================================================================
+starts_path <- file.path(DATA_DIR, "housing_starts.csv")
+starts <- read_or_empty(starts_path)
+
+if (nrow(starts) > 0) {
+  message(sprintf("[03] Scss records to shard: %d (%d distinct geographies)",
+                  nrow(starts), dplyr::n_distinct(starts$GeoUID)))
+
+  STARTS_DIR <- file.path(WEB_DATA, "starts")
+  clear_dir(STARTS_DIR)
+
+  starts_summaries <- starts %>%
+    group_by(GeoUID, GeoName, GeoLevel, ParentUID, ParentName) %>%
+    summarise(record_count = n(),
+              year_min     = suppressWarnings(min(Year, na.rm = TRUE)),
+              year_max     = suppressWarnings(max(Year, na.rm = TRUE)),
+              .groups = "drop")
+
+  write_starts_shard <- function(geoUid, geoName, geoLevel, parentUid, parentName) {
+    rows <- starts %>% filter(GeoUID == !!geoUid)
+    if (nrow(rows) == 0) return(NULL)
+    payload <- list(
+      geoUid   = geoUid,
+      geoName  = geoName,
+      geoLevel = geoLevel,
+      records  = rows %>%
+        transmute(year = Year, quarter = Quarter, frequency = Frequency,
+                  series = Series, dimension = Dimension, category = Category,
+                  value = Value, quality = Quality)
+    )
+    if (!is.na(parentUid)  && nzchar(parentUid))  payload$parentUid  <- parentUid
+    if (!is.na(parentName) && nzchar(parentName)) payload$parentName <- parentName
+    out <- file.path(STARTS_DIR, sprintf("%s_%s.json", geoLevel, geoUid))
+    writeLines(toJSON(payload, auto_unbox = TRUE, na = "null", digits = 4),
+               out, useBytes = TRUE)
+    out
+  }
+
+  written_starts <- pmap_chr(
+    list(starts_summaries$GeoUID, starts_summaries$GeoName, starts_summaries$GeoLevel,
+         starts_summaries$ParentUID, starts_summaries$ParentName),
+    function(...) {
+      res <- write_starts_shard(...)
+      if (is.null(res)) NA_character_ else res
+    })
+  message(sprintf("[03] Wrote %d Scss shards to %s",
+                  sum(!is.na(written_starts)), STARTS_DIR))
+
+  # Also write a starts-geographies index so the new tab's dropdowns know
+  # exactly which geos have Scss data (which may differ slightly from Rms).
+  starts_levels <- starts_summaries %>%
+    arrange(GeoLevel, GeoName) %>%
+    group_by(GeoLevel) %>%
+    group_split() %>%
+    lapply(function(g) {
+      list(level = g$GeoLevel[1],
+           items = unname(lapply(seq_len(nrow(g)), function(i) {
+             item <- list(uid = g$GeoUID[i], name = g$GeoName[i],
+                          yearMin = g$year_min[i], yearMax = g$year_max[i])
+             if (!is.na(g$ParentUID[i]))  item$parentUid  <- g$ParentUID[i]
+             if (!is.na(g$ParentName[i])) item$parentName <- g$ParentName[i]
+             item
+           })))
+    })
+  starts_by_level <- setNames(
+    lapply(starts_levels, function(g) g$items),
+    vapply(starts_levels, function(g) g$level, character(1)))
+  for (lvl in geo_levels) if (is.null(starts_by_level[[lvl]])) starts_by_level[[lvl]] <- list()
+  starts_by_level <- starts_by_level[geo_levels]
+
+  starts_geos_path <- file.path(WEB_DATA, "starts-geographies.json")
+  writeLines(toJSON(list(version = 1,
+                         generated = format(Sys.time(), "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"),
+                         levels = starts_by_level),
+                    auto_unbox = TRUE, pretty = TRUE),
+             starts_geos_path, useBytes = TRUE)
+  message(sprintf("[03] Wrote %s", starts_geos_path))
+} else {
+  message("[03] housing_starts.csv not found; skipping Scss shards.")
+}

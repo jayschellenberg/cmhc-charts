@@ -10,6 +10,7 @@ import { initFilters } from './filters.js';
 import { buildChartCard } from './chart.js';
 import { decodeState, syncURL } from './state.js';
 import { initTables } from './tables.js';
+import { initStarts } from './starts.js';
 
 const SERIES_PANELS = [
   'Median Rent',
@@ -84,17 +85,18 @@ function setupTabs(initial) {
   const tabs = {
     charts: { btn: document.getElementById('tab-btn-charts'), panel: document.getElementById('tab-panel-charts') },
     tables: { btn: document.getElementById('tab-btn-tables'), panel: document.getElementById('tab-panel-tables') },
+    starts: { btn: document.getElementById('tab-btn-starts'), panel: document.getElementById('tab-panel-starts') },
   };
 
   function activate(name) {
     for (const [key, t] of Object.entries(tabs)) {
       const isActive = key === name;
-      t.btn.classList.toggle('cmhc-tab-active', isActive);
-      t.btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      t.btn?.classList.toggle('cmhc-tab-active', isActive);
+      t.btn?.setAttribute('aria-selected', isActive ? 'true' : 'false');
       if (t.panel) t.panel.hidden = !isActive;
     }
     // URL fragment so the active tab is link-shareable.
-    const hash = name === 'tables' ? '#tables' : '';
+    const hash = name === 'charts' ? '' : `#${name}`;
     if (window.location.hash !== hash) {
       const url = new URL(window.location.href);
       url.hash = hash;
@@ -147,13 +149,14 @@ async function bootstrap() {
   });
 
   // ── Tab switching ──
-  // Initial tab from URL hash (#tables) or default to charts.
-  const initialTab = window.location.hash === '#tables' ? 'tables' : 'charts';
+  const hashTab = window.location.hash.replace('#', '');
+  const initialTab = ['charts', 'tables', 'starts'].includes(hashTab) ? hashTab : 'charts';
   setupTabs(initialTab);
 
-  // Bootstrap the comparison-tables view (idempotent — does no work until
-  // the user is on that tab and adjusts a filter).
+  // Bootstrap the other two views (idempotent — no DOM rendered until the
+  // user lands on that tab and the filter state is non-empty).
   initTables({ geographies, manifest, loadShard });
+  initStarts({ manifest });
 
   await renderAll(filters.getState());
 

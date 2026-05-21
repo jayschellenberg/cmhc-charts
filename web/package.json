@@ -11,10 +11,11 @@
     "data:capabilities": "Rscript ../r/00_build_capabilities.R",
     "data:historical": "Rscript ../r/01_scrape_historical.R",
     "data:zones": "Rscript ../r/02_scrape_zone_snapshots.R",
+    "data:starts": "Rscript ../r/05_scrape_starts.R",
     "data:shards": "Rscript ../r/03_build_data_files.R",
     "data:manifest": "Rscript ../r/04_build_manifest.R",
     "data:verify": "Rscript ../r/99_verify_samples.R",
-    "data:all": "Rscript ../r/00_audit_geographies.R && Rscript ../r/00_build_capabilities.R && Rscript ../r/01_scrape_historical.R && Rscript ../r/02_scrape_zone_snapshots.R && Rscript ../r/03_build_data_files.R && Rscript ../r/04_build_manifest.R"
+    "data:all": "Rscript ../r/00_audit_geographies.R && Rscript ../r/00_build_capabilities.R && Rscript ../r/01_scrape_historical.R && Rscript ../r/02_scrape_zone_snapshots.R && Rscript ../r/05_scrape_starts.R && Rscript ../r/03_build_data_files.R && Rscript ../r/04_build_manifest.R"
   },
   "dependencies": {
     "@observablehq/plot": "^0.6.16",

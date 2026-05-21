@@ -210,7 +210,9 @@ export function buildChartCard(container, { series }) {
 
 function summariseCaption(rows, meta = {}) {
   if (!rows || rows.length === 0) return '';
-  const years = rows.map(r => r.year).filter(Number.isFinite);
+  // Floor in case the caller is using fractional x values for sub-annual
+  // periods (e.g. 2025.75 means Q4 2025 in the Housing Starts view).
+  const years = rows.map(r => Math.floor(r.year)).filter(Number.isFinite);
   const yMin = Math.min(...years), yMax = Math.max(...years);
   const seasonPart = meta.season ? `${meta.season} ` : '';
   return `${seasonPart}${yMin}–${yMax}`;

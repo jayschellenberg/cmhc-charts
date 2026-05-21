@@ -26,11 +26,13 @@ jobs:
         env:
           CMHC_ZONE_CMAS: ALL
           CMHC_ZONE_DWELLING: ALL
+          CMHC_STARTS_ZONES: ALL
         run: |
           Rscript r/00_audit_geographies.R
           Rscript r/00_build_capabilities.R
           Rscript r/01_scrape_historical.R
           Rscript r/02_scrape_zone_snapshots.R
+          Rscript r/05_scrape_starts.R
           Rscript r/03_build_data_files.R
           Rscript r/04_build_manifest.R
 

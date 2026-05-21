@@ -1,0 +1,327 @@
+/*
+ * Housing Starts view — Scss data (Starts / Completions / Under Construction)
+ * for one geography at a time, switchable between Annual and Quarterly
+ * frequency and between Dwelling Type and Intended Market breakdowns.
+ *
+ * Layout:
+ *   - Top: 3 chart cards (one per series) reusing the same Observable Plot
+ *     card builder as the Rental Charts tab.
+ *   - Below: 3 data tables (rows = period, columns = category) styled with
+ *     the same dark-red header treatment as the Rental Tables tab.
+ *   - Excel download exports every visible table to a single .xlsx.
+ *
+ * Data source: web/public/data/starts/{level}_{uid}.json shards emitted by
+ * r/03_build_data_files.R after r/05_scrape_starts.R writes the Scss CSV.
+ */
+
+import * as Plot from '@observablehq/plot';
+import { toPng } from 'html-to-image';
+import { buildChartCard } from './chart.js';
+
+const SERIES = ['Starts', 'Completions', 'Under Construction'];
+
+// Canonical legend order per dimension. "All" is always last so it sits at
+// the bottom of the colour stack (same convention as the Rental tabs).
+const CATEGORY_ORDER = {
+  'Dwelling Type':    ['Single', 'Semi-Detached', 'Row', 'Apartment', 'All'],
+  'Intended Market':  ['Homeowner', 'Rental', 'Condo', 'Co-Op', 'Unknown', 'All'],
+};
+
+const LEVEL_LABEL = {
+  province:      'Province',
+  cma:           'CMA/CA',
+  csd:           'Census Subdivision',
+  zone:          'Survey Zone',
+  neighbourhood: 'Neighbourhood',
+};
+
+// In-memory shard cache for the session.
+const shardCache = new Map();
+async function loadStartsShard(level, uid) {
+  const key = `${level}_${uid}`;
+  if (shardCache.has(key)) return shardCache.get(key);
+  const promise = fetch(`./data/starts/${key}.json`).then(r => {
+    if (!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json();
+  }).catch(err => { console.warn('[starts shard]', err); return null; });
+  shardCache.set(key, promise);
+  return promise;
+}
+
+export async function initStarts({ manifest }) {
+  // Geographies for the housing tab come from the dedicated index produced by
+  // 03_build_data_files.R — Scss coverage differs slightly from Rms (more
+  // zones, sometimes different CSDs).
+  const geos = await fetch('./data/starts-geographies.json')
+    .then(r => r.ok ? r.json() : { levels: {} })
+    .catch(() => ({ levels: {} }));
+
+  const $level   = document.getElementById('hs-geo-level');
+  const $name    = document.getElementById('hs-geo-name');
+  const $freq    = document.querySelectorAll('input[name="hsFrequency"]');
+  const $bd      = document.querySelectorAll('input[name="hsBreakdown"]');
+  const $yFrom   = document.getElementById('hs-year-from');
+  const $yTo     = document.getElementById('hs-year-to');
+  const $catBox  = document.getElementById('hs-category-toggles');
+  const $banner  = document.getElementById('hs-zone-banner');
+  const $empty   = document.getElementById('hs-empty-state');
+  const $charts  = document.getElementById('hs-chart-grid');
+  const $tables  = document.getElementById('hs-table-grid');
+  const $dl      = document.getElementById('hs-download-xlsx');
+  const $asOf    = document.getElementById('hs-data-as-of');
+
+  // Level dropdown — only levels that have items.
+  const levels = geos.levels || {};
+  const levelOrder = ['province', 'cma', 'csd', 'zone', 'neighbourhood'];
+  const availableLevels = levelOrder.filter(l => Array.isArray(levels[l]) && levels[l].length > 0);
+  $level.innerHTML = availableLevels
+    .map(l => `<option value="${l}">${LEVEL_LABEL[l] ?? l}</option>`)
+    .join('');
+
+  const state = {
+    geoLevel: availableLevels[0] || 'province',
+    geoUid:   levels[availableLevels[0]]?.[0]?.uid || '',
+    frequency: 'Annual',
+    breakdown: 'Dwelling Type',
+    yearFrom:  null,
+    yearTo:    null,
+    hiddenCategories: {},
+  };
+
+  function populateNames() {
+    const items = levels[state.geoLevel] || [];
+    $name.disabled = items.length === 0;
+    $name.innerHTML = items.map(it => {
+      const label = it.parentName && state.geoLevel !== 'cma' && state.geoLevel !== 'province' && state.geoLevel !== 'csd'
+        ? `${it.name} — ${it.parentName}` : it.name;
+      return `<option value="${it.uid}">${escapeHtml(label)}</option>`;
+    }).join('') || '<option>&nbsp;</option>';
+  }
+
+  function setRadio(nodes, value) { nodes.forEach(n => { n.checked = (n.value === value); }); }
+
+  function updateZoneBanner() {
+    const show = (state.geoLevel === 'zone' || state.geoLevel === 'neighbourhood');
+    $banner.hidden = !show;
+    $banner.classList.toggle('hidden', !show);
+  }
+
+  function renderCategoryToggles(categories) {
+    const cats = categories || CATEGORY_ORDER[state.breakdown] || [];
+    const hidden = new Set(state.hiddenCategories[state.breakdown] || []);
+    if (cats.length === 0) { $catBox.innerHTML = ''; return; }
+    $catBox.innerHTML = cats.map(cat => `
+      <label class="flex items-center gap-1">
+        <input type="checkbox" data-cat="${escapeHtml(cat)}" ${hidden.has(cat) ? '' : 'checked'} />
+        <span>${escapeHtml(cat)}</span>
+      </label>
+    `).join('');
+    $catBox.querySelectorAll('input[type=checkbox]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const cat = cb.dataset.cat;
+        const list = new Set(state.hiddenCategories[state.breakdown] || []);
+        if (cb.checked) list.delete(cat); else list.add(cat);
+        state.hiddenCategories[state.breakdown] = [...list];
+        scheduleRender();
+      });
+    });
+  }
+
+  // ----- Build chart cards once; render() will refresh them per filter ----
+  $charts.replaceChildren();
+  const cards = SERIES.map(s => ({ series: s, ...buildChartCard($charts, { series: s }) }));
+
+  // Manifest "as of" line.
+  if (manifest?.lastUpdated && $asOf) {
+    const d = new Date(manifest.lastUpdated);
+    $asOf.textContent = manifest.cmhcMaxYear
+      ? `${manifest.cmhcMaxYear} (refreshed ${d.toISOString().slice(0,10)})`
+      : d.toISOString().slice(0,10);
+  }
+
+  // ----- Render --------------------------------------------------------------
+  let pendingRender = null;
+  function scheduleRender() {
+    if (pendingRender) clearTimeout(pendingRender);
+    pendingRender = setTimeout(() => { pendingRender = null; render(); }, 120);
+  }
+
+  // Holds the last successful render's tables for the Excel exporter.
+  let lastExport = null;
+
+  async function render() {
+    $tables.replaceChildren();
+    if (!state.geoUid) {
+      $empty.hidden = false; $empty.classList.remove('hidden');
+      cards.forEach(c => c.render(null, ''));
+      lastExport = null;
+      return;
+    }
+
+    const shard = await loadStartsShard(state.geoLevel, state.geoUid);
+    if (!shard) {
+      $empty.hidden = false; $empty.classList.remove('hidden');
+      cards.forEach(c => c.render(null, ''));
+      lastExport = null;
+      return;
+    }
+
+    const yearFrom = state.yearFrom ?? Math.max((manifest?.cmhcMaxYear ?? new Date().getFullYear()) - 10, 1990);
+    const yearTo   = state.yearTo   ?? (manifest?.cmhcMaxYear ?? new Date().getFullYear());
+    const hidden   = new Set(state.hiddenCategories[state.breakdown] || []);
+
+    const builtTables = [];
+    let anyData = false;
+
+    for (const card of cards) {
+      const matching = (shard.records || []).filter(r =>
+        r.series === card.series &&
+        r.dimension === state.breakdown &&
+        r.frequency === state.frequency &&
+        r.year >= yearFrom && r.year <= yearTo &&
+        !hidden.has(r.category)
+      );
+      if (matching.length) anyData = true;
+
+      // For quarterly view, encode (year + quarter) as a fractional year so
+      // the x-axis spreads quarters evenly along the year-tick range.
+      // chart.js's summariseCaption floors fractional years, so the caption
+      // still reads as integer years.
+      const enriched = matching.map(r => {
+        const q = r.quarter ? Number(r.quarter) : null;
+        const xYear = state.frequency === 'Quarterly' && q
+          ? Number(r.year) + (q - 1) / 4
+          : Number(r.year);
+        return { ...r, year: xYear };
+      });
+      const sub = `${LEVEL_LABEL[shard.geoLevel] || shard.geoLevel}: ${shard.geoName} — ${state.frequency}, by ${state.breakdown}`;
+      card.render(enriched, sub, CATEGORY_ORDER[state.breakdown] || [], { season: '' });
+
+      // Build a data table for this series: rows = periods, cols = categories.
+      builtTables.push(buildSeriesTable(card.series, matching, state.breakdown, state.frequency));
+    }
+
+    builtTables.forEach(t => renderTable(t, $tables));
+
+    $empty.hidden = anyData; $empty.classList.toggle('hidden', anyData);
+    lastExport = builtTables;
+
+    // Refresh category toggles with the categories actually present.
+    const presentCats = new Set();
+    (shard.records || [])
+      .filter(r => r.dimension === state.breakdown && r.frequency === state.frequency)
+      .forEach(r => presentCats.add(r.category));
+    const canonical = CATEGORY_ORDER[state.breakdown] || [];
+    const ordered = canonical.filter(c => presentCats.has(c))
+      .concat([...presentCats].filter(c => !canonical.includes(c)));
+    renderCategoryToggles(ordered);
+
+    updateZoneBanner();
+  }
+
+  // Pivot: build a flat table {title, columns, rows[{period, values[]}]}
+  function buildSeriesTable(seriesName, rows, dim, freq) {
+    const canonical = CATEGORY_ORDER[dim] || [];
+    const present = [...new Set(rows.map(r => r.category))];
+    const cols = canonical.filter(c => present.includes(c))
+      .concat(present.filter(c => !canonical.includes(c)));
+
+    // Period rows: sort by year (and quarter for quarterly).
+    const periods = [...new Set(rows.map(r => periodKey(r, freq)))].sort();
+    const matrix = new Map();
+    rows.forEach(r => {
+      const p = periodKey(r, freq);
+      if (!matrix.has(p)) matrix.set(p, new Map());
+      matrix.get(p).set(r.category, r.value);
+    });
+
+    const tableRows = periods.map(p => ({
+      period: p,
+      values: cols.map(c => matrix.get(p)?.get(c) ?? null),
+    }));
+
+    return { title: seriesName, columns: cols, rows: tableRows };
+  }
+
+  function periodKey(r, freq) {
+    if (freq === 'Quarterly' && r.quarter) return `${r.year} Q${r.quarter}`;
+    return String(r.year);
+  }
+
+  function renderTable(table, container) {
+    const block = document.createElement('section');
+    block.className = 'cmhc-table-block';
+    const title = document.createElement('div');
+    title.className = 'cmhc-table-title';
+    title.textContent = table.title;
+    block.appendChild(title);
+
+    const tbl = document.createElement('table');
+    tbl.className = 'cmhc-table';
+    const thead = document.createElement('thead');
+    const trh = document.createElement('tr');
+    const blank = document.createElement('th'); blank.textContent = 'Period';
+    trh.appendChild(blank);
+    table.columns.forEach(c => {
+      const th = document.createElement('th'); th.textContent = c; trh.appendChild(th);
+    });
+    thead.appendChild(trh);
+    tbl.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    table.rows.forEach(r => {
+      const tr = document.createElement('tr');
+      const td0 = document.createElement('td'); td0.textContent = r.period;
+      tr.appendChild(td0);
+      r.values.forEach(v => {
+        const td = document.createElement('td');
+        if (v == null) { td.textContent = '**'; td.classList.add('cmhc-table-na'); }
+        else td.textContent = Number(v).toLocaleString();
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    tbl.appendChild(tbody);
+    block.appendChild(tbl);
+    container.appendChild(block);
+  }
+
+  // ----- Excel export --------------------------------------------------------
+  $dl.addEventListener('click', async () => {
+    if (!lastExport || lastExport.length === 0) return;
+    const { exportTablesToExcel } = await import('./excel-export.js');
+    const stamped = lastExport.map(t => ({
+      ...t,
+      // The excel-export helper expects each row to have {area, values}.
+      // Adapt by re-mapping period → area.
+      rows: t.rows.map(r => ({ area: r.period, values: r.values.map(v => v == null ? null : Number(v).toLocaleString()) })),
+      dwellingSuffix: ` — ${state.frequency}, ${state.breakdown}`,
+    }));
+    const filename = `CMHC_HousingStarts_${state.frequency}_${new Date().toISOString().slice(0,10)}.xlsx`;
+    await exportTablesToExcel(stamped, { filename, maxYear: manifest?.cmhcMaxYear ?? new Date().getFullYear() });
+  });
+
+  // ----- Event wiring --------------------------------------------------------
+  $level.addEventListener('change', () => {
+    state.geoLevel = $level.value;
+    populateNames();
+    state.geoUid = $name.value;
+    scheduleRender();
+  });
+  $name.addEventListener('change',  () => { state.geoUid = $name.value; scheduleRender(); });
+  $freq.forEach(n => n.addEventListener('change', () => { if (n.checked) { state.frequency = n.value; scheduleRender(); } }));
+  $bd  .forEach(n => n.addEventListener('change', () => { if (n.checked) { state.breakdown = n.value; renderCategoryToggles(); scheduleRender(); } }));
+  $yFrom.addEventListener('change', () => { const v = parseInt($yFrom.value, 10); state.yearFrom = Number.isFinite(v) ? v : null; scheduleRender(); });
+  $yTo  .addEventListener('change', () => { const v = parseInt($yTo.value, 10);   state.yearTo   = Number.isFinite(v) ? v : null; scheduleRender(); });
+
+  // Initial setup
+  populateNames();
+  renderCategoryToggles();
+  render();
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
