@@ -88,8 +88,151 @@ export async function initIndicators() {
 
   buildSnapshot(catalogResolved, shards);
   buildChartSections(catalogResolved, shards);
+  buildTimeAdjustmentTool(catalogResolved, shards);
   wireSidebar(catalogResolved, manifest);
   wireExcelDownload(catalogResolved, shards);
+}
+
+// --- Time-adjustment helper -------------------------------------------------
+// Interactive form: user picks a sale date, effective date, an index, and
+// (optionally) a sale price. Output is the multiplier (index at effective /
+// index at sale) and the adjusted price. The chosen index's actual values
+// + observation dates are surfaced for transparency.
+function buildTimeAdjustmentTool(catalog, shards) {
+  const $grid = document.getElementById('mi-chart-grid');
+  if (!$grid) return;
+
+  // Eligible source series — only indices and shelter inflation make sense
+  // here. Drop bond yields, payments, employment counts, etc.
+  const ELIGIBLE_IDS = [
+    'statscan.nhpi.winnipeg',
+    'statscan.nhpi.canada',
+    'statscan.cpi_shelter.manitoba',
+    'statscan.cpi_shelter.canada',
+    'statscan.bcpi.residential.winnipeg',
+    'statscan.bcpi.residential.canada',
+    'statscan.bcpi.nonresidential.winnipeg',
+    'statscan.bcpi.nonresidential.canada',
+  ];
+
+  // Collect available series from the shards, in eligible order.
+  const allSeries = [];
+  Object.values(shards).forEach(sh => (sh.series || []).forEach(s => allSeries.push(s)));
+  const seriesById = Object.fromEntries(allSeries.map(s => [s.id, s]));
+  const recordsById = {};
+  Object.values(shards).forEach(sh => (sh.records || []).forEach(r => {
+    if (!recordsById[r.id]) recordsById[r.id] = [];
+    recordsById[r.id].push(r);
+  }));
+  // Sort each series's records by date ascending.
+  Object.values(recordsById).forEach(arr => arr.sort((a, b) => a.date.localeCompare(b.date)));
+
+  const choices = ELIGIBLE_IDS
+    .filter(id => seriesById[id] && (recordsById[id]?.length || 0) > 0)
+    .map(id => ({ id, title: seriesById[id].title || id, geo: seriesById[id].geo, base: seriesById[id].indexBase }));
+  if (choices.length === 0) return;
+
+  // Bracket the date range with the union of all eligible series.
+  const allDates = ELIGIBLE_IDS.flatMap(id => recordsById[id] || []).map(r => r.date).sort();
+  const minDate = allDates[0] || '2010-01-01';
+  const maxDate = allDates[allDates.length - 1] || new Date().toISOString().slice(0, 10);
+  const todayIso = new Date().toISOString().slice(0, 10);
+
+  const section = document.createElement('section');
+  section.className = 'cmhc-mi-section';
+  section.dataset.group = 'tools';
+  section.id = 'mi-section-tools';
+  section.innerHTML = `
+    <h2 class="cmhc-mi-section-title">Tools</h2>
+    <section class="chart-card cmhc-time-adjust">
+      <header class="chart-title">Time-adjustment helper</header>
+      <p class="chart-sub">Index-based market-condition multiplier for use as appraisal input.</p>
+      <div class="cmhc-time-adjust-disclaimer">
+        <strong>Disclaimer:</strong> Market-condition adjustments require appraiser judgment beyond a single
+        index. This helper computes the ratio of one index value to another and is intended as input to the
+        appraiser's analysis, not a substitute for it. Local market segments routinely diverge from the
+        index used; verify against transaction-level evidence.
+      </div>
+      <div class="cmhc-time-adjust-form">
+        <label>Sale date<input type="date" id="ta-sale-date"
+                              min="${minDate}" max="${maxDate}" /></label>
+        <label>Effective date<input type="date" id="ta-eff-date"
+                                    min="${minDate}" max="${todayIso}" value="${todayIso.slice(0, 7)}-01" /></label>
+        <label>Index
+          <select id="ta-index">
+            ${choices.map(c => `<option value="${c.id}">${c.title}${c.base ? ` (${c.base})` : ''}</option>`).join('')}
+          </select>
+        </label>
+        <label>Sale price <span class="cmhc-time-adjust-optional">(optional)</span>
+          <input type="number" id="ta-sale-price" min="0" step="1000" placeholder="e.g. 350000" /></label>
+        <button type="button" id="ta-compute">Calculate</button>
+      </div>
+      <div id="ta-result" class="cmhc-time-adjust-result" hidden></div>
+    </section>
+  `;
+  $grid.appendChild(section);
+
+  const $sale  = section.querySelector('#ta-sale-date');
+  const $eff   = section.querySelector('#ta-eff-date');
+  const $idx   = section.querySelector('#ta-index');
+  const $price = section.querySelector('#ta-sale-price');
+  const $btn   = section.querySelector('#ta-compute');
+  const $out   = section.querySelector('#ta-result');
+
+  // Find the record at or before the target date.
+  function lookupAtDate(seriesId, targetIso) {
+    const recs = recordsById[seriesId];
+    if (!recs || recs.length === 0 || !targetIso) return null;
+    let prev = null;
+    for (const r of recs) {
+      if (r.date <= targetIso) prev = r;
+      else break;
+    }
+    return prev || recs[0];
+  }
+
+  function compute() {
+    $out.hidden = false;
+    const saleIso = $sale.value, effIso = $eff.value, id = $idx.value;
+    if (!saleIso || !effIso || !id) {
+      $out.innerHTML = `<p class="cmhc-time-adjust-error">Pick a sale date, effective date, and an index.</p>`;
+      return;
+    }
+    if (saleIso >= effIso) {
+      $out.innerHTML = `<p class="cmhc-time-adjust-error">Effective date must be after sale date.</p>`;
+      return;
+    }
+    const saleHit = lookupAtDate(id, saleIso);
+    const effHit  = lookupAtDate(id, effIso);
+    if (!saleHit || !effHit) {
+      $out.innerHTML = `<p class="cmhc-time-adjust-error">Index has no observations near one of the dates.</p>`;
+      return;
+    }
+    const meta = seriesById[id];
+    const mult = effHit.value / saleHit.value;
+    const pct  = (mult - 1) * 100;
+    const saleVal = parseFloat($price.value);
+    let priceLine = '';
+    if (Number.isFinite(saleVal) && saleVal > 0) {
+      const adj = saleVal * mult;
+      priceLine = `<p>Adjusted price: <strong>$${Math.round(adj).toLocaleString()}</strong> (from $${Math.round(saleVal).toLocaleString()})</p>`;
+    }
+    $out.innerHTML = `
+      <p><strong>Multiplier:</strong> ${mult.toFixed(4)} <span class="cmhc-time-adjust-pct">(${pct >= 0 ? '+' : ''}${pct.toFixed(2)}%)</span></p>
+      ${priceLine}
+      <p class="cmhc-time-adjust-detail">
+        ${meta.title} (${meta.geo}) — sale-date index <strong>${saleHit.value.toFixed(1)}</strong> (${saleHit.date}),
+        effective-date index <strong>${effHit.value.toFixed(1)}</strong> (${effHit.date}).
+      </p>
+    `;
+  }
+
+  $btn.addEventListener('click', compute);
+  // Pre-fill sale date to one year before today so the helper has a sensible
+  // default the user can hit Calculate against.
+  const oneYearAgo = new Date();
+  oneYearAgo.setUTCFullYear(oneYearAgo.getUTCFullYear() - 1);
+  $sale.value = oneYearAgo.toISOString().slice(0, 10);
 }
 
 // --- Current Snapshot KPI bar -----------------------------------------------
