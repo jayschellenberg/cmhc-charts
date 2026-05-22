@@ -105,13 +105,61 @@ compute_ratio <- function(s) {
   )
 }
 
+# mortgage_payment: standard P&I = P × [r(1+r)^n] / [(1+r)^n - 1] where the
+# source series carries the annual rate as a percent. principal and
+# amortMonths come from the catalog row.
+compute_mortgage_payment <- function(s) {
+  src <- all_obs %>% filter(id == s$derivedFrom) %>% arrange(date)
+  if (nrow(src) == 0) return(NULL)
+  P <- as.numeric(s$principal %||% 400000)
+  n <- as.integer(s$amortMonths %||% 300)
+  ann_rate <- src$value / 100
+  r <- ann_rate / 12
+  pmt <- P * r * (1 + r)^n / ((1 + r)^n - 1)
+  pmt[!is.finite(pmt) | pmt <= 0] <- NA_real_
+  keep <- !is.na(pmt)
+  tibble::tibble(
+    id = s$id, seriesId = s$id,
+    date = src$date[keep], value = pmt[keep],
+    units = "dollar", geo = s$geo,
+    frequency = cat_by_id[[s$derivedFrom]]$frequency,
+    transform = "mortgage_payment"
+  )
+}
+
+# per_capita: numerator series ÷ population series × multiplier (e.g.
+# ×1000 for "per thousand people"). Date join is inner; for a monthly
+# numerator and a quarterly population, only the months that align with
+# population quarters survive. Acceptable resolution for a directional
+# indicator.
+compute_per_capita <- function(s) {
+  ids <- unlist(s$derivedFrom)
+  if (length(ids) != 2) return(NULL)
+  num <- all_obs %>% filter(id == ids[1]) %>% select(date, vn = value) %>% arrange(date)
+  pop <- all_obs %>% filter(id == ids[2]) %>% select(date, vp = value) %>% arrange(date)
+  if (nrow(num) == 0 || nrow(pop) == 0) return(NULL)
+  joined <- inner_join(num, pop, by = "date") %>% arrange(date)
+  if (nrow(joined) == 0) return(NULL)
+  mult <- as.numeric(s$multiplier %||% 1)
+  v <- joined$vn / joined$vp * mult
+  tibble::tibble(
+    id = s$id, seriesId = s$id,
+    date = joined$date, value = v,
+    units = s$units %||% "ratio", geo = s$geo,
+    frequency = cat_by_id[[ids[1]]]$frequency,
+    transform = "per_capita"
+  )
+}
+
 if (length(derived_series) > 0) {
   message(sprintf("[14] computing %d derived series", length(derived_series)))
   derived_rows <- bind_rows(lapply(derived_series, function(s) {
     res <- switch(s$derivedOp %||% "",
-                  yoy   = compute_yoy(s),
-                  shift = compute_shift(s),
-                  ratio = compute_ratio(s),
+                  yoy              = compute_yoy(s),
+                  shift            = compute_shift(s),
+                  ratio            = compute_ratio(s),
+                  mortgage_payment = compute_mortgage_payment(s),
+                  per_capita       = compute_per_capita(s),
                   NULL)
     if (is.null(res) || nrow(res) == 0) {
       message(sprintf("  [14] %s — could not compute (op=%s)", s$id, s$derivedOp))

@@ -151,8 +151,22 @@ async function bootstrap() {
   });
 
   // ── Tab switching ──
-  const hashTab = window.location.hash.replace('#', '');
-  const initialTab = ['charts', 'tables', 'starts', 'indicators'].includes(hashTab) ? hashTab : 'charts';
+  // Resolve initial tab from the URL hash. Section-anchor hashes
+  // (#mi-section-<group>) belong to the Market Indicators tab; treat them
+  // as a synonym for the bare #indicators hash so deep links from the
+  // sidebar TOC work after a hard refresh.
+  const rawHash = window.location.hash.replace('#', '');
+  let initialTab = 'charts';
+  if (['charts', 'tables', 'starts', 'indicators'].includes(rawHash)) {
+    initialTab = rawHash;
+  } else if (rawHash.startsWith('mi-section-')) {
+    initialTab = 'indicators';
+    // Defer the scroll until after initIndicators has rendered the section.
+    setTimeout(() => {
+      document.getElementById(rawHash)
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 1000);
+  }
   setupTabs(initialTab);
 
   // Bootstrap the other views (idempotent — no DOM rendered until the

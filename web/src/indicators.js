@@ -20,6 +20,7 @@ const PROVIDER_LABEL = {
   boc:      'Bank of Canada Valet',
   statscan: 'Statistics Canada (WDS)',
   cba:      'Canadian Bankers Association',
+  derived:  'computed from BoC + StatsCan series',
 };
 
 const FMT = {
