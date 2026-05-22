@@ -219,9 +219,13 @@ export function buildIndicatorCard(container, { chartId, title, sourceLabel, des
     $plot.appendChild(wrap);
 
     // Subtitle + caption + latest-value row.
-    $sub.textContent = opts.subtitle || '';
+    // Embed the year range in the subtitle (moved out of the caption row
+    // per user request — the caption now only carries the source label).
     const minD = filtered[0].date, maxD = filtered[filtered.length - 1].date;
-    $capLeft.textContent = `${minD.getUTCFullYear()}–${maxD.getUTCFullYear()}`;
+    const yearRange = `${minD.getUTCFullYear()}–${maxD.getUTCFullYear()}`;
+    const baseSub = opts.subtitle || '';
+    $sub.textContent = baseSub ? `${baseSub} • ${yearRange}` : yearRange;
+    $capLeft.textContent = '';
 
     // Latest-value row: one chip per series.
     const today = new Date();

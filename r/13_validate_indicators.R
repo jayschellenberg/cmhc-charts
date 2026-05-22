@@ -127,6 +127,18 @@ results <- lapply(series, function(row) {
     return(c(list(id = row$id, provider = row$provider, skipped = TRUE,
                   ok = TRUE, actualTitle = NA, latest = NA, reason = "")))
   }
+  # Derived series are computed at build time from another series's records.
+  # Validate that the upstream source exists; nothing else to check.
+  if (identical(row$provider, "derived")) {
+    src_ids <- vapply(series, function(s) s$id %||% "", character(1))
+    src_ok <- !is.null(row$derivedFrom) && row$derivedFrom %in% src_ids
+    cat(sprintf("  [%s] %-44s derived from %s\n",
+                if (src_ok) "OK  " else "FAIL",
+                row$id, row$derivedFrom %||% "(missing)"))
+    return(list(id = row$id, provider = row$provider,
+                ok = src_ok, actualTitle = row$expectedTitle, latest = NA,
+                reason = if (src_ok) "" else "derivedFrom not found in catalog"))
+  }
   res <- switch(row$provider,
                 boc      = validate_boc(row),
                 statscan = validate_statscan(row),

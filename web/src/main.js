@@ -170,7 +170,7 @@ async function bootstrap() {
     const shard = await loadShard(state.geoLevel, state.geoUid);
     if (!shard) { setEmptyState(true); cards.forEach(c => c.render(null, '')); return; }
 
-    const yearFrom = state.yearFrom ?? Math.max((manifest.cmhcMaxYear ?? new Date().getFullYear()) - 10, 1990);
+    const yearFrom = state.yearFrom ?? Math.max((manifest.cmhcMaxYear ?? new Date().getFullYear()) - 5, 1990);
     const yearTo   = state.yearTo   ?? (manifest.cmhcMaxYear ?? new Date().getFullYear());
 
     let anyData = false;

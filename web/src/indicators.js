@@ -41,13 +41,13 @@ async function loadJson(path) {
 }
 
 let initialised = false;
+// Default year range: last 5 years through today. Users can widen via the
+// sidebar year-range inputs.
+const DEFAULT_YEAR_FROM = new Date().getFullYear() - 5;
 let state = {
-  yearFrom: null,
+  yearFrom: DEFAULT_YEAR_FROM,
   yearTo: null,
   sectionsHidden: new Set(),
-  // Geography filter — strict: each series's geo must be in this set to render.
-  // Default: all three on. Adding a geo brings its lines back; removing hides
-  // them (including national-only charts when "CA" is unchecked).
   geosEnabled: new Set(['CA', 'MB', 'Winnipeg-CMA']),
 };
 let lastRender = { cards: [], shards: {}, catalog: null };
@@ -292,6 +292,11 @@ function wireSidebar(catalog, manifest) {
   if ($asOf) $asOf.textContent =
     `${manifest.totalSeries || '?'} series, latest ${
       (manifest.groups || []).map(g => g.latestDate).sort().slice(-1)[0] || '—'}`;
+
+  // Pre-fill the year-range inputs with the default 5-year window so the
+  // user sees the value the charts are filtering to.
+  if ($yFrom && state.yearFrom != null) $yFrom.value = state.yearFrom;
+  if ($yTo   && state.yearTo   != null) $yTo.value   = state.yearTo;
 
   if ($sectionsBox) {
     $sectionsBox.innerHTML = '';

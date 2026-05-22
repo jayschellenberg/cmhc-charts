@@ -166,7 +166,7 @@ export async function initStarts({ manifest }) {
       return;
     }
 
-    const yearFrom = state.yearFrom ?? Math.max((manifest?.cmhcMaxYear ?? new Date().getFullYear()) - 10, 1990);
+    const yearFrom = state.yearFrom ?? Math.max((manifest?.cmhcMaxYear ?? new Date().getFullYear()) - 5, 1990);
     const yearTo   = state.yearTo   ?? (manifest?.cmhcMaxYear ?? new Date().getFullYear());
     const hidden   = new Set(state.hiddenCategories[state.breakdown] || []);
 

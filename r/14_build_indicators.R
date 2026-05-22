@@ -41,6 +41,41 @@ cba <- read_safe(file.path(DATA_DIR, "cba_arrears.csv"))   # not yet produced; h
 all_obs <- bind_rows(boc, stc, cba)
 if (nrow(all_obs) == 0) stop("[14] no indicator data found — run the scrape scripts first.")
 
+# --- Derived series: compute YoY % change for catalog entries with
+#     provider="derived" and derivedOp="yoy". The lag depends on the
+#     source series's frequency (monthly = 12, quarterly = 4, annual = 1).
+derived_series <- Filter(function(s) identical(s$provider, "derived") &&
+                                       identical(s$derivedOp, "yoy"),
+                         catalog$series)
+if (length(derived_series) > 0) {
+  message(sprintf("[14] computing %d YoY derived series", length(derived_series)))
+  derived_rows <- bind_rows(lapply(derived_series, function(s) {
+    src <- all_obs %>% filter(id == s$derivedFrom) %>% arrange(date)
+    if (nrow(src) == 0) {
+      message(sprintf("  [14] %s — source '%s' missing, skipped", s$id, s$derivedFrom))
+      return(NULL)
+    }
+    src_freq <- cat_by_id[[s$derivedFrom]]$frequency
+    lag_n <- switch(src_freq, monthly = 12L, quarterly = 4L, annual = 1L, 12L)
+    yoy <- (src$value / dplyr::lag(src$value, n = lag_n) - 1) * 100
+    keep <- !is.na(yoy)
+    tibble::tibble(
+      id        = s$id,
+      seriesId  = s$id,
+      date      = src$date[keep],
+      value     = yoy[keep],
+      units     = "percent",
+      geo       = s$geo,
+      frequency = src_freq,
+      transform = "yoy"
+    )
+  }))
+  if (nrow(derived_rows) > 0) {
+    all_obs <- bind_rows(all_obs, derived_rows)
+    message(sprintf("[14] appended %d derived records", nrow(derived_rows)))
+  }
+}
+
 # --- Attach catalog metadata + map to displayGroup --------------------------
 all_obs <- all_obs %>%
   mutate(date = as.character(as.Date(date))) %>%
