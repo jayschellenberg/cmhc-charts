@@ -13,7 +13,7 @@
  */
 
 import * as Plot from '@observablehq/plot';
-import { toPng, toSvg } from 'html-to-image';
+import { toPng } from 'html-to-image';
 import { themed, fmt, PALETTE, gridMarks, frameMark } from './plot-theme.js';
 
 const Y_FMT = {
@@ -48,7 +48,6 @@ export function buildChartCard(container, { series }) {
       <span class="chart-source">Source: CMHC</span>
     </div>
     <div class="chart-actions">
-      <button type="button" data-role="dl-svg">Download SVG</button>
       <button type="button" data-role="dl-png">Download PNG</button>
     </div>
   `;
@@ -58,7 +57,6 @@ export function buildChartCard(container, { series }) {
   const $plot     = card.querySelector('[data-role="plot"]');
   const $empty    = card.querySelector('[data-role="empty"]');
   const $capLeft  = card.querySelector('[data-role="caption-left"]');
-  const $svg      = card.querySelector('[data-role="dl-svg"]');
   const $png      = card.querySelector('[data-role="dl-png"]');
 
   let lastFilename = `cmhc_${series.replace(/\s+/g, '_').toLowerCase()}.png`;
@@ -74,11 +72,11 @@ export function buildChartCard(container, { series }) {
     if (!rows || rows.length === 0) {
       $sub.textContent = sub || '';
       $empty.hidden = false;
-      $svg.disabled = true; $png.disabled = true;
+      $png.disabled = true;
       return;
     }
     $empty.hidden = true;
-    $svg.disabled = false; $png.disabled = false;
+    $png.disabled = false;
 
     // Append the season + year-range to the subtitle. Built here (not in
     // main.js) because the year range comes from the filtered rows.
@@ -201,7 +199,6 @@ export function buildChartCard(container, { series }) {
     // Export the entire card (title + subtitle + chart + legend + caption),
     // not just the chart SVG. We toggle a CSS marker class on the card so
     // the actions row (Download buttons) is hidden during capture.
-    $svg.onclick = () => downloadCard(card, lastFilename.replace(/\.png$/, '.svg'), 'svg');
     $png.onclick = () => downloadCard(card, lastFilename, 'png');
   }
 
@@ -243,7 +240,7 @@ async function downloadCard(card, filename, kind) {
       // Filter: drop the actions row entirely from the captured DOM.
       filter: (node) => !(node.classList && node.classList.contains('chart-actions')),
     };
-    const dataUrl = kind === 'png' ? await toPng(card, opts) : await toSvg(card, opts);
+    const dataUrl = await toPng(card, opts);
     const blob = await (await fetch(dataUrl)).blob();
     triggerDownload(blob, filename);
   } catch (err) {

@@ -15,7 +15,7 @@
  */
 
 import * as Plot from '@observablehq/plot';
-import { toPng, toSvg } from 'html-to-image';
+import { toPng } from 'html-to-image';
 import { themed, PALETTE, gridMarks, frameMark } from './plot-theme.js';
 
 // --- Formatters --------------------------------------------------------------
@@ -79,7 +79,6 @@ export function buildIndicatorCard(container, { chartId, title, sourceLabel, des
       <span class="chart-source" data-role="source"></span>
     </div>
     <div class="chart-actions">
-      <button type="button" data-role="dl-svg">Download SVG</button>
       <button type="button" data-role="dl-png">Download PNG</button>
     </div>
     ${description ? `
@@ -101,7 +100,6 @@ export function buildIndicatorCard(container, { chartId, title, sourceLabel, des
   const $latest   = card.querySelector('[data-role="latest"]');
   const $capLeft  = card.querySelector('[data-role="caption-left"]');
   const $source   = card.querySelector('[data-role="source"]');
-  const $svg      = card.querySelector('[data-role="dl-svg"]');
   const $png      = card.querySelector('[data-role="dl-png"]');
 
   $source.textContent = `Source: ${sourceLabel || 'see series'}`;
@@ -119,11 +117,11 @@ export function buildIndicatorCard(container, { chartId, title, sourceLabel, des
     if (rows.length === 0) {
       $sub.textContent = opts.subtitle || '';
       $empty.hidden = false;
-      $svg.disabled = true; $png.disabled = true;
+      $png.disabled = true;
       return;
     }
     $empty.hidden = true;
-    $svg.disabled = false; $png.disabled = false;
+    $png.disabled = false;
 
     // Convert ISO strings to Date and look up the chartLabel for each row.
     const labelById = Object.fromEntries(seriesMeta.map(s => [s.id, s.chartLabel || s.id]));
@@ -150,7 +148,7 @@ export function buildIndicatorCard(container, { chartId, title, sourceLabel, des
     if (filtered.length === 0) {
       $sub.textContent = opts.subtitle || '';
       $empty.hidden = false;
-      $svg.disabled = true; $png.disabled = true;
+      $png.disabled = true;
       return;
     }
 
@@ -253,7 +251,6 @@ export function buildIndicatorCard(container, { chartId, title, sourceLabel, des
     }
 
     lastFilename = `cmhc_${chartId}_${new Date().toISOString().slice(0,10)}.png`;
-    $svg.onclick = () => exportCard(card, lastFilename.replace(/\.png$/, '.svg'), 'svg');
     $png.onclick = () => exportCard(card, lastFilename, 'png');
   }
 
@@ -271,7 +268,7 @@ async function exportCard(card, filename, kind) {
       // so the rendered image stays scoped to title → chart → caption.
       filter: (n) => !(n.classList && (n.classList.contains('chart-actions') || n.classList.contains('cmhc-explainer'))),
     };
-    const dataUrl = kind === 'png' ? await toPng(card, opts) : await toSvg(card, opts);
+    const dataUrl = await toPng(card, opts);
     const blob = await (await fetch(dataUrl)).blob();
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');

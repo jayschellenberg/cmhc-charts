@@ -103,9 +103,14 @@ function buildSnapshot(catalog, shards) {
     if (!shard) return;
     const meta = (shard.series || []).find(s => s.id === sid);
     if (!meta) return;
-    // Honour the geo filter: if the snapshotPick's geo is disabled, hide
-    // the tile entirely (matches the live-updating chart behaviour below).
-    if (!state.geosEnabled.has(meta.geo)) return;
+    // Honour the geo filter — but only if the chart has more than one
+    // available geo. Single-geo charts (national-only mortgage/bond/SLOS)
+    // are always shown so users don't lose national context when they
+    // uncheck Canada to focus on Manitoba.
+    const chartGeos = new Set((shard.series || [])
+      .filter(s => s.chartId === chartId).map(s => s.geo));
+    const filterApplies = chartGeos.size > 1;
+    if (filterApplies && !state.geosEnabled.has(meta.geo)) return;
 
     const tile = document.createElement('div');
     tile.className = 'cmhc-kpi';
@@ -236,8 +241,15 @@ function buildChartSections(catalog, shards) {
         sourceLabel,
         description: chartCfg.description,
       });
-      // Apply current geo filter on initial render.
-      const seriesMeta = seriesMetaAll.filter(s => state.geosEnabled.has(s.geo));
+      // Only apply the geo filter on charts that have more than one
+      // geography available. Charts where every series is the same geo
+      // (national-only — mortgage rates, bond yields, SLOS, CORRA, policy)
+      // are always rendered regardless of the geography toggles.
+      const chartGeos = new Set(seriesMetaAll.map(s => s.geo));
+      const filterApplies = chartGeos.size > 1;
+      const seriesMeta = filterApplies
+        ? seriesMetaAll.filter(s => state.geosEnabled.has(s.geo))
+        : seriesMetaAll;
       const ids = new Set(seriesMeta.map(s => s.id));
       const records = recordsAll.filter(r => ids.has(r.id));
       card.render(records, seriesMeta, {
@@ -345,7 +357,13 @@ function applySectionVisibility() {
 
 function rerenderCards() {
   lastRender.cards.forEach(({ card, seriesMetaAll, recordsAll }) => {
-    const seriesMeta = seriesMetaAll.filter(s => state.geosEnabled.has(s.geo));
+    // Same conditional filter as the initial render — single-geo charts
+    // always show their (national) lines.
+    const chartGeos = new Set(seriesMetaAll.map(s => s.geo));
+    const filterApplies = chartGeos.size > 1;
+    const seriesMeta = filterApplies
+      ? seriesMetaAll.filter(s => state.geosEnabled.has(s.geo))
+      : seriesMetaAll;
     const ids = new Set(seriesMeta.map(s => s.id));
     const records = recordsAll.filter(r => ids.has(r.id));
     card.render(records, seriesMeta, {
