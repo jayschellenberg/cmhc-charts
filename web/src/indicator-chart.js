@@ -70,12 +70,6 @@ export function buildIndicatorCard(container, { chartId, title, sourceLabel, des
     <div data-role="plot" style="min-height:240px"></div>
     <div data-role="empty" class="text-xs text-neutral-500 mt-2" hidden>No data for this filter combination.</div>
     <div data-role="latest" class="cmhc-latest-row"></div>
-    ${description ? `
-      <details class="cmhc-explainer">
-        <summary>What does this mean?</summary>
-        <p data-role="explainer-body"></p>
-      </details>
-    ` : ''}
     <div class="chart-caption">
       <span class="chart-caption-left" data-role="caption-left"></span>
       <span class="chart-source" data-role="source"></span>
@@ -84,6 +78,12 @@ export function buildIndicatorCard(container, { chartId, title, sourceLabel, des
       <button type="button" data-role="dl-svg">Download SVG</button>
       <button type="button" data-role="dl-png">Download PNG</button>
     </div>
+    ${description ? `
+      <details class="cmhc-explainer">
+        <summary>What does this mean?</summary>
+        <p data-role="explainer-body"></p>
+      </details>
+    ` : ''}
   `;
   if (description) {
     card.querySelector('[data-role="explainer-body"]').textContent = description;
@@ -263,7 +263,9 @@ async function exportCard(card, filename, kind) {
       backgroundColor: '#ffffff',
       pixelRatio: kind === 'png' ? 3 : 1,
       cacheBust: true,
-      filter: (n) => !(n.classList && n.classList.contains('chart-actions')),
+      // Drop both the action row and the explainer details from the export
+      // so the rendered image stays scoped to title → chart → caption.
+      filter: (n) => !(n.classList && (n.classList.contains('chart-actions') || n.classList.contains('cmhc-explainer'))),
     };
     const dataUrl = kind === 'png' ? await toPng(card, opts) : await toSvg(card, opts);
     const blob = await (await fetch(dataUrl)).blob();

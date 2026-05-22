@@ -133,8 +133,14 @@ function buildSnapshot(catalog, shards) {
     windows.forEach(w => {
       const d = computeDelta(records, w.days, meta.units);
       if (!d) return;
+      // Semantic classification: favourable when direction matches the
+      // chart's goodDirection (NHPI up = favourable; bond yields up = unfavourable).
+      let sentiment = 'flat';
+      if (d.direction !== 'flat') {
+        sentiment = (d.direction === c.goodDirection) ? 'favourable' : 'unfavourable';
+      }
       const chip = document.createElement('span');
-      chip.className = `cmhc-kpi-delta ${d.direction}`;
+      chip.className = `cmhc-kpi-delta ${sentiment}`;
       chip.innerHTML = `<span class="cmhc-kpi-delta-window">${w.label}</span> ${d.arrow} ${d.label}`;
       $deltas.appendChild(chip);
     });

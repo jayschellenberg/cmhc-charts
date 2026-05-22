@@ -412,8 +412,9 @@
 .cmhc-kpi-delta-window {
   color: var(--color-neutral-500);
 }
-.cmhc-kpi-delta.up    { background: #fee2e2; color: #991b1b; }
-.cmhc-kpi-delta.down  { background: #dcfce7; color: #166534; }
-.cmhc-kpi-delta.flat  { background: var(--color-neutral-100); color: var(--color-neutral-600); }
-/* For balance-of-opinion / commercial credit, "up" = tightening = bad,
-   "down" = easing = good — same direction as rates. Default semantics work. */
+.cmhc-kpi-delta.favourable   { background: #dcfce7; color: #166534; }
+.cmhc-kpi-delta.unfavourable { background: #fee2e2; color: #991b1b; }
+.cmhc-kpi-delta.flat         { background: var(--color-neutral-100); color: var(--color-neutral-600); }
+/* Semantic chip colours — favourable / unfavourable / flat are driven by the
+   chart's goodDirection field in the catalog. NHPI rising = favourable
+   (green); 5-yr GoC rising = unfavourable (red, cap rates expanding). */
