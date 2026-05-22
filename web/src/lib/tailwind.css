@@ -360,6 +360,26 @@
   color: var(--color-neutral-500);
 }
 
+/* Sidebar "Jump to section" anchor list for the Market Indicators tab. */
+.cmhc-mi-jump-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.cmhc-mi-jump-list .cmhc-mi-jump-link {
+  display: block;
+  padding: 3px 6px;
+  border-radius: 3px;
+  color: var(--cmhc-brand-red);
+  text-decoration: none;
+  font-size: 12.5px;
+  border-left: 2px solid transparent;
+}
+.cmhc-mi-jump-list .cmhc-mi-jump-link:hover {
+  background: var(--color-neutral-100);
+  border-left-color: var(--cmhc-brand-red);
+}
+
 /* Collapsible explainer below each indicator chart. */
 .cmhc-explainer {
   margin-top: 8px;

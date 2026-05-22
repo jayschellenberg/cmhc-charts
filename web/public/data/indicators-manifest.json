@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated": "2026-05-22T14:55:04Z",
+  "generated": "2026-05-22T15:29:30Z",
   "groups": [
     {
       "group": "mortgage_market",
@@ -36,8 +36,15 @@
       "seriesCount": 6,
       "recordCount": 3036,
       "latestDate": "2026-04-01"
+    },
+    {
+      "group": "construction_cost",
+      "file": "construction_cost.json",
+      "seriesCount": 4,
+      "recordCount": 292,
+      "latestDate": "2026-01-01"
     }
   ],
-  "totalSeries": 29,
-  "totalRecords": 37106
+  "totalSeries": 33,
+  "totalRecords": 37398
 }

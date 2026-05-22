@@ -218,6 +218,7 @@ function buildChartSections(catalog, shards) {
     const section = document.createElement('section');
     section.className = 'cmhc-mi-section';
     section.dataset.group = g.id;
+    section.id = `mi-section-${g.id}`;
     section.innerHTML = `<h2 class="cmhc-mi-section-title">${g.title}</h2><div class="cmhc-mi-section-grid grid md:grid-cols-2 gap-4"></div>`;
     const $sectionGrid = section.querySelector('.cmhc-mi-section-grid');
 
@@ -316,6 +317,47 @@ function wireSidebar(catalog, manifest) {
         if (cb.checked) state.sectionsHidden.delete(cb.dataset.section);
         else state.sectionsHidden.add(cb.dataset.section);
         applySectionVisibility();
+      });
+    });
+  }
+
+  // "Jump to section" list — anchor links into each rendered section.
+  const $jumpList = document.getElementById('mi-jump-list');
+  if ($jumpList) {
+    $jumpList.innerHTML = '';
+    const renderedGroups = new Set(
+      [...document.querySelectorAll('.cmhc-mi-section')].map(s => s.dataset.group)
+    );
+    // Synthetic "Top" entry first so the user can hop back up.
+    const topLi = document.createElement('li');
+    topLi.innerHTML = `<a href="#" data-jump="top" class="cmhc-mi-jump-link">↑ Current Snapshot</a>`;
+    $jumpList.appendChild(topLi);
+
+    Object.entries(catalog.displayGroups || {})
+      .filter(([id]) => renderedGroups.has(id))
+      .sort((a, b) => (a[1].order || 99) - (b[1].order || 99))
+      .forEach(([id, g]) => {
+        const li = document.createElement('li');
+        li.innerHTML =
+          `<a href="#mi-section-${id}" data-jump="${id}" class="cmhc-mi-jump-link">${g.title}</a>`;
+        $jumpList.appendChild(li);
+      });
+
+    // Smooth-scroll + skip-default-anchor-jump so the existing tab hash
+    // routing (#tables, #starts, #indicators) doesn't break.
+    $jumpList.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const key = a.dataset.jump;
+        if (key === 'top') {
+          document.getElementById('tab-panel-indicators')?.scrollTo({ top: 0, behavior: 'smooth' });
+          // Fallback for browsers / layouts that scroll the document instead.
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          document.getElementById(`mi-section-${key}`)?.scrollIntoView({
+            behavior: 'smooth', block: 'start',
+          });
+        }
       });
     });
   }
