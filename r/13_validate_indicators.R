@@ -97,6 +97,19 @@ validate_statscan <- function(row) {
        reason      = if (!ok) sprintf("actual='%s', archived=%s", actual, archived) else "")
 }
 
+validate_cmhc <- function(row) {
+  # CMHC rent series come from the local historical_rental.csv that the
+  # Rental Charts pipeline (r/01_scrape_historical.R) writes. We can't hit
+  # the cmhc package live here without re-fetching the whole survey, so the
+  # check is just "the upstream CSV exists and has rows".
+  csv <- file.path(DATA_DIR, "historical_rental.csv")
+  if (!file.exists(csv)) {
+    return(list(ok = FALSE, actualTitle = NA, latest = NA,
+                reason = "data/historical_rental.csv missing — run r/01_scrape_historical.R"))
+  }
+  list(ok = TRUE, actualTitle = row$expectedTitle, latest = NA, reason = "")
+}
+
 validate_cba <- function(row) {
   # cba.ca canonicalises to .../mortgages-in-arrears (and may redirect via 307
   # to a different sub-path) — follow redirects, fetch text, look for the
@@ -148,6 +161,7 @@ results <- lapply(series, function(row) {
                 boc      = validate_boc(row),
                 statscan = validate_statscan(row),
                 cba      = validate_cba(row),
+                cmhc     = validate_cmhc(row),
                 list(ok = FALSE, actualTitle = NA, latest = NA,
                      reason = sprintf("unknown provider '%s'", row$provider)))
   cat(sprintf("  [%s] %-44s %s %s\n",

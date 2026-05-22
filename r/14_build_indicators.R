@@ -39,6 +39,47 @@ stc <- read_safe(file.path(DATA_DIR, "statscan_indicators.csv"))
 cba <- read_safe(file.path(DATA_DIR, "cba_arrears.csv"))   # not yet produced; harmless empty
 
 all_obs <- bind_rows(boc, stc, cba)
+# Normalise date column to character — read_csv may auto-detect Date type
+# on some columns; downstream binds + JSON serialisation expect ISO strings.
+if (nrow(all_obs) > 0) all_obs$date <- as.character(all_obs$date)
+
+# --- CMHC rent ingest -------------------------------------------------------
+# The Rental Charts tab's data (data/historical_rental.csv) gets sliced here
+# into a couple of indicator series — Manitoba and Winnipeg-CMA average rent
+# for the Total bedroom type, October snapshot, all dwelling types. Provides
+# the upstream for the rent-vs-wage growth comparison.
+rent_csv <- file.path(DATA_DIR, "historical_rental.csv")
+if (file.exists(rent_csv)) {
+  # Season comes through as "YYYY October" — match on substring.
+  cmhc_rent <- read_csv(rent_csv, show_col_types = FALSE) %>%
+    filter(Series       == "Average Rent",
+           Dimension    == "Bedroom Type",
+           Category     == "Total",
+           DwellingType == "All",
+           grepl("October", Season, fixed = TRUE),
+           as.character(GeoUID) %in% c("46", "602")) %>%
+    mutate(GeoUID = as.character(GeoUID))
+  if (nrow(cmhc_rent) > 0) {
+    rent_id  <- c("46" = "cmhc.rent.manitoba", "602" = "cmhc.rent.winnipeg")
+    rent_geo <- c("46" = "MB",                  "602" = "Winnipeg-CMA")
+    rent_recs <- cmhc_rent %>%
+      transmute(
+        id        = rent_id[GeoUID],
+        seriesId  = rent_id[GeoUID],
+        date      = sprintf("%04d-10-01", as.integer(Year)),
+        value     = as.numeric(Value),
+        units     = "dollar",
+        geo       = rent_geo[GeoUID],
+        frequency = "annual",
+        transform = "none"
+      ) %>%
+      filter(!is.na(value)) %>%
+      arrange(id, date)
+    all_obs <- bind_rows(all_obs, rent_recs)
+    message(sprintf("[14] appended %d CMHC rent records", nrow(rent_recs)))
+  }
+}
+
 if (nrow(all_obs) == 0) stop("[14] no indicator data found — run the scrape scripts first.")
 
 # --- Derived series ---------------------------------------------------------
