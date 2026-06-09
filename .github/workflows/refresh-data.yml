@@ -18,7 +18,8 @@ jobs:
 
       - name: Install R packages
         run: |
-          install.packages(c("cmhc", "dplyr", "tidyr", "purrr", "readr", "jsonlite"),
+          install.packages(c("cmhc", "cansim", "httr", "dplyr", "tidyr",
+                             "purrr", "readr", "jsonlite"),
                            repos = "https://cloud.r-project.org")
         shell: Rscript {0}
 
@@ -35,6 +36,10 @@ jobs:
           Rscript r/05_scrape_starts.R
           Rscript r/03_build_data_files.R
           Rscript r/04_build_manifest.R
+          Rscript r/13_validate_indicators.R
+          Rscript r/10_scrape_boc.R
+          Rscript r/11_scrape_statscan.R
+          Rscript r/14_build_indicators.R
 
       - name: Commit refreshed data if changed
         run: |

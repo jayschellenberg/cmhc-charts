@@ -50,13 +50,28 @@ function monthsBetween(isoA, isoB) {
   return (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth());
 }
 
-// Freshness thresholds in days, by frequency.
+// Freshness thresholds in days, by frequency. Each threshold combines the
+// publisher's typical release lag and a generous buffer for our monthly
+// refresh cadence — so the "stale" banner fires only when something is
+// genuinely behind, not when the upstream just hasn't released yet.
+//
+//   daily      — BoC publishes overnight; 7-day flex covers weekends + holidays
+//   weekly     — posted mortgage rates are weekly; 3-week flex covers holidays
+//   monthly    — StatsCan monthly series lag 3 weeks to 3 months (SEPH is the
+//                slowest); 130 days covers SEPH's worst case + buffer
+//   quarterly  — typical 6-12 week lag; 270 days covers ~3 months pub lag +
+//                6-month buffer between our monthly refreshes
+//   annual     — CMHC RMS October data publishes ~Feb of next year
+//   irregular  — BoC policy rate decisions: only ~8/year by schedule, plus
+//                emergency calls. 540 days = "two scheduled-decision cycles
+//                without a single move" — definitely a refresh-broke signal
 const FRESHNESS_DAYS = {
-  daily:     14,
-  weekly:    14,
-  monthly:   90,
-  quarterly: 200,
-  irregular: 365,
+  daily:     7,
+  weekly:    21,
+  monthly:   130,
+  quarterly: 270,
+  annual:    540,
+  irregular: 540,
 };
 
 /**
