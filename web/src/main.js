@@ -53,11 +53,15 @@ async function loadShard(level, uid) {
   const key = `${level}_${uid}`;
   if (shardCache.has(key)) return shardCache.get(key);
   const url = `./data/series/${key}.json`;
+  // Cache the in-flight promise so concurrent callers share one request, but
+  // evict on failure so a transient network blip doesn't poison the shard
+  // forever (the user would otherwise have to reload the page to retry).
   const promise = fetch(url).then(r => {
     if (!r.ok) throw new Error(`shard ${url}: HTTP ${r.status}`);
     return r.json();
   }).catch(err => {
     console.warn('[shard]', err);
+    shardCache.delete(key);
     return null;
   });
   shardCache.set(key, promise);
@@ -170,8 +174,9 @@ async function bootstrap() {
   }
   setupTabs(initialTab);
 
-  // Bootstrap the other views (idempotent — no DOM rendered until the
-  // user lands on that tab and the filter state is non-empty).
+  // Bootstrap the other views eagerly at page load. (Task 2.1 in the audit
+  // plan: convert to lazy first-activation initialisation so first paint
+  // doesn't fetch 7MB of JSON the user may never look at.)
   initTables({ geographies, manifest, loadShard });
   initStarts({ manifest });
   initIndicators().catch(err => console.error('[indicators bootstrap]', err));

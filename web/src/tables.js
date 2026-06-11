@@ -13,7 +13,9 @@
  * canonical RMS reporting cadence.
  */
 
-import { exportTablesToExcel } from './excel-export.js';
+// ExcelJS is heavy (~940KB minified) — load it on demand when the user clicks
+// Download, not on tab init. Matches the lazy-import pattern in starts.js and
+// indicators.js so the vendor chunk stays lean.
 
 // Table definitions — series + dimension pair + display label.
 const TABLE_DEFS = {
@@ -315,6 +317,7 @@ export function initTables({ geographies, manifest, loadShard }) {
 
   $download.addEventListener('click', async () => {
     if (!lastRenderState || !lastRenderState.built.length) return;
+    const { exportTablesToExcel } = await import('./excel-export.js');
     const filename = `CMHC_Tables_${lastRenderState.maxYear}_${new Date().toISOString().slice(0,10)}.xlsx`;
     await exportTablesToExcel(lastRenderState.built, { filename, maxYear: lastRenderState.maxYear });
   });

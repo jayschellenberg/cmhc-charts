@@ -14,8 +14,6 @@
  * r/03_build_data_files.R after r/05_scrape_starts.R writes the Scss CSV.
  */
 
-import * as Plot from '@observablehq/plot';
-import { toPng } from 'html-to-image';
 import { buildChartCard } from './chart.js';
 
 const SERIES = ['Starts', 'Completions', 'Under Construction'];
@@ -35,7 +33,8 @@ const LEVEL_LABEL = {
   neighbourhood: 'Neighbourhood',
 };
 
-// In-memory shard cache for the session.
+// In-memory shard cache for the session. Evicts failed fetches so a transient
+// blip doesn't permanently blank a geography (mirrors main.js loadShard).
 const shardCache = new Map();
 async function loadStartsShard(level, uid) {
   const key = `${level}_${uid}`;
@@ -43,7 +42,11 @@ async function loadStartsShard(level, uid) {
   const promise = fetch(`./data/starts/${key}.json`).then(r => {
     if (!r.ok) throw new Error(`HTTP ${r.status}`);
     return r.json();
-  }).catch(err => { console.warn('[starts shard]', err); return null; });
+  }).catch(err => {
+    console.warn('[starts shard]', err);
+    shardCache.delete(key);
+    return null;
+  });
   shardCache.set(key, promise);
   return promise;
 }

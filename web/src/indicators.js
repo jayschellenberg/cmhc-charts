@@ -9,9 +9,10 @@
  *   web/public/data/indicators/{group}.json
  *     { group, series: [...], records: [{id, date, value}] }
  *
- * The catalog (r/lib/indicator_catalog.json) is read from the dev server
- * once on tab activation so this module can find chart metadata
- * (titles, chartLabel, snapshotPick) without round-tripping through R.
+ * The catalog (r/lib/indicator_catalog.json, copied to
+ * public/data/indicators/_catalog.json by r/14_build_indicators.R) is
+ * fetched once at module init so chart metadata (titles, chartLabel,
+ * snapshotPick) is available without round-tripping through R.
  */
 
 import { buildIndicatorCard } from './indicator-chart.js';

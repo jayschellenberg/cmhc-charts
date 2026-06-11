@@ -42,7 +42,19 @@ CMHC publishes the Rental Market Survey twice a year (April + October).
 
 After `data:all`, run `Rscript r/99_verify_samples.R` — it makes 5 fresh `get_cmhc()` calls and compares them to the generated JSON shards. Non-zero exit on mismatch.
 
-## Source
+## Data sources & attribution
 
-- CMHC Rental Market Survey (RMS), via the `cmhc` R package
-- API docs: https://github.com/mountainMath/cmhc
+All data is from public Canadian sources. Attribution is required by the
+respective publishers' open-data terms and is surfaced in every Excel
+export's Metadata sheet plus the in-app indicator chart captions.
+
+- **CMHC Rental Market Survey (RMS)** and **Starts & Completions Survey (Scss)** via
+  the [`cmhc`](https://github.com/mountainMath/cmhc) R package (mountainMath).
+- **Statistics Canada Web Data Service** via the [`cansim`](https://github.com/mountainMath/cansim) R package.
+  Contains information licensed under the [Statistics Canada Open Licence](https://www.statcan.gc.ca/en/reference/licence).
+- **Bank of Canada Valet API** — [terms](https://www.bankofcanada.ca/terms/). Free reuse with attribution.
+
+## Licence
+
+Code is MIT-licensed — see [LICENSE](LICENSE). Bundled data is subject to
+the source publishers' terms listed above.

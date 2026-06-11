@@ -1,16 +1,30 @@
 name: Refresh CMHC data
 on:
   schedule:
-    - cron: "0 6 1 * *"   # 06:00 UTC on the 1st of every month
-  workflow_dispatch: {}
+    # Run at 07:23 UTC on the 2nd of every month — deliberately off the
+    # top-of-the-hour cron slot, which GitHub heavily congests and is the
+    # most common cause of silently-skipped scheduled runs.
+    - cron: "23 7 2 * *"
+  workflow_dispatch:
+    inputs:
+      allow_shrink:
+        description: "Bypass sanity-check shrink guard (use only when shrinkage is intentional)."
+        required: false
+        default: "0"
+        type: choice
+        options: ["0", "1"]
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    timeout-minutes: 330   # safety buffer under the 6-hour job ceiling
     permissions:
       contents: write
+      issues: write        # for the failure-notification step
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2   # 98_sanity_check.R diffs new manifest vs HEAD~
 
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -41,6 +55,14 @@ jobs:
           Rscript r/11_scrape_statscan.R
           Rscript r/14_build_indicators.R
 
+      - name: Verify samples against live API
+        run: Rscript r/99_verify_samples.R
+
+      - name: Sanity check (no silent shrink vs HEAD)
+        env:
+          REFRESH_ALLOW_SHRINK: ${{ inputs.allow_shrink || '0' }}
+        run: Rscript r/98_sanity_check.R
+
       - name: Commit refreshed data if changed
         run: |
           git config user.name  "github-actions[bot]"
@@ -52,3 +74,35 @@ jobs:
             git commit -m "data: monthly refresh ($(date -u +%Y-%m-%d))"
             git push
           fi
+
+      - name: Open issue on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create \
+            --title "Refresh failed: $(date -u +%Y-%m-%d)" \
+            --label "automation" \
+            --body "$(cat <<'EOF'
+          The scheduled \`Refresh CMHC data\` workflow failed.
+
+          - Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          - Trigger: ${{ github.event_name }}
+          - Commit: ${{ github.sha }}
+
+          Investigate the run log; most common causes (in order of likelihood):
+
+          1. **Sanity check tripped** — record counts shrank beyond tolerance.
+             Inspect the \`Sanity check\` step output. If the shrink is
+             intentional (e.g. a series was retired), re-run via
+             workflow_dispatch with allow_shrink=1.
+          2. **Verify samples mismatch** — a built shard disagreed with a
+             fresh API call. Likely a partial CMHC API outage or a code bug
+             in the shard builder. Re-running is safe.
+          3. **CMHC / StatsCan / BoC outage** — scrape step exited; nothing
+             was committed. Re-run later.
+          4. **R package install failure** — transient CRAN issue. Re-run.
+          5. **Job timed out** — full scrape exceeded the 330-min budget.
+             Action required (incremental scrape).
+          EOF
+          )" || echo "issue create failed (likely a duplicate or token scope) — continuing"

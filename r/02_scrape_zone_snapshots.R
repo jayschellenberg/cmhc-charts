@@ -1,6 +1,7 @@
 # =============================================================================
 # r/02_scrape_zone_snapshots.R
-# Loop year=2015..current to pull Survey Zone + Neighbourhood snapshots from
+# Loop year=CMHC_ZONE_START (default 2000) .. current to pull Survey Zone +
+# Neighbourhood snapshots from
 # CMHC and stitch into long-form CSVs. The cmhc API does not expose historical
 # time series at zone/neighbourhood level — yearly snapshots are the only
 # path. Missing years are silently dropped, not interpolated.
