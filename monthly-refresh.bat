@@ -6,6 +6,15 @@ REM Equivalent to running the .github/workflows/refresh-data.yml action by hand.
 setlocal
 cd /d "%~dp0"
 
+REM Match the GitHub Actions scope so local refreshes don't silently scrape a
+REM thinner dataset and overwrite full shards. Without these, defaults in
+REM r/02_scrape_zone_snapshots.R and r/05_scrape_starts.R fall back to
+REM Winnipeg + All-dwelling only, which deletes Apartment/Row records and
+REM every non-Winnipeg zone on commit.
+set "CMHC_ZONE_CMAS=ALL"
+set "CMHC_ZONE_DWELLING=ALL"
+set "CMHC_STARTS_ZONES=ALL"
+
 call npm --prefix web run data:all || goto :err
 
 REM Anything to commit?
