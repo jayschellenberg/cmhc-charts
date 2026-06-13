@@ -26,8 +26,12 @@ audit <- read_csv(audit_path, show_col_types = FALSE,
   filter(success) %>%
   mutate(uid = as.character(uid))
 
-SCSS_SERIES <- c("Starts", "Completions", "Under Construction")
+SCSS_SERIES <- c("Starts", "Completions", "Under Construction",
+                 "Absorbed Units", "Unabsorbed Inventory")
 SCSS_DIMENSIONS <- c("Dwelling Type", "Intended Market")
+# Some (series x dimension) combos aren't valid — e.g. Unabsorbed Inventory
+# is only published by Dwelling Type, not Intended Market. safe_scss returns
+# NULL on the resulting CMHC error so the rest of the grid is unaffected.
 SCSS_FREQUENCIES <- c("Annual", "Quarterly")
 
 # Scope reducers — match the v1 zone scrape pattern.

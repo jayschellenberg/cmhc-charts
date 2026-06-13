@@ -16,7 +16,8 @@
 
 import { buildChartCard } from './chart.js';
 
-const SERIES = ['Starts', 'Completions', 'Under Construction'];
+const SERIES = ['Starts', 'Completions', 'Under Construction',
+                'Absorbed Units', 'Unabsorbed Inventory'];
 
 // Canonical legend order per dimension. "All" is always last so it sits at
 // the bottom of the colour stack (same convention as the Rental tabs).

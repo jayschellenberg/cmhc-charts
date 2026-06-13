@@ -121,7 +121,7 @@
         <section class="grid md:grid-cols-2 gap-4" id="chart-grid"></section>
 
         <footer class="text-xs text-neutral-500 pt-4 border-t border-neutral-200" id="footer">
-          Source: CMHC Rental Market Survey. Data as of <span id="data-as-of">…</span>.
+          Adapted from CMHC, Rental Market Survey (Rms), <span id="data-as-of">…</span>. This does not constitute an endorsement by CMHC of this product.
         </footer>
       </main>
     </div>
@@ -193,7 +193,7 @@
         </div>
         <div id="tbl-output" class="space-y-4"></div>
         <footer class="text-xs text-neutral-500 pt-4 border-t border-neutral-200">
-          Source: CMHC Rental Market Survey. Data as of <span id="tbl-data-as-of">…</span>.
+          Adapted from CMHC, Rental Market Survey (Rms), <span id="tbl-data-as-of">…</span>. This does not constitute an endorsement by CMHC of this product.
         </footer>
       </main>
     </div>
@@ -275,7 +275,7 @@
         <section class="space-y-3" id="hs-table-grid"></section>
 
         <footer class="text-xs text-neutral-500 pt-4 border-t border-neutral-200">
-          Source: CMHC Starts &amp; Completions Survey. Data as of <span id="hs-data-as-of">…</span>.
+          Adapted from CMHC, Starts &amp; Completions Survey (Scss), <span id="hs-data-as-of">…</span>. This does not constitute an endorsement by CMHC of this product.
         </footer>
       </main>
     </div>
@@ -339,7 +339,7 @@
         <section id="mi-chart-grid" class="space-y-6"></section>
 
         <footer class="text-xs text-neutral-500 pt-4 border-t border-neutral-200" id="mi-footer">
-          Sources: Bank of Canada Valet, Statistics Canada Web Data Service. <span id="mi-data-as-of">—</span>
+          Sources: Bank of Canada Valet, Statistics Canada Web Data Service. Contains information licensed under the Statistics Canada Open Licence. <span id="mi-data-as-of">—</span>
         </footer>
       </main>
     </div>
@@ -404,7 +404,7 @@
         <section class="space-y-3" id="sr-table-grid"></section>
 
         <footer class="text-xs text-neutral-500 pt-4 border-t border-neutral-200">
-          Source: CMHC Secondary Rental Market Survey. Data as of <span id="sr-data-as-of">…</span>.
+          Adapted from CMHC, Secondary Rental Market Survey (Srms), <span id="sr-data-as-of">…</span>. This does not constitute an endorsement by CMHC of this product.
         </footer>
       </main>
     </div>
@@ -436,6 +436,23 @@
       </section>
     </div>
 
+    <footer id="site-footer" class="bg-neutral-50 border-t border-neutral-200 text-xs text-neutral-600 px-4 py-3 space-y-2">
+      <p>
+        <strong>Sources &amp; citation.</strong>
+        CMHC data (Rental Market Survey, Secondary Rental Market Survey, Starts &amp; Completions Survey) is retrieved through
+        <a class="underline" href="https://github.com/mountainMath/cmhc" rel="noopener" target="_blank">von Bergmann, J. (2025) <em>cmhc</em>: R package to access, retrieve, and work with CMHC data</a>.
+        Use or reproduction of any CMHC data shown here is subject to the
+        <a class="underline" href="https://www.cmhc-schl.gc.ca/about-us/terms-of-use" rel="noopener" target="_blank">CMHC Licence Agreement for the Use of Data</a>,
+        including its attribution requirements. This product is not affiliated with or endorsed by CMHC. Market Indicators data is supplied by the
+        <a class="underline" href="https://www.bankofcanada.ca/valet/docs" rel="noopener" target="_blank">Bank of Canada Valet API</a> and
+        <a class="underline" href="https://www.statcan.gc.ca/en/developers" rel="noopener" target="_blank">Statistics Canada Web Data Service</a>
+        (the latter contains information licensed under the
+        <a class="underline" href="https://www.statcan.gc.ca/en/reference/licence" rel="noopener" target="_blank">Statistics Canada Open Licence</a>).
+      </p>
+      <p>
+        Suggested citation: <em>JKS Consulting Inc. CMHC Data. <span id="site-citation-date">…</span>. https://cmhc-charts.vercel.app/</em>. Code is MIT-licensed; bundled data is subject to the source publishers' terms.
+      </p>
+    </footer>
     <script type="module" src="./src/main.js"></script>
   </body>
 </html>

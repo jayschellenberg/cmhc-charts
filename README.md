@@ -48,11 +48,17 @@ After `data:all`, run `Rscript r/99_verify_samples.R` — it makes 5 fresh `get_
 
 All data is from public Canadian sources. Attribution is required by the
 respective publishers' open-data terms and is surfaced in every Excel
-export's Metadata sheet plus the in-app indicator chart captions.
+export's Metadata sheet, in the per-tab and sitewide footers in the app,
+plus the in-app indicator chart captions.
 
-- **CMHC Rental Market Survey (RMS)**, **Secondary Rental Market Survey (Srms)**,
-  and **Starts & Completions Survey (Scss)** via
-  the [`cmhc`](https://github.com/mountainMath/cmhc) R package (mountainMath).
+- **CMHC Rental Market Survey (Rms)**, **Secondary Rental Market Survey
+  (Srms)**, and **Starts & Completions Survey (Scss)** via von Bergmann, J.
+  (2025) [`cmhc`](https://github.com/mountainMath/cmhc): R package to
+  access, retrieve, and work with CMHC data. Use or reproduction of any
+  CMHC data shown here is subject to the [CMHC Licence Agreement for the
+  Use of Data](https://www.cmhc-schl.gc.ca/about-us/terms-of-use),
+  including its attribution requirements. This product is not affiliated
+  with or endorsed by CMHC.
 - **Statistics Canada Web Data Service** via the [`cansim`](https://github.com/mountainMath/cansim) R package.
   Contains information licensed under the [Statistics Canada Open Licence](https://www.statcan.gc.ca/en/reference/licence).
 - **Bank of Canada Valet API** — [terms](https://www.bankofcanada.ca/terms/). Free reuse with attribution.

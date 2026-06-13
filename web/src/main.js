@@ -134,6 +134,12 @@ async function bootstrap() {
       ? `${manifest.cmhcMaxYear} (refreshed ${d.toISOString().slice(0,10)})`
       : d.toISOString().slice(0,10);
     setDataAsOf(asOf);
+    // Sitewide footer citation date — "Month Year" of the latest refresh.
+    const citeEl = document.getElementById('site-citation-date');
+    if (citeEl) {
+      citeEl.textContent = d.toLocaleDateString('en-CA',
+        { year: 'numeric', month: 'long' });
+    }
   }
 
   // Build chart cards once; render() will be called per filter change.
