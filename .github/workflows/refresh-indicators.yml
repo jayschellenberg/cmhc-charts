@@ -1,16 +1,11 @@
-name: Refresh CMHC data
+name: Refresh Market Indicators (weekly)
 on:
   schedule:
-    # Monthly heartbeat — 07:23 UTC on the 2nd of every month. Deliberately
-    # off the top-of-the-hour cron slot, which GitHub heavily congests and
-    # is the most common cause of silently-skipped scheduled runs.
-    - cron: "23 7 2 * *"
-    # CMHC release-day catch — Rms publishes the Fall report (October
-    # survey) in late January and the Spring report (April survey) in
-    # late July. These two crons fire after CMHC's typical publication
-    # window so the site refreshes within hours of release.
-    - cron: "23 7 28 1 *"
-    - cron: "23 7 28 7 *"
+    # Weekly heartbeat — every Monday at 07:23 UTC. BoC + StatsCan update
+    # often enough that monthly is too stale; pulling weekly keeps the
+    # Market Indicators / Current Snapshot tabs near-current without
+    # incurring the cost of the full CMHC scrape.
+    - cron: "23 7 * * 1"
   workflow_dispatch:
     inputs:
       allow_shrink:
@@ -21,16 +16,16 @@ on:
         options: ["0", "1"]
 
 jobs:
-  refresh:
+  refresh-indicators:
     runs-on: ubuntu-latest
-    timeout-minutes: 330   # safety buffer under the 6-hour job ceiling
+    timeout-minutes: 60
     permissions:
       contents: write
-      issues: write        # for the failure-notification step
+      issues: write
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2   # 98_sanity_check.R diffs new manifest vs HEAD~
+          fetch-depth: 2
 
       - uses: r-lib/actions/setup-r@v2
         with:
@@ -42,36 +37,24 @@ jobs:
 
       - name: Install R packages
         run: |
-          install.packages(c("cmhc", "cansim", "httr", "dplyr", "tidyr",
+          install.packages(c("cansim", "httr", "dplyr", "tidyr",
                              "purrr", "readr", "jsonlite"),
                            repos = "https://cloud.r-project.org")
         shell: Rscript {0}
 
-      - name: Run pipeline
-        env:
-          CMHC_ZONE_CMAS: ALL
-          CMHC_ZONE_DWELLING: ALL
-          CMHC_STARTS_ZONES: ALL
+      - name: Run indicators pipeline
         run: |
-          Rscript r/00_audit_geographies.R
-          Rscript r/00_build_capabilities.R
-          Rscript r/01_scrape_historical.R
-          Rscript r/02_scrape_zone_snapshots.R
-          Rscript r/05_scrape_starts.R
-          Rscript r/06_scrape_secondary.R
-          Rscript r/03_build_data_files.R
-          Rscript r/04_build_manifest.R
           Rscript r/13_validate_indicators.R
           Rscript r/10_scrape_boc.R
           Rscript r/11_scrape_statscan.R
           Rscript r/14_build_indicators.R
 
-      - name: Verify samples against live API
-        run: Rscript r/99_verify_samples.R
-
-      - name: Sanity check (no silent shrink vs HEAD)
+      - name: Sanity check (indicators shrink guard)
         env:
           REFRESH_ALLOW_SHRINK: ${{ inputs.allow_shrink || '0' }}
+        # 98_sanity_check compares all metrics; rental/starts/secondary should
+        # be unchanged (we didn't run their scrapes), and indicators get the
+        # real shrink-tolerance check.
         run: Rscript r/98_sanity_check.R
 
       - name: Commit refreshed data if changed
@@ -81,25 +64,21 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add web/public/data
           if git diff --staged --quiet; then
-            echo "No data changes."
+            echo "No indicator changes."
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
-            git commit -m "data: refresh (${{ steps.stamp.outputs.date }})"
+            git commit -m "data: indicators refresh (${{ steps.stamp.outputs.date }})"
             git push
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Notify by email — success with changes
+      - name: Email gate — success
         if: success() && steps.commit.outputs.changed == 'true'
+        id: ok_email_gate
         env:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           MAIL_TO:       ${{ vars.MAIL_TO }}
-        # Step is skipped silently if the secrets aren't configured yet — the
-        # subsequent SMTP action would otherwise hard-fail trying to auth
-        # against an empty username. To enable: set the MAIL_USERNAME and
-        # MAIL_PASSWORD repo secrets and the MAIL_TO repo variable (default
-        # sender host is smtp.gmail.com:587 — override via SMTP_HOST/SMTP_PORT).
         run: |
           if [ -z "$MAIL_USERNAME" ] || [ -z "$MAIL_PASSWORD" ] || [ -z "$MAIL_TO" ]; then
             echo "Email secrets/vars not configured — skipping notification."
@@ -107,7 +86,6 @@ jobs:
           else
             echo "send=true" >> "$GITHUB_OUTPUT"
           fi
-        id: ok_email_gate
       - name: Send success email
         if: success() && steps.commit.outputs.changed == 'true' && steps.ok_email_gate.outputs.send == 'true'
         uses: dawidd6/action-send-mail@v3
@@ -119,9 +97,9 @@ jobs:
           password:       ${{ secrets.MAIL_PASSWORD }}
           from:           CMHC Charts <${{ secrets.MAIL_USERNAME }}>
           to:             ${{ vars.MAIL_TO }}
-          subject:        "[CMHC Charts] Refresh OK — ${{ steps.stamp.outputs.date }}"
+          subject:        "[CMHC Charts] Indicators refresh OK — ${{ steps.stamp.outputs.date }}"
           body: |
-            The scheduled CMHC-data refresh completed and pushed new data to main.
+            The weekly indicators refresh completed and pushed new data to main.
 
             Trigger:  ${{ github.event_name }}
             Run log:  ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
@@ -129,8 +107,9 @@ jobs:
 
             Vercel will redeploy automatically from main.
 
-      - name: Notify by email — failure
+      - name: Email gate — failure
         if: failure()
+        id: fail_email_gate
         env:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
@@ -142,7 +121,6 @@ jobs:
           else
             echo "send=true" >> "$GITHUB_OUTPUT"
           fi
-        id: fail_email_gate
       - name: Send failure email
         if: failure() && steps.fail_email_gate.outputs.send == 'true'
         uses: dawidd6/action-send-mail@v3
@@ -154,15 +132,13 @@ jobs:
           password:       ${{ secrets.MAIL_PASSWORD }}
           from:           CMHC Charts <${{ secrets.MAIL_USERNAME }}>
           to:             ${{ vars.MAIL_TO }}
-          subject:        "[CMHC Charts] Refresh FAILED — ${{ steps.stamp.outputs.date }}"
+          subject:        "[CMHC Charts] Indicators refresh FAILED — ${{ steps.stamp.outputs.date }}"
           body: |
-            The scheduled CMHC-data refresh FAILED.
+            The weekly indicators refresh FAILED.
 
             Trigger:  ${{ github.event_name }}
             Run log:  ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
             Commit:   ${{ github.sha }}
-
-            A diagnostic GitHub issue will also be opened with a triage checklist.
 
       - name: Open issue on failure
         if: failure()
@@ -170,28 +146,21 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh issue create \
-            --title "Refresh failed: ${{ steps.stamp.outputs.date }}" \
+            --title "Indicators refresh failed: ${{ steps.stamp.outputs.date }}" \
             --label "automation" \
             --body "$(cat <<'EOF'
-          The scheduled \`Refresh CMHC data\` workflow failed.
+          The scheduled \`Refresh Market Indicators (weekly)\` workflow failed.
 
           - Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           - Trigger: ${{ github.event_name }}
           - Commit: ${{ github.sha }}
 
-          Investigate the run log; most common causes (in order of likelihood):
-
-          1. **Sanity check tripped** — record counts shrank beyond tolerance.
-             Inspect the \`Sanity check\` step output. If the shrink is
-             intentional (e.g. a series was retired), re-run via
-             workflow_dispatch with allow_shrink=1.
-          2. **Verify samples mismatch** — a built shard disagreed with a
-             fresh API call. Likely a partial CMHC API outage or a code bug
-             in the shard builder. Re-running is safe.
-          3. **CMHC / StatsCan / BoC outage** — scrape step exited; nothing
-             was committed. Re-run later.
-          4. **R package install failure** — transient CRAN issue. Re-run.
-          5. **Job timed out** — full scrape exceeded the 330-min budget.
-             Action required (incremental scrape).
+          Most common causes:
+          1. **BoC Valet API outage** — `r/10_scrape_boc.R` failed.
+          2. **StatsCan WDS outage** — `r/11_scrape_statscan.R` failed.
+          3. **Series catalog drift** — `r/13_validate_indicators.R` rejected
+             a series ID. Inspect the validation step output.
+          4. **Indicators sanity-check shrink** — re-run via workflow_dispatch
+             with `allow_shrink=1` if the shrink is intentional.
           EOF
           )" || echo "issue create failed (likely a duplicate or token scope) — continuing"

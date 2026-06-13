@@ -141,6 +141,17 @@ async function bootstrap() {
       citeEl.textContent = d.toLocaleDateString('en-CA',
         { year: 'numeric', month: 'long' });
     }
+    // Sitewide footer "Data last refreshed" — ISO date plus relative age.
+    const lastEl = document.getElementById('site-last-refreshed');
+    if (lastEl) {
+      const iso = d.toISOString().slice(0, 10);
+      const ageDays = Math.floor((Date.now() - d.getTime()) / 86_400_000);
+      const rel = ageDays < 1   ? 'today'
+              : ageDays === 1 ? '1 day ago'
+              : ageDays < 30  ? `${ageDays} days ago`
+                              : `${Math.round(ageDays / 7)} weeks ago`;
+      lastEl.textContent = `${iso} (${rel})`;
+    }
   }
 
   // Build chart cards once; render() will be called per filter change.

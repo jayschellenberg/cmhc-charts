@@ -34,11 +34,36 @@ Open the URL Vite prints (usually http://localhost:5173).
 
 Three options:
 
-1. Wait for the scheduled GitHub Action (runs monthly).
-2. `gh workflow run refresh-data.yml` to trigger manually.
+1. Wait for the scheduled GitHub Actions runs (see schedule below).
+2. `gh workflow run refresh-data.yml` (full CMHC refresh) or
+   `gh workflow run refresh-indicators.yml` (indicators only) to trigger
+   manually.
 3. Local: `npm --prefix web run data:all && git add web/public/data && git commit -m "data: refresh" && git push`.
 
+### Refresh schedule
+
+| Workflow | Cron (UTC) | What it pulls |
+|---|---|---|
+| `refresh-data.yml` | 2nd of every month + 28th of Jan + 28th of Jul | Full pipeline: CMHC Rms/Srms/Scss + BoC + StatsCan |
+| `refresh-indicators.yml` | Every Monday | BoC + StatsCan only (skips the slow CMHC scrape) |
+
 CMHC publishes the Rental Market Survey twice a year (April + October).
+The Jan/Jul crons are timed to catch the typical release window so rental
+data refreshes within hours of CMHC publishing.
+
+### Email notifications (optional)
+
+Both workflows send an email on success (only when data actually changed)
+and on failure. To enable, add these to the GitHub repo:
+
+- **Secret** `MAIL_USERNAME` — sender SMTP username (e.g. Gmail address)
+- **Secret** `MAIL_PASSWORD` — sender SMTP app password
+- **Variable** `MAIL_TO` — recipient address
+- Optional **variables** `SMTP_HOST` / `SMTP_PORT` — defaults to
+  `smtp.gmail.com:587`
+
+If any of those is missing the notification step is silently skipped — the
+workflow itself still runs and (on failure) opens a GitHub issue.
 
 ## Verifying the pipeline
 
