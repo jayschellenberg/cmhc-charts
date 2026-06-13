@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "live",
-  "generated": "2026-06-09T19:38:27Z",
+  "generated": "2026-06-13T14:44:47Z",
   "geoLevels": [
     "province",
     "cma",
@@ -45,6 +45,18 @@
       ]
     },
     "Median Rent": {
+      "dimensions": [
+        "Bedroom Type",
+        "Year of Construction",
+        "Structure Size"
+      ],
+      "dwellingTypes": [
+        "All",
+        "Apartment",
+        "Row"
+      ]
+    },
+    "Rental Universe": {
       "dimensions": [
         "Bedroom Type",
         "Year of Construction",
