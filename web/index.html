@@ -459,9 +459,10 @@
           <div id="hsk-view" class="grid gap-1 text-sm" role="radiogroup" aria-label="Census view">
             <label class="flex items-center gap-1"><input type="radio" name="hskView" value="2021" checked /> 2021 (point-in-time)</label>
             <label class="flex items-center gap-1"><input type="radio" name="hskView" value="2016" /> 2016 (point-in-time)</label>
-            <label class="flex items-center gap-1"><input type="radio" name="hskView" value="compare" /> Compare 2021 vs 2016</label>
+            <label class="flex items-center gap-1"><input type="radio" name="hskView" value="2011" /> 2011 NHS (point-in-time)</label>
+            <label class="flex items-center gap-1"><input type="radio" name="hskView" value="compare" /> Compare across census years</label>
           </div>
-          <p class="text-xs text-neutral-500 mt-1 leading-snug">Only "% needing major repairs" is fully comparable across censuses (2016 combines regular + minor). Age bands are rolled into common buckets for the comparison.</p>
+          <p class="text-xs text-neutral-500 mt-1 leading-snug">Only "% needing major repairs" is fully comparable across censuses (2016 &amp; 2011 combine regular + minor). Age bands are rolled into common buckets for the comparison. 2011 is the voluntary NHS, so small-area figures are less reliable and some areas have no 2011 data.</p>
         </section>
         <section class="pt-2 border-t border-neutral-200 space-y-2">
           <button id="hsk-copy" type="button"

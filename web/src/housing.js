@@ -14,7 +14,9 @@ const COMMON_AGE = ['Pre-1961', '1961–1980', '1981–1990', '1991–2000', '20
 const ROLLUP = {
   '2021': [[0, 1, 2], [3, 4], [5], [6, 7], [8, 9], [10, 11]],  // 12 bands → 6
   '2016': [[0], [1], [2], [3], [4, 5], [6]],                   // 7 bands → 6
+  '2011': [[0], [1], [2], [3], [4, 5], []],                    // 6 bands → 6 (no 2011+ band)
 };
+const ALL_YEARS = ['2011', '2016', '2021'];
 
 export async function initHousing() {
   const $area = document.getElementById('hsk-area');
@@ -85,51 +87,49 @@ export async function initHousing() {
     lastTables = [toExport('Period of construction', ageRows), toExport('Dwelling condition', condRows)];
   }
 
-  // --- 2021 vs 2016 comparison ----------------------------------------------
+  // --- Cross-year comparison (whatever years the area has) -------------------
   function renderCompare(a) {
-    const c21 = a.census?.['2021'], c16 = a.census?.['2016'];
-    if (!c21 || !c16) {
-      const missing = !c21 ? '2021' : '2016';
-      $headline.innerHTML = `<div class="cmhc-hsk-title">${escapeHtml(a.name)} — 2021 vs 2016</div>`;
-      $tables.innerHTML = `<p class="text-sm text-neutral-600">Comparison needs both census years; ${missing} data isn't available for this area.</p>`;
+    const years = ALL_YEARS.filter(y => a.census?.[y]);   // ascending: 2011,2016,2021
+    if (years.length < 2) {
+      $headline.innerHTML = `<div class="cmhc-hsk-title">${escapeHtml(a.name)} — census comparison</div>`;
+      $tables.innerHTML = `<p class="text-sm text-neutral-600">Comparison needs at least two census years; this area only has ${years.join(', ') || 'none'}.</p>`;
       lastTables = [];
       return;
     }
-    const t21 = c21.total || 0, t16 = c16.total || 0;
-    const mp = (yd, t) => (t > 0 && major(yd) != null) ? major(yd) / t * 100 : null;
-    const m21 = mp(c21, t21), m16 = mp(c16, t16);
-    const totChg = (t16 > 0) ? (t21 - t16) / t16 * 100 : null;
-    const ppChg  = (m21 != null && m16 != null) ? (m21 - m16) : null;
+    const yd = (y) => a.census[y];
+    const tot = (y) => yd(y).total || 0;
+    const majPct = (y) => { const t = tot(y), m = major(yd(y)); return (t > 0 && m != null) ? m / t * 100 : null; };
+    const first = years[0], last = years[years.length - 1];
+    const totChg = tot(first) > 0 ? (tot(last) - tot(first)) / tot(first) * 100 : null;
+    const ppChg  = (majPct(last) != null && majPct(first) != null) ? majPct(last) - majPct(first) : null;
     const fmtDeltaPct = (v) => v == null ? '—' : `${v >= 0 ? '+' : ''}${v.toFixed(1)}%`;
     const fmtDeltaPP  = (v) => v == null ? '—' : `${v >= 0 ? '+' : ''}${v.toFixed(1)} pp`;
 
     $headline.innerHTML = `
-      <div class="cmhc-hsk-title">${escapeHtml(a.name)} — housing stock <span>(2016 → 2021)</span></div>
+      <div class="cmhc-hsk-title">${escapeHtml(a.name)} — housing stock <span>(${first} → ${last})</span></div>
       <div class="cmhc-hsk-stats">
-        <span>Dwellings <strong>${fmtN(t16)} → ${fmtN(t21)}</strong> (${fmtDeltaPct(totChg)})</span>
-        <span>Major repairs <strong>${fmtP(m16)} → ${fmtP(m21)}</strong> (${fmtDeltaPP(ppChg)})</span>
+        <span>Dwellings <strong>${fmtN(tot(first))} → ${fmtN(tot(last))}</strong> (${fmtDeltaPct(totChg)})</span>
+        <span>Major repairs <strong>${fmtP(majPct(first))} → ${fmtP(majPct(last))}</strong> (${fmtDeltaPP(ppChg)})</span>
       </div>`;
 
-    // Headline metrics table
     const headRows = [
-      { area: 'Total private dwellings', values: [fmtN(t16), fmtN(t21), fmtDeltaPct(totChg)] },
-      { area: 'Needing major repairs',   values: [`${fmtN(major(c16))} (${fmtP(m16)})`, `${fmtN(major(c21))} (${fmtP(m21)})`, fmtDeltaPP(ppChg)] },
+      { area: 'Total private dwellings', values: [...years.map(y => fmtN(tot(y))), fmtDeltaPct(totChg)] },
+      { area: 'Needing major repairs',   values: [...years.map(y => `${fmtN(major(yd(y)))} (${fmtP(majPct(y))})`), fmtDeltaPP(ppChg)] },
     ];
-    // Age buckets (rolled to common set), shown as shares.
-    const a21 = rollAge('2021', c21.age), a16 = rollAge('2016', c16.age);
+    const rolled = Object.fromEntries(years.map(y => [y, rollAge(y, yd(y).age)]));
     const ageRows = COMMON_AGE.map((lbl, i) => {
-      const s16 = t16 > 0 ? a16[i] / t16 * 100 : null;
-      const s21 = t21 > 0 ? a21[i] / t21 * 100 : null;
-      return { area: lbl, values: [fmtP(s16), fmtP(s21), fmtDeltaPP(s21 != null && s16 != null ? s21 - s16 : null)] };
+      const sh = (y) => tot(y) > 0 ? rolled[y][i] / tot(y) * 100 : null;
+      return { area: lbl, values: [...years.map(y => fmtP(sh(y))), fmtDeltaPP(sh(last) != null && sh(first) != null ? sh(last) - sh(first) : null)] };
     });
 
+    const chgCol = `Δ ${first}→${last}`;
     $tables.innerHTML =
-      compareTableHtml('Housing stock — 2016 vs 2021', ['', '2016', '2021', 'Change'], headRows) +
-      compareTableHtml('Age mix (share of dwellings)', ['Period of construction', '2016', '2021', 'Change'], ageRows);
+      compareTableHtml(`Housing stock — ${years.join(' / ')}`, ['', ...years, chgCol], headRows) +
+      compareTableHtml('Age mix (share of dwellings)', ['Period of construction', ...years, chgCol], ageRows);
 
     lastTables = [
-      { title: `${a.name} — housing stock 2016 vs 2021`, columns: ['2016', '2021', 'Change'], rows: headRows },
-      { title: `${a.name} — age mix 2016 vs 2021`, columns: ['2016', '2021', 'Change'], rows: ageRows },
+      { title: `${a.name} — housing stock ${years.join('/')}`, columns: [...years, chgCol], rows: headRows },
+      { title: `${a.name} — age mix ${years.join('/')}`,       columns: [...years, chgCol], rows: ageRows },
     ];
   }
 
