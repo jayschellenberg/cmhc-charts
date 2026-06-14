@@ -254,7 +254,7 @@ function buildSnapshot(catalog, shards) {
     // uncheck Canada to focus on Manitoba.
     const chartGeos = new Set((shard.series || [])
       .filter(s => s.chartId === chartId).map(s => s.geo));
-    const filterApplies = chartGeos.size > 1;
+    const filterApplies = chartGeos.size > 1 && c.geoFilter !== false;
     if (filterApplies && !state.geosEnabled.has(meta.geo)) return;
 
     const tile = document.createElement('div');
@@ -390,9 +390,11 @@ function buildChartSections(catalog, shards) {
       // Only apply the geo filter on charts that have more than one
       // geography available. Charts where every series is the same geo
       // (national-only — mortgage rates, bond yields, SLOS, CORRA, policy)
-      // are always rendered regardless of the geography toggles.
+      // are always rendered regardless of the geography toggles. Charts with
+      // geoFilter:false (population / immigration, which span every province)
+      // also bypass the CA/MB/Winnipeg toggle so all their lines stay visible.
       const chartGeos = new Set(seriesMetaAll.map(s => s.geo));
-      const filterApplies = chartGeos.size > 1;
+      const filterApplies = chartGeos.size > 1 && chartCfg.geoFilter !== false;
       const seriesMeta = filterApplies
         ? seriesMetaAll.filter(s => state.geosEnabled.has(s.geo))
         : seriesMetaAll;
@@ -424,7 +426,10 @@ function uniqueProviderLabel(seriesMeta) {
 function subtitleFor(seriesMeta) {
   const geos = [...new Set(seriesMeta.map(s => s.geo))];
   const freqs = [...new Set(seriesMeta.map(s => s.frequency))];
-  return `${geos.join(' + ')} • ${freqs.join(' / ')}`;
+  // Collapse the geo list once it gets long (population / immigration span
+  // every province) so the subtitle stays readable.
+  const geoLabel = geos.length > 4 ? `${geos.length} geographies` : geos.join(' + ');
+  return `${geoLabel} • ${freqs.join(' / ')}`;
 }
 
 // --- Sidebar wiring ---------------------------------------------------------
@@ -548,11 +553,11 @@ function applySectionVisibility() {
 }
 
 function rerenderCards() {
-  lastRender.cards.forEach(({ card, seriesMetaAll, recordsAll }) => {
+  lastRender.cards.forEach(({ card, seriesMetaAll, recordsAll, chartCfg }) => {
     // Same conditional filter as the initial render — single-geo charts
-    // always show their (national) lines.
+    // (and geoFilter:false charts) always show their lines.
     const chartGeos = new Set(seriesMetaAll.map(s => s.geo));
-    const filterApplies = chartGeos.size > 1;
+    const filterApplies = chartGeos.size > 1 && chartCfg?.geoFilter !== false;
     const seriesMeta = filterApplies
       ? seriesMetaAll.filter(s => state.geosEnabled.has(s.geo))
       : seriesMetaAll;
