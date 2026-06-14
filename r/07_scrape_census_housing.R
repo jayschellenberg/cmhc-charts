@@ -34,6 +34,16 @@ PERIOD_LABELS <- c("1920 or before", "1921 to 1945", "1946 to 1960",
 CONDITION_LABELS <- c("Regular maintenance needed", "Minor repairs are needed",
                       "Major repairs needed")                       # condition ids 2..4
 
+# 2016 Census Profile uses coarser bands + a combined condition category. Pulled
+# per-area from the CPR2016 REST service (no CODR cube). TEXT_IDs: 27026 = total
+# period, 27027..27033 = the 7 bands; 27034 = total condition, 27035/27036 = the
+# two condition categories.
+PERIOD_LABELS_2016 <- c("1960 or before", "1961 to 1980", "1981 to 1990",
+                        "1991 to 2000", "2001 to 2005", "2006 to 2010",
+                        "2011 to 2016")
+CONDITION_LABELS_2016 <- c("Regular maintenance or minor repairs needed",
+                           "Major repairs needed")
+
 # --- 1. Cube metadata: geography members -------------------------------------
 message("[07] Fetching cube metadata...")
 meta <- content(POST(file.path(WDS, "getCubeMetadata"),
@@ -114,37 +124,73 @@ for (b in seq_len(n_batches)) {
 }
 reqs$value <- vals
 
+# --- 4b. 2016 Census Profile (per-area REST; coarser bands + combined cond) ---
+dguid_2016 <- function(code, lvl) {
+  if (lvl == "country")       "2016A000011124"
+  else if (lvl == "province") paste0("2016A0002", code)
+  else                        paste0("2016A0005", code)   # csd
+}
+fetch_2016 <- function(dguid) {
+  url <- sprintf("https://www12.statcan.gc.ca/rest/census-recensement/CPR2016.json?lang=E&dguid=%s&topic=0&notes=0&stat=0", dguid)
+  for (attempt in 1:3) {
+    resp <- tryCatch(GET(url, timeout(40)), error = function(e) NULL)
+    if (!is.null(resp) && status_code(resp) == 200) {
+      txt <- sub("^[^{\\[]*", "", content(resp, as = "text", encoding = "UTF-8"))
+      j <- tryCatch(jsonlite::fromJSON(txt, simplifyVector = FALSE), error = function(e) NULL)
+      if (is.null(j) || is.null(j$DATA)) return(NULL)
+      cols <- unlist(j$COLUMNS); ti <- which(cols == "TEXT_ID"); vi <- which(cols == "T_DATA_DONNEE")
+      m <- list(); for (row in j$DATA) m[[as.character(row[[ti]])]] <- row[[vi]]
+      num <- function(id) { v <- m[[as.character(id)]]; if (is.null(v)) NA_real_ else suppressWarnings(as.numeric(v)) }
+      return(list(total = num(27026),
+                  age   = vapply(27027:27033, num, numeric(1)),   # 7 bands
+                  cond  = c(num(27035), num(27036))))             # reg-or-minor, major
+    }
+    Sys.sleep(1)
+  }
+  NULL
+}
+message(sprintf("[07] Fetching 2016 Census Profile for %d areas...", nrow(areas)))
+prof2016 <- vector("list", nrow(areas))
+for (i in seq_len(nrow(areas))) {
+  prof2016[[i]] <- fetch_2016(dguid_2016(areas$code[i], areas$lvl[i]))
+  if (i %% 100 == 0 || i == nrow(areas)) message(sprintf("[07]   2016 %d/%d", i, nrow(areas)))
+  Sys.sleep(0.05)
+}
+message(sprintf("[07] 2016 areas returned: %d", sum(!vapply(prof2016, is.null, logical(1)))))
+
 # --- 5. Assemble per-area profiles + write JSON ------------------------------
+cleanv <- function(v) lapply(v, function(x) if (length(x) && is.finite(x)) round(x) else NA)
 build_area <- function(i) {
   rows <- reqs[reqs$idx == i, ]
-  age_all <- rows[rows$kind == "age", ]
-  age_all <- age_all[order(age_all$key), ]
-  total   <- age_all$value[age_all$key == 1]
-  age     <- age_all$value[age_all$key %in% 2:13]              # 12 bands
-  cond_rows <- rows[rows$kind == "cond", ]
-  cond_rows <- cond_rows[order(cond_rows$key), ]
-  cond    <- cond_rows$value                                  # 3 conditions
+  age_all <- rows[rows$kind == "age", ]; age_all <- age_all[order(age_all$key), ]
+  total21 <- age_all$value[age_all$key == 1]
+  age21   <- age_all$value[age_all$key %in% 2:13]             # 12 bands
+  cond_rows <- rows[rows$kind == "cond", ]; cond_rows <- cond_rows[order(cond_rows$key), ]
+  cond21  <- cond_rows$value                                  # 3 conditions
+  census <- list()
+  if (length(total21) && is.finite(total21) && total21 > 0)
+    census[["2021"]] <- list(total = round(total21), age = cleanv(age21), condition = cleanv(cond21))
+  p16 <- prof2016[[i]]
+  if (!is.null(p16) && length(p16$total) && is.finite(p16$total) && p16$total > 0)
+    census[["2016"]] <- list(total = round(p16$total), age = cleanv(p16$age), condition = cleanv(p16$cond))
+  if (length(census) == 0) return(NULL)
   list(
-    uid   = if (areas$lvl[i] == "country") "CA" else areas$code[i],
-    name  = areas$name[i],
-    level = areas$lvl[i],
-    prov  = areas$prov[i],
-    total = if (length(total) && is.finite(total)) round(total) else NA,
-    age       = lapply(age,  function(v) if (is.finite(v)) round(v) else NA),
-    condition = lapply(cond, function(v) if (is.finite(v)) round(v) else NA)
+    uid    = if (areas$lvl[i] == "country") "CA" else areas$code[i],
+    name   = areas$name[i],
+    level  = areas$lvl[i],
+    prov   = areas$prov[i],
+    census = census
   )
 }
-out_areas <- lapply(seq_len(nrow(areas)), build_area)
-# Drop areas with no total (suppressed / no data).
-out_areas <- Filter(function(a) !is.na(a$total) && a$total > 0, out_areas)
+out_areas <- Filter(Negate(is.null), lapply(seq_len(nrow(areas)), build_area))
 message(sprintf("[07] Areas with data: %d", length(out_areas)))
 
 payload <- list(
-  source          = "Statistics Canada, 2021 Census of Population, table 98-10-0233",
+  source          = "Statistics Canada, Census of Population — 2021 (table 98-10-0233) and 2016 (Census Profile)",
   sourceUrl       = "https://www150.statcan.gc.ca/t1/tbl1/en/tv.action?pid=9810023301",
-  censusYear      = 2021,
-  periodLabels    = PERIOD_LABELS,
-  conditionLabels = CONDITION_LABELS,
+  censusYears     = c("2021", "2016"),
+  periodLabels    = list("2021" = PERIOD_LABELS,    "2016" = PERIOD_LABELS_2016),
+  conditionLabels = list("2021" = CONDITION_LABELS, "2016" = CONDITION_LABELS_2016),
   areas           = out_areas
 )
 out_dir <- file.path(WEB_DATA, "housing")
