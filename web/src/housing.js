@@ -16,7 +16,10 @@ const ROLLUP = {
   '2016': [[0], [1], [2], [3], [4, 5], [6]],                   // 7 bands → 6
   '2011': [[0], [1], [2], [3], [4, 5], []],                    // 6 bands → 6 (no 2011+ band)
 };
-const ALL_YEARS = ['2011', '2016', '2021'];
+// 2006 has only a coarse before/after-1986 age split (no detailed bands), so it
+// contributes to the comparable metrics (total dwellings, % major repairs) but
+// is left out of the rolled-up age-mix comparison (no ROLLUP entry).
+const ALL_YEARS = ['2006', '2011', '2016', '2021'];
 
 export async function initHousing() {
   const $area = document.getElementById('hsk-area');
@@ -116,21 +119,25 @@ export async function initHousing() {
       { area: 'Total private dwellings', values: [...years.map(y => fmtN(tot(y))), fmtDeltaPct(totChg)] },
       { area: 'Needing major repairs',   values: [...years.map(y => `${fmtN(major(yd(y)))} (${fmtP(majPct(y))})`), fmtDeltaPP(ppChg)] },
     ];
-    const rolled = Object.fromEntries(years.map(y => [y, rollAge(y, yd(y).age)]));
-    const ageRows = COMMON_AGE.map((lbl, i) => {
-      const sh = (y) => tot(y) > 0 ? rolled[y][i] / tot(y) * 100 : null;
-      return { area: lbl, values: [...years.map(y => fmtP(sh(y))), fmtDeltaPP(sh(last) != null && sh(first) != null ? sh(last) - sh(first) : null)] };
-    });
-
     const chgCol = `Δ ${first}→${last}`;
-    $tables.innerHTML =
-      compareTableHtml(`Housing stock — ${years.join(' / ')}`, ['', ...years, chgCol], headRows) +
-      compareTableHtml('Age mix (share of dwellings)', ['Period of construction', ...years, chgCol], ageRows);
+    let html = compareTableHtml(`Housing stock — ${years.join(' / ')}`, ['', ...years, chgCol], headRows);
+    lastTables = [{ title: `${a.name} — housing stock ${years.join('/')}`, columns: [...years, chgCol], rows: headRows }];
 
-    lastTables = [
-      { title: `${a.name} — housing stock ${years.join('/')}`, columns: [...years, chgCol], rows: headRows },
-      { title: `${a.name} — age mix ${years.join('/')}`,       columns: [...years, chgCol], rows: ageRows },
-    ];
+    // Age-mix comparison — only the years with a detailed, roll-up-able age
+    // profile (2011/2016/2021); 2006's coarse split is excluded.
+    const ageYears = years.filter(y => ROLLUP[y]);
+    if (ageYears.length >= 2) {
+      const aFirst = ageYears[0], aLast = ageYears[ageYears.length - 1];
+      const rolled = Object.fromEntries(ageYears.map(y => [y, rollAge(y, yd(y).age)]));
+      const ageRows = COMMON_AGE.map((lbl, i) => {
+        const sh = (y) => tot(y) > 0 ? rolled[y][i] / tot(y) * 100 : null;
+        return { area: lbl, values: [...ageYears.map(y => fmtP(sh(y))), fmtDeltaPP(sh(aLast) != null && sh(aFirst) != null ? sh(aLast) - sh(aFirst) : null)] };
+      });
+      const ageChg = `Δ ${aFirst}→${aLast}`;
+      html += compareTableHtml('Age mix (share of dwellings)', ['Period of construction', ...ageYears, ageChg], ageRows);
+      lastTables.push({ title: `${a.name} — age mix ${ageYears.join('/')}`, columns: [...ageYears, ageChg], rows: ageRows });
+    }
+    $tables.innerHTML = html;
   }
 
   function tableHtml(title, headers, rows, total) {
