@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "generated": "2026-06-16T02:57:40Z",
-  "dataAsOf": "2026-06-15",
+  "generated": "2026-06-17T01:39:45Z",
+  "dataAsOf": "2026-06-16",
   "intro": {
     "censusYear": 2021,
     "provincePopulation": 1342153,
@@ -139,10 +139,10 @@
   },
   "housing": {
     "starts": {
-      "value": 2469,
-      "ytdChangePct": 33,
+      "value": 3189,
+      "ytdChangePct": 24.9,
       "direction": "up",
-      "period": "year-to-date to April 2026",
+      "period": "year-to-date to May 2026",
       "comparison": "year-to-date change",
       "source": "CMHC / Statistics Canada",
       "stale": false
