@@ -74,7 +74,10 @@ cached under `r/lib/cache/`, gitignored) and uses the crawled neighbourhood→
 cluster→CA manifest `r/lib/wpg_city_neighbourhoods.csv`. 2016 comes from the
 clean per-cluster/per-CA `.xlsx`; 2011/2006 are summed from per-neighbourhood
 `.xls` (counts only — medians aren't aggregatable, so they're dropped for 2011,
-and 2006 is trends-only). Run it after `r/12` (`census-refresh.bat` does both):
+and 2006 is trends-only). It also pulls **dwelling condition** (% needing major
+repairs, incl. a City 2021 pass since CensusMapper has no condition vector) so
+the **Housing Stock** tab can offer the Winnipeg clusters/CAs alongside the
+standard geographies. Run it after `r/12` (`census-refresh.bat` does both):
 
 ```pwsh
 Rscript r/12b_wpg_city_history.R   # no key; appends WPG cluster/CA 2006–2016

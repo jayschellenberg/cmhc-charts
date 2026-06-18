@@ -124,6 +124,11 @@ parse_file <- function(path, year) {
   o$owner        <- .after(m, rt, "^Owned")
   o$renter       <- .after(m, rt, "^Rented")
   o$tenure_total <- .after(m, rt, "^TOTAL", span = 6)
+  # dwelling condition (regular/minor vs major repairs) — for the Housing Stock tab
+  rcon <- .hdr(m, "^Dwelling Condition")
+  o$condition_ok    <- .after(m, rcon, "regular maintenance")
+  o$condition_major <- .after(m, rcon, "major repairs")
+  o$condition_total <- .after(m, rcon, "^TOTAL", span = 6)
   # household size
   rh <- .hdr(m, "^Household Size")
   o$hh_size_1     <- .after(m, rh, "^1 person")
@@ -176,7 +181,8 @@ COUNT_KEYS <- c("population","households","single_detached","semi_detached","row
   "hh_size_1","hh_size_2","hh_size_3","hh_size_4","hh_size_5plus","hh_size_total",
   "built_1960","built_1961_1980","built_1981_1990","built_1991_2000","built_2001_2005",
   "built_2006_2010","built_2011_2015","built_2016_2021","period_total",
-  "age_0_14","age_15_64","age_65_plus","tenant_stir_count")
+  "age_0_14","age_15_64","age_65_plus","tenant_stir_count",
+  "condition_ok","condition_major","condition_total")
 
 # Sum a list of parsed profiles (neighbourhoods) into one aggregate. NA-sums
 # stay NA only if every part is NA (so a bucket absent that census => NA => hidden).
@@ -218,7 +224,11 @@ demo_obj <- function(o, median_hh = NA) {
     tenure_total = rnd(o$tenure_total), owner = rnd(o$owner), renter = rnd(o$renter),
     median_dwelling_val = NA, median_rent = NA, median_ind_income = NA,
     median_hh_income = if (is.finite(median_hh %||% NA)) round(median_hh) else NA,
-    tenant_stir_30 = stir)
+    tenant_stir_30 = stir,
+    # dwelling condition (counts) — consumed by the Housing Stock tab, not shown
+    # in the Census Profile demographics table.
+    condition_ok = rnd(o$condition_ok), condition_major = rnd(o$condition_major),
+    condition_total = rnd(o$condition_total))
   d
 }
 
@@ -275,6 +285,25 @@ aggregate_year <- function(year) {
 city2011 <- aggregate_year("2011")
 city2006 <- aggregate_year("2006")
 
+# ---- 2021 dwelling condition (per-cluster/CA .xlsx) ------------------------
+# CensusMapper supplies the 2021 trends/demographics for these virtual geos but
+# has no dwelling-condition vector, so we take just condition_* from the City's
+# 2021 files to complete the Housing Stock condition series.
+message("[12b] 2021 condition: per-cluster + per-CA .xlsx …")
+ingest_2021 <- function(name, kind) {
+  if (kind == "cluster")
+    path <- sprintf("/Census/2021/Clusters/%s Neighbourhood Cluster/%s Neighbourhood Cluster.xlsx", name, name)
+  else
+    path <- sprintf("/Census/2021/Community Area/%s Community Area/%s Community Area.xlsx", name, name)
+  key <- sprintf("2021_%s_%s.xlsx", kind, gsub("[^A-Za-z0-9]+", "_", name))
+  f <- fetch_cached(path, key)
+  if (is.na(f)) { message("    MISSING 2021 ", kind, ": ", name); return(NULL) }
+  parse_file(f, "2021")
+}
+city2021 <- list(cluster = list(), ca = list())
+for (nm in clusters_city) { p <- ingest_2021(nm, "cluster"); if (!is.null(p)) city2021$cluster[[nm]] <- p }
+for (nm in cas_city)      { p <- ingest_2021(nm, "ca");      if (!is.null(p)) city2021$ca[[nm]] <- p }
+
 # =============================================================================
 # 3. Integrate into census_profile.json.
 # =============================================================================
@@ -288,6 +317,7 @@ city_by_norm <- function(lst) setNames(lst, vapply(names(lst), norm, character(1
 C16 <- list(WPG_Cluster = city_by_norm(city2016$cluster), WPG_CA = city_by_norm(city2016$ca))
 C11 <- list(WPG_Cluster = city_by_norm(city2011$cluster), WPG_CA = city_by_norm(city2011$ca))
 C06 <- list(WPG_Cluster = city_by_norm(city2006$cluster), WPG_CA = city_by_norm(city2006$ca))
+C21 <- list(WPG_Cluster = city_by_norm(city2021$cluster), WPG_CA = city_by_norm(city2021$ca))
 
 # Ensure trends/demo are year-keyed objects (the virtual geos may carry a flat
 # 2021 demo); preserve the existing 2021 entry untouched.
@@ -312,6 +342,15 @@ for (i in seq_along(doc$regions)) {
   if (!is.null(C11[[r$level]][[key]])) { tr[["2011"]] <- trend_obj(C11[[r$level]][[key]])
     dm[["2011"]] <- demo_obj(C11[[r$level]][[key]]); hit <- TRUE; stats$d <- stats$d + 1 }
   if (!is.null(C06[[r$level]][[key]])) { tr[["2006"]] <- trend_obj(C06[[r$level]][[key]]); hit <- TRUE }
+  # 2021: keep CensusMapper trends/demographics, only graft in City condition_*.
+  if (!is.null(C21[[r$level]][[key]])) {
+    cc <- C21[[r$level]][[key]]
+    if (is.null(dm[["2021"]])) dm[["2021"]] <- list()
+    dm[["2021"]]$condition_ok    <- rnd(cc$condition_ok)
+    dm[["2021"]]$condition_major <- rnd(cc$condition_major)
+    dm[["2021"]]$condition_total <- rnd(cc$condition_total)
+    hit <- TRUE
+  }
   if (hit) {
     tr <- tr[order(names(tr))]; dm <- dm[order(names(dm))]
     doc$regions[[i]]$trends <- tr; doc$regions[[i]]$demo <- dm
@@ -321,6 +360,9 @@ for (i in seq_along(doc$regions)) {
 doc$source <- paste0(doc$source,
   "; Winnipeg cluster/community-area history (2006/2011/2016) from City of Winnipeg ",
   "census profiles (Community Social Data Strategy custom tabulation)")
+# Advertise the dwelling-condition keys (Housing Stock tab) if not already listed.
+for (k in c("condition_ok","condition_major","condition_total"))
+  if (!(k %in% unlist(doc$demoKeys))) doc$demoKeys <- c(doc$demoKeys, k)
 
 writeLines(toJSON(doc, auto_unbox = TRUE, na = "null", digits = 10), JSON_PATH, useBytes = TRUE)
 message(sprintf("[12b] Done. Enriched %d virtual geographies. Wrote %s", stats$matched, JSON_PATH))

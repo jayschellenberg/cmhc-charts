@@ -28,6 +28,9 @@ const ROLLUP = {
 // contributes to the comparable metrics (total dwellings, % major repairs) but
 // is left out of the rolled-up age-mix comparison (no ROLLUP entry).
 const ALL_YEARS = ['2006', '2011', '2016', '2021'];
+// Winnipeg clusters/CAs carry the City's 8 age buckets (CITY_AGE_LABELS); this
+// rolls them up to the same COMMON_AGE bands for the compare-across-years view.
+const CLUSTER_ROLLUP = [[0], [1], [2], [3], [4, 5], [6, 7]];
 
 // Short labels for the 8 structural types (index-aligned across census years;
 // 2006 leaves the last two null — see dwelling_types notes2006).
@@ -36,6 +39,8 @@ const DT_SHORT = ['Single-detached', 'Semi-detached', 'Row', 'Duplex',
 
 export async function initHousing() {
   const $area = document.getElementById('hsk-area');
+  const $area2 = document.getElementById('hsk-area2');
+  const $compareSection = document.getElementById('hsk-compare-section');
   const $tables = document.getElementById('hsk-tables');
   const $headline = document.getElementById('hsk-headline');
   const $charts = document.getElementById('hsk-chart-grid');
@@ -53,13 +58,55 @@ export async function initHousing() {
 
   const hByUid = new Map(housing.areas.map(a => [a.uid, a]));
   const dByUid = new Map((dwelling?.areas || []).map(a => [a.uid, a]));
+
+  // --- Winnipeg clusters & community areas (from census_profile.json) ---------
+  // Synthesised from the City-of-Winnipeg cluster/CA data (r/12 + r/12b): dwelling
+  // type comes from `trends`, age + condition from `demo`. They carry their own
+  // age/condition labels because the City banding differs from census_housing's.
+  const profile = await fetch('./data/housing/census_profile.json')
+    .then(r => r.ok ? r.json() : null).catch(() => null);
+  const DT_FROM_TREND = ['single_detached', 'semi_detached', 'row_house', 'apt_duplex',
+                         'apt_lt5', 'apt_ge5', 'other_attached', 'movable'];  // → DT_SHORT order
+  const AGE_KEYS = ['built_1960', 'built_1961_1980', 'built_1981_1990', 'built_1991_2000',
+                    'built_2001_2005', 'built_2006_2010', 'built_2011_2015', 'built_2016_2021'];
+  const CITY_AGE_LABELS = ['1960 or before', '1961 to 1980', '1981 to 1990', '1991 to 2000',
+                           '2001 to 2005', '2006 to 2010', '2011 to 2015', '2016 to 2021'];
+  const COND_LABELS = ['Regular maintenance or minor repairs needed', 'Major repairs needed'];
+  const wpgAreas = [];
+  for (const r of (profile?.regions || [])) {
+    if (r.level !== 'WPG_Cluster' && r.level !== 'WPG_CA') continue;
+    // dwelling-type area (from trends)
+    const dCensus = {};
+    for (const [y, t] of Object.entries(r.trends || {})) {
+      const types = DT_FROM_TREND.map(k => t[k] ?? null);
+      if (types.some(v => v != null)) dCensus[y] = { total: t.households ?? null, types };
+    }
+    if (Object.keys(dCensus).length) dByUid.set(r.uid, { uid: r.uid, name: r.name, level: r.level, census: dCensus });
+    // housing area (age + condition, from demo)
+    const hCensus = {}, periodLabels = {}, conditionLabels = {};
+    for (const [y, d] of Object.entries(r.demo || {})) {
+      const ageFull = AGE_KEYS.map(k => d[k] ?? null);
+      let n = ageFull.length; while (n > 0 && ageFull[n - 1] == null) n--;
+      const age = n ? ageFull.slice(0, n) : null;
+      const condition = (d.condition_ok != null || d.condition_major != null)
+        ? [d.condition_ok ?? 0, d.condition_major ?? 0] : null;
+      if (age || condition) {
+        hCensus[y] = { total: d.households ?? null, age: age || [], condition: condition || [] };
+        if (age) periodLabels[y] = CITY_AGE_LABELS.slice(0, n);
+        if (condition) conditionLabels[y] = COND_LABELS;
+      }
+    }
+    if (Object.keys(hCensus).length) hByUid.set(r.uid, { uid: r.uid, name: r.name, level: r.level, census: hCensus, periodLabels, conditionLabels });
+    if (Object.keys(dCensus).length || Object.keys(hCensus).length) wpgAreas.push({ uid: r.uid, name: r.name, level: r.level });
+  }
+
   const nameByUid = new Map([...dByUid].map(([u, a]) => [u, a.name]).concat(
-    housing.areas.map(a => [a.uid, a.name])));   // census_housing names win on overlap
+    [...hByUid].map(([u, a]) => [u, a.name])));   // census_housing / cluster names win on overlap
 
   const fmtN = (v) => v == null ? '**' : Number(v).toLocaleString();
   const fmtP = (v) => v == null ? '—'  : `${v.toFixed(1)}%`;
   const major = (yd) => yd?.condition?.[yd.condition.length - 1];   // last condition cat = major
-  const rollAge = (year, age) => ROLLUP[year].map(ix => ix.reduce((s, i) => s + (age?.[i] || 0), 0));
+  const rollAge = (spec, age) => spec.map(ix => ix.reduce((s, i) => s + (age?.[i] || 0), 0));
   const dwellingYearsAsc = (dd) => ALL_YEARS.filter(y => dd.census?.[y]);
 
   // --- Combined area dropdown (union of both datasets) -----------------------
@@ -69,13 +116,17 @@ export async function initHousing() {
   const country = housing.areas.filter(a => a.level === 'country');
   const opt   = (a) => `<option value="${escapeHtml(a.uid)}">${escapeHtml(a.name)}</option>`;
   const group = (label, arr) => arr.length ? `<optgroup label="${escapeHtml(label)}">${arr.map(opt).join('')}</optgroup>` : '';
-  $area.innerHTML =
+  const optionsHtml =
     country.map(opt).join('') +
     group('Provinces & Territories', pickH(a => a.level === 'province')) +
     group('Manitoba CMAs / CAs',     pickD(a => a.level === 'cma' && a.prov === '46')) +
     group('Saskatchewan CMAs / CAs', pickD(a => a.level === 'cma' && a.prov === '47')) +
     group('Manitoba municipalities', pickH(a => a.level === 'csd' && a.prov === '46')) +
-    group('Saskatchewan municipalities', pickH(a => a.level === 'csd' && a.prov === '47'));
+    group('Saskatchewan municipalities', pickH(a => a.level === 'csd' && a.prov === '47')) +
+    group('Winnipeg — Community Areas', wpgAreas.filter(a => a.level === 'WPG_CA').sort(byName)) +
+    group('Winnipeg — Clusters',        wpgAreas.filter(a => a.level === 'WPG_Cluster').sort(byName));
+  $area.innerHTML = optionsHtml;
+  if ($area2) $area2.innerHTML = '<option value="">— none —</option>' + optionsHtml;
   // Default to Manitoba (province) — it carries both datasets, so the default
   // compare view shows dwelling type + age + condition together.
   $area.value = hByUid.has('46') ? '46'
@@ -165,8 +216,10 @@ export async function initHousing() {
     }
     const total = yd.total || 0;
     const share = (v) => (total > 0 && v != null) ? (v / total * 100) : null;
-    const ageRows  = housing.periodLabels[year].map((lbl, i)    => ({ area: lbl, values: [fmtN(yd.age?.[i]),       fmtP(share(yd.age?.[i]))] }));
-    const condRows = housing.conditionLabels[year].map((lbl, i) => ({ area: lbl, values: [fmtN(yd.condition?.[i]), fmtP(share(yd.condition?.[i]))] }));
+    const periodLabels = hd.periodLabels?.[year] || housing.periodLabels[year];
+    const condLabels   = hd.conditionLabels?.[year] || housing.conditionLabels[year];
+    const ageRows  = periodLabels.map((lbl, i) => ({ area: lbl, values: [fmtN(yd.age?.[i]),       fmtP(share(yd.age?.[i]))] }));
+    const condRows = condLabels.map((lbl, i)   => ({ area: lbl, values: [fmtN(yd.condition?.[i]), fmtP(share(yd.condition?.[i]))] }));
     const withTotal = (rows) => rows.concat([{ area: 'Total', values: [fmtN(total), '100.0%'] }]);
     appendBlock(`Age — period of construction (${year})`, summaryTable(['Category', 'Dwellings', 'Share'], withTotal(ageRows)));
     appendBlock(`Condition — repairs needed (${year})`, summaryTable(['Category', 'Dwellings', 'Share'], withTotal(condRows)));
@@ -200,10 +253,11 @@ export async function initHousing() {
     appendBlock(`Housing stock — ${years.join(' / ')}`, compareTable(['', ...years, chgCol], headRows));
     lastTables.push({ title: `${name} — housing stock ${years.join('/')}`, columns: [...years, chgCol], rows: headRows });
 
-    const ageYears = years.filter(y => ROLLUP[y]);
+    const isWpg = String(hd.level || '').startsWith('WPG_');
+    const ageYears = years.filter(y => isWpg ? hd.census[y]?.age?.length : ROLLUP[y]);
     if (ageYears.length >= 2) {
       const aFirst = ageYears[0], aLast = ageYears[ageYears.length - 1];
-      const rolled = Object.fromEntries(ageYears.map(y => [y, rollAge(y, yd(y).age)]));
+      const rolled = Object.fromEntries(ageYears.map(y => [y, rollAge(isWpg ? CLUSTER_ROLLUP : ROLLUP[y], yd(y).age)]));
       const ageRows = COMMON_AGE.map((lbl, i) => {
         const sh = (y) => tot(y) > 0 ? rolled[y][i] / tot(y) * 100 : null;
         return { area: lbl, values: [...ageYears.map(y => fmtP(sh(y))), fmtDeltaPP(sh(aLast) != null && sh(aFirst) != null ? sh(aLast) - sh(aFirst) : null)] };
@@ -237,12 +291,13 @@ export async function initHousing() {
         if (yd) {
           const total = yd.total || 0, share = (x) => (total > 0 && x != null) ? x / total * 100 : null;
           const since = yd.age?.[yd.age.length - 1];
+          const pLabels = hd.periodLabels?.[v] || housing.periodLabels[v];
           $headline.innerHTML = `
             <div class="cmhc-hsk-title">${escapeHtml(name)} — housing stock <span>(${v} Census)</span></div>
             <div class="cmhc-hsk-stats">
               <span><strong>${fmtN(total)}</strong> private dwellings</span>
               <span><strong>${fmtP(share(major(yd)))}</strong> need major repairs</span>
-              <span><strong>${fmtP(share(since))}</strong> built ${escapeHtml(housing.periodLabels[v].slice(-1)[0] || 'recently')}</span>
+              <span><strong>${fmtP(share(since))}</strong> built ${escapeHtml(pLabels.slice(-1)[0] || 'recently')}</span>
             </div>`;
           return;
         }
@@ -294,17 +349,101 @@ export async function initHousing() {
     $charts?.appendChild(card);
   }
 
+  // ===========================================================================
+  // Two-area comparison (single-census point-in-time view only). Uses universal
+  // bases so any two areas line up: the 8 DT types, COMMON_AGE-rolled age, and
+  // condition collapsed to regular/minor vs major.
+  // ===========================================================================
+  function shareChart(title, sub, catLabels, areas) {       // areas: [{name, shares:[pct|null]}]
+    const data = [];
+    areas.forEach(a => catLabels.forEach((lbl, i) => {
+      if (a.shares[i] != null) data.push({ area: a.name, cat: lbl, value: a.shares[i] });
+    }));
+    if (!data.length) return;
+    const maxV = Math.max(...data.map(d => d.value));
+    const svg = Plot.plot(themed({
+      height: 260, marginBottom: 42,
+      fx: { label: null }, x: { axis: null, label: null },
+      y: { label: '% of dwellings', tickFormat: v => `${v}%`, domain: [0, maxV * 1.15] },
+      color: { domain: areas.map(a => a.name), range: PALETTE, legend: true },
+      marks: [Plot.barY(data, { fx: 'cat', x: 'area', y: 'value', fill: 'area' }), frameMark()],
+    }));
+    appendCard(title, sub, svg);
+  }
+  function twoAreaTable(title, catLabels, areas) {           // areas: [{name, counts:[...], total}]
+    const headers = ['', ...areas.flatMap(a => [a.name, '%'])];
+    const sh = (a, i) => (a.total > 0 && a.counts[i] != null) ? a.counts[i] / a.total * 100 : null;
+    const rows = catLabels.map((lbl, i) => ({ area: lbl, values: areas.flatMap(a => [fmtN(a.counts[i]), fmtP(sh(a, i))]) }));
+    rows.push({ area: 'Total', values: areas.flatMap(a => [fmtN(a.total), '100.0%']) });
+    appendBlock(title, compareTable(headers, rows));
+    lastTables.push({ title, columns: headers.slice(1), rows });
+  }
+
+  function dwellYearCompare(d1, d2, n1, n2, year) {
+    const c1 = d1?.census?.[year], c2 = d2?.census?.[year];
+    if (!c1 && !c2) return;
+    const mk = (nm, c) => c ? { name: nm, shares: DT_SHORT.map((_, i) => (c.total > 0 && c.types?.[i] != null) ? c.types[i] / c.total * 100 : null) } : null;
+    shareChart('Dwelling type mix', `${n1} vs ${n2} — structural type (${year} Census)`, DT_SHORT, [mk(n1, c1), mk(n2, c2)].filter(Boolean));
+    twoAreaTable(`Structural type of dwelling — ${year}`, DT_SHORT,
+      [c1 && { name: n1, counts: c1.types || [], total: c1.total || 0 }, c2 && { name: n2, counts: c2.types || [], total: c2.total || 0 }].filter(Boolean));
+  }
+
+  function housingYearCompare(h1, h2, n1, n2, year) {
+    const y1 = h1?.census?.[year], y2 = h2?.census?.[year];
+    if (!y1 && !y2) return;
+    const rollFor = (h, yd) => {
+      if (!yd) return null;
+      const spec = String(h.level || '').startsWith('WPG_') ? CLUSTER_ROLLUP : ROLLUP[year];
+      return spec ? rollAge(spec, yd.age) : null;
+    };
+    const r1 = rollFor(h1, y1), r2 = rollFor(h2, y2);
+    const ageShare = (nm, yd, rolled) => (rolled && yd) ? { name: nm, shares: rolled.map(v => yd.total > 0 ? v / yd.total * 100 : null) } : null;
+    if (r1 || r2) {
+      shareChart('Age mix', `${n1} vs ${n2} — period of construction (${year}, common bands)`, COMMON_AGE,
+        [ageShare(n1, y1, r1), ageShare(n2, y2, r2)].filter(Boolean));
+      twoAreaTable(`Age — period of construction (${year}, common bands)`, COMMON_AGE,
+        [r1 && { name: n1, counts: r1, total: y1.total || 0 }, r2 && { name: n2, counts: r2, total: y2.total || 0 }].filter(Boolean));
+    } else {
+      appendBlock('Age — period of construction', `<p class="text-sm text-neutral-600">No comparable age bands for ${escapeHtml(year)} (2006 is a coarse split).</p>`);
+    }
+    // condition collapsed to regular/minor vs major (handles 2- and 3-category years)
+    const cond2 = (yd) => { const c = yd?.condition; if (!c || !c.length) return null; return c.length >= 3 ? [c[0] + c[1], c[c.length - 1]] : [c[0] ?? 0, c[c.length - 1] ?? 0]; };
+    const k1 = cond2(y1), k2 = cond2(y2), COND2 = ['Regular / minor repairs', 'Major repairs'];
+    const condShare = (nm, yd, k) => k ? { name: nm, shares: k.map(v => yd.total > 0 ? v / yd.total * 100 : null) } : null;
+    if (k1 || k2) {
+      shareChart('Dwelling condition', `${n1} vs ${n2} — repairs needed (${year})`, COND2,
+        [condShare(n1, y1, k1), condShare(n2, y2, k2)].filter(Boolean));
+      twoAreaTable(`Condition — repairs needed (${year})`, COND2,
+        [k1 && { name: n1, counts: k1, total: y1.total || 0 }, k2 && { name: n2, counts: k2, total: y2.total || 0 }].filter(Boolean));
+    }
+  }
+
   // --- Orchestration ---------------------------------------------------------
   function render() {
     const uid = $area.value;
     const name = nameByUid.get(uid) || uid;
     const hd = hByUid.get(uid), dd = dByUid.get(uid);
     const v = viewVal();
+    const compareMode = v !== 'compare';
+    // The second-area picker is a point-in-time option only.
+    if ($compareSection) $compareSection.hidden = !compareMode;
+    const uid2 = compareMode && $area2 ? $area2.value : '';
+    const name2 = uid2 ? (nameByUid.get(uid2) || uid2) : '';
+    const hd2 = uid2 ? hByUid.get(uid2) : null, dd2 = uid2 ? dByUid.get(uid2) : null;
+
     $charts?.replaceChildren();
     $tables.innerHTML = '';
     lastTables = [];
 
     renderHeadline(name, hd, dd, v);
+
+    if (uid2) {                                   // two-area point-in-time comparison
+      if (dd || dd2) dwellYearCompare(dd, dd2, name, name2, v);
+      if (hd || hd2) housingYearCompare(hd, hd2, name, name2, v);
+      if (!dd && !dd2 && !hd && !hd2)
+        $tables.innerHTML = '<p class="text-sm text-neutral-600">No census data for either area.</p>';
+      return;
+    }
 
     if (dd) { v === 'compare' ? dwellCompare(dd, name) : dwellYear(dd, name, v); }
     if (hd) { v === 'compare' ? housingCompare(hd, name) : housingYear(hd, name, v); }
@@ -313,7 +452,7 @@ export async function initHousing() {
       $tables.innerHTML = '<p class="text-sm text-neutral-600">No census data for this area.</p>';
     } else if (!hd && dd) {
       $tables.insertAdjacentHTML('beforeend',
-        '<p class="text-xs text-neutral-500">Age &amp; condition are published at the municipality level — pick a municipality to see them.</p>');
+        '<p class="text-xs text-neutral-500">Age &amp; condition are published at the municipality level (plus Winnipeg clusters/CAs) — pick one of those to see them.</p>');
     } else if (hd && !dd) {
       $tables.insertAdjacentHTML('beforeend',
         '<p class="text-xs text-neutral-500">Structural type is published at the CMA/CA, province &amp; Canada level — pick a CMA or province to see the dwelling-type breakdown.</p>');
@@ -321,6 +460,7 @@ export async function initHousing() {
   }
 
   $area.addEventListener('change', render);
+  $area2?.addEventListener('change', render);
   $view.forEach(r => r.addEventListener('change', render));
   render();
 
