@@ -272,8 +272,14 @@ export async function initCensus() {
         <thead><tr><th></th>${years.map(y => `<th>${y}</th>`).join('')}</tr></thead>
         <tbody>${body}</tbody>
       </table>
-      <p class="text-xs text-neutral-500 mt-1 mb-3">* Occupied by usual residents.${
-        subject.level.startsWith('WPG_') ? ' Winnipeg community/cluster/neighbourhood trends are shown for 2021 only (dissemination-area boundaries differ in earlier censuses).' : ''}</p>`;
+      <p class="text-xs text-neutral-500 mt-1 mb-3">* Occupied by usual residents.${(() => {
+        const isWpg = subject.level.startsWith('WPG_');
+        if (!isWpg) return '';
+        const nYears = years.filter(y => t[y]?.population != null).length;
+        return nYears <= 1
+          ? ' Winnipeg neighbourhood figures are shown for 2021 only (dissemination-area boundaries differ in earlier censuses).'
+          : ' 2006–2016 Winnipeg cluster/community-area figures are from City of Winnipeg census profiles (custom tabulation); 2021 is from CensusMapper, so a 2016→2021 step can be partly a source difference.';
+      })()}</p>`;
 
     const rows = TREND_ROWS.map(row => row.header
       ? { area: row.header, values: years.map(() => '') }
