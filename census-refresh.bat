@@ -9,6 +9,7 @@ REM Rebuilds, then commits + pushes web/public/data so Vercel redeploys:
 REM   - Housing Stock  : census_housing.json  (age + condition, r/07-09)   [StatsCan WDS, no key]
 REM   - Dwelling type  : dwelling_types.json  (structural type, r/10+10b/c/d) [StatsCan WDS, no key]
 REM   - Census Profile : census_profile.json  (r/12)                         [CensusMapper key]
+REM   - WPG cluster/CA history : census_profile.json  (r/12b, appends 2006-2016)  [no key — City of Winnipeg downloads]
 
 setlocal
 cd /d "%~dp0"
@@ -31,6 +32,12 @@ REM across days), and stops with a clear message if no key is configured. So we
 REM do NOT abort the whole refresh on its exit code.
 Rscript r/12_census_profile.R
 if errorlevel 1 echo [census-refresh] Census Profile (r/12) did not fully complete - set CM_API_KEY and/or re-run later (quota). Other census data still refreshed.
+
+REM --- WPG cluster/CA history (City of Winnipeg downloads, no key) ------------
+REM Appends 2006/2011/2016 trends + 2011/2016 demographics to the Winnipeg
+REM clusters/CAs that r/12 writes for 2021. Best-effort; downloads are cached.
+Rscript r/12b_wpg_city_history.R
+if errorlevel 1 echo [census-refresh] WPG cluster/CA history (r/12b) did not complete - re-run later.
 
 REM --- Commit + push if anything changed -------------------------------------
 git diff --quiet web/public/data

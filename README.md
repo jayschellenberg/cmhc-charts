@@ -65,9 +65,26 @@ CensusMapper key. Re-run it manually only when a new census is released:
 $env:CM_API_KEY="CensusMapper_xxx"; npm --prefix web run data:census
 ```
 
+A companion script, `r/12b_wpg_city_history.R`, then **appends earlier-census
+history (2006/2011/2016) to the Winnipeg clusters + community areas** from the
+City of Winnipeg's published census profiles (Community Social Data Strategy
+custom tabulation) — CensusMapper DA-aggregation only yields 2021 for those
+virtual geos. It needs **no API key** (downloads from `legacy.winnipeg.ca`,
+cached under `r/lib/cache/`, gitignored) and uses the crawled neighbourhood→
+cluster→CA manifest `r/lib/wpg_city_neighbourhoods.csv`. 2016 comes from the
+clean per-cluster/per-CA `.xlsx`; 2011/2006 are summed from per-neighbourhood
+`.xls` (counts only — medians aren't aggregatable, so they're dropped for 2011,
+and 2006 is trends-only). Run it after `r/12` (`census-refresh.bat` does both):
+
+```pwsh
+Rscript r/12b_wpg_city_history.R   # no key; appends WPG cluster/CA 2006–2016
+```
+
 Coverage: all Manitoba PR / CMA-CA / CD / CSD geographies, plus the City of
 Winnipeg virtual geographies (Community Area / Cluster / Neighbourhood,
-dissemination-area aggregated via `r/lib/wpg_geography_lookup.csv`). Free
+dissemination-area aggregated via `r/lib/wpg_geography_lookup.csv`; clusters and
+community areas additionally carry 2006–2021 trends + 2011/2016 demographics
+from the City of Winnipeg, while neighbourhoods stay 2021-only). Free
 CensusMapper keys are capped at **500 region identifiers/day (5,000/month)**, and
 Winnipeg has ~1,130 dissemination areas — more than one day's allowance — so the
 DA pull is chunked (18 DAs/request) and the cache is persistent, making the run
