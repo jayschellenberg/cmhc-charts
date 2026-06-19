@@ -1,20 +1,27 @@
 /*
- * Filter UI controller. Reads + writes the global state object, populates
- * the geography-level + geography-name dropdowns from geographies.json,
- * and disables breakdown radios that the active series doesn't support.
+ * Filter UI controller. Province-first geography cascade: pick a Province, then
+ * a Level within it (Entire province / CMA-CA / CSD / Survey Zone / Neighbour-
+ * hood — only the levels that province actually has), then the Area at that
+ * level. The underlying selection is still (geoLevel, geoUid); province is a UI
+ * scoping layer derived from each geography's `prov` field. Also disables
+ * breakdown radios the active series doesn't support.
  */
 
 const LEVEL_LABEL = {
-  province:      'Province',
+  province:      'Entire province',
   cma:           'CMA / CA',
   csd:           'Census Subdivision',
   zone:          'Survey Zone',
   neighbourhood: 'Neighbourhood',
 };
+const LEVEL_ORDER = ['province', 'cma', 'csd', 'zone', 'neighbourhood'];
+const DEFAULT_PROV = '46';  // Manitoba
 
 export function initFilters({ geographies, capabilities, categoryOrder = {}, initialState, onChange }) {
+  const $province  = document.getElementById('geo-province');
   const $level     = document.getElementById('geo-level');
   const $name      = document.getElementById('geo-name');
+  const $nameWrap  = document.getElementById('geo-name-wrap');
   const $dwelling  = document.querySelectorAll('input[name="dwellingType"]');
   const $yearFrom  = document.getElementById('year-from');
   const $yearTo    = document.getElementById('year-to');
@@ -22,18 +29,24 @@ export function initFilters({ geographies, capabilities, categoryOrder = {}, ini
   const $banner    = document.getElementById('zone-banner');
   const $catToggles = document.getElementById('category-toggles');
 
-  // Populate level dropdown — only levels that actually have items.
   const levels = geographies.levels || {};
-  const levelOrder = ['province', 'cma', 'csd', 'zone', 'neighbourhood'];
-  const availableLevels = levelOrder.filter(l => Array.isArray(levels[l]) && levels[l].length > 0);
-  $level.innerHTML = availableLevels
-    .map(l => `<option value="${l}">${LEVEL_LABEL[l] ?? l}</option>`)
-    .join('');
+  const allItems  = LEVEL_ORDER.flatMap(l => levels[l] || []);
+  const provOf    = (uid) => allItems.find(it => it.uid === uid)?.prov;
+  const itemsFor  = (level, prov) => (levels[level] || []).filter(it => it.prov === prov);
+  const levelsFor = (prov) => LEVEL_ORDER.filter(l => itemsFor(l, prov).length > 0);
 
-  // Apply initial state, defaulting to province / Manitoba.
+  // Province dropdown options (from the province level), sorted by name.
+  const provinceItems = (levels.province || []).slice().sort((a, b) => a.name.localeCompare(b.name));
+  const provExists = (p) => provinceItems.some(it => it.prov === p);
+  const fallbackProv = () => provExists(DEFAULT_PROV) ? DEFAULT_PROV : provinceItems[0]?.prov;
+
+  // Initial state. The persisted selection is still (geoLevel, geoUid); province
+  // is derived from the saved geoUid. Default: Manitoba / Entire province.
+  const savedProv = initialState.geoUid ? provOf(initialState.geoUid) : null;
   const state = {
-    geoLevel:     initialState.geoLevel     && availableLevels.includes(initialState.geoLevel) ? initialState.geoLevel : (availableLevels[0] || 'province'),
-    geoUid:       initialState.geoUid       || '',
+    province:     (savedProv && provExists(savedProv)) ? savedProv : fallbackProv(),
+    geoLevel:     initialState.geoLevel || 'province',
+    geoUid:       initialState.geoUid   || DEFAULT_PROV,
     dwellingType: initialState.dwellingType || 'All',
     yearFrom:     initialState.yearFrom     || null,
     yearTo:       initialState.yearTo       || null,
@@ -41,21 +54,52 @@ export function initFilters({ geographies, capabilities, categoryOrder = {}, ini
     // Per-breakdown hidden category sets. Default: nothing hidden.
     hiddenCategories: initialState.hiddenCategories || {},
   };
-  // Ensure every known breakdown has a Set in hiddenCategories so we can
-  // mutate without worrying about undefined.
+  // Ensure every known breakdown has a Set in hiddenCategories so we can mutate
+  // without worrying about undefined.
   Object.keys(categoryOrder).forEach(bd => {
     if (!Array.isArray(state.hiddenCategories[bd])) state.hiddenCategories[bd] = [];
   });
 
-  function applyToInputs() {
-    $level.value = state.geoLevel;
-    populateNames();
-    if (state.geoUid && [...$name.options].some(o => o.value === state.geoUid)) {
-      $name.value = state.geoUid;
-    } else if ($name.options.length > 0) {
-      state.geoUid = $name.options[0].value;
-      $name.value = state.geoUid;
+  $province.innerHTML = provinceItems
+    .map(it => `<option value="${escapeHtml(it.prov)}">${escapeHtml(it.name)}</option>`)
+    .join('');
+
+  // Keep province / geoLevel / geoUid mutually consistent before rendering.
+  function normalize() {
+    if (!provExists(state.province)) state.province = fallbackProv();
+    const avail = levelsFor(state.province);
+    if (!avail.includes(state.geoLevel)) state.geoLevel = avail.includes('province') ? 'province' : avail[0];
+    if (state.geoLevel === 'province') {
+      state.geoUid = state.province;                 // "Entire province" = the province uid
+    } else {
+      const items = itemsFor(state.geoLevel, state.province);
+      if (!items.some(it => it.uid === state.geoUid)) state.geoUid = items[0]?.uid || '';
     }
+  }
+
+  function populateLevels() {
+    const avail = levelsFor(state.province);
+    $level.innerHTML = avail.map(l => `<option value="${l}">${LEVEL_LABEL[l] ?? l}</option>`).join('');
+    $level.value = state.geoLevel;
+  }
+
+  function populateNames() {
+    const isProvince = state.geoLevel === 'province';
+    if ($nameWrap) $nameWrap.hidden = isProvince;           // Area is implicit for a whole province
+    if (isProvince) { $name.innerHTML = ''; $name.disabled = true; return; }
+    const items = itemsFor(state.geoLevel, state.province);
+    $name.disabled = items.length === 0;
+    $name.innerHTML = items
+      .map(it => `<option value="${it.uid}">${escapeHtml(formatNameOption(it))}</option>`)
+      .join('') || '<option>&nbsp;</option>';
+    if (state.geoUid) $name.value = state.geoUid;
+  }
+
+  function applyToInputs() {
+    normalize();
+    $province.value = state.province;
+    populateLevels();
+    populateNames();
     setRadio($dwelling, state.dwellingType);
     setRadio($breakdown, state.breakdown);
     if (state.yearFrom) $yearFrom.value = state.yearFrom;
@@ -91,16 +135,9 @@ export function initFilters({ geographies, capabilities, categoryOrder = {}, ini
     });
   }
 
-  function populateNames() {
-    const items = levels[state.geoLevel] || [];
-    $name.disabled = items.length === 0;
-    $name.innerHTML = items
-      .map(it => `<option value="${it.uid}">${escapeHtml(formatNameOption(it))}</option>`)
-      .join('') || '<option>&nbsp;</option>';
-  }
-
   function formatNameOption(it) {
-    if (it.parentName && state.geoLevel !== 'cma' && state.geoLevel !== 'province' && state.geoLevel !== 'csd') {
+    // Within a single province, show the parent CMA for zones/neighbourhoods.
+    if (it.parentName && (state.geoLevel === 'zone' || state.geoLevel === 'neighbourhood')) {
       return `${it.name} — ${it.parentName}`;
     }
     return it.name;
@@ -150,15 +187,19 @@ export function initFilters({ geographies, capabilities, categoryOrder = {}, ini
   }
 
   // --- Event wiring --------------------------------------------------------
+  $province.addEventListener('change', () => {
+    state.province = $province.value;
+    normalize();          // keep the level if the new province has it, else fall back
+    populateLevels();
+    populateNames();
+    updateZoneBanner();
+    commit();
+  });
+
   $level.addEventListener('change', () => {
     state.geoLevel = $level.value;
+    normalize();          // sets geoUid (province uid for "Entire province", else first item)
     populateNames();
-    if ($name.options.length > 0) {
-      state.geoUid = $name.options[0].value;
-      $name.value = state.geoUid;
-    } else {
-      state.geoUid = '';
-    }
     updateZoneBanner();
     commit();
   });

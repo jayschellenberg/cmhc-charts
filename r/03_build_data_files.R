@@ -157,6 +157,7 @@ geographies <- shard_summaries %>%
          items = unname(lapply(seq_len(nrow(g)), function(i) {
            item <- list(uid     = g$geoUid[i],
                         name    = g$geoName[i],
+                        prov    = resolve_prov(g$geoUid[i], level, g$parentUid[i]),
                         yearMin = g$year_min[i],
                         yearMax = g$year_max[i])
            if (!is.na(g$parentUid[i]))  item$parentUid  <- g$parentUid[i]

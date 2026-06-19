@@ -61,12 +61,16 @@
       <aside class="bg-white border-r border-neutral-200 p-4 space-y-4 overflow-y-auto" aria-label="Filters">
         <section>
           <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Geography</h2>
-          <label class="block text-xs text-neutral-600 mb-1" for="geo-level">Level</label>
+          <label class="block text-xs text-neutral-600 mb-1" for="geo-province">Province</label>
+          <select id="geo-province" class="w-full border border-neutral-300 rounded px-2 py-1 text-sm"></select>
+          <label class="block text-xs text-neutral-600 mt-2 mb-1" for="geo-level">Level</label>
           <select id="geo-level" class="w-full border border-neutral-300 rounded px-2 py-1 text-sm"></select>
-          <label class="block text-xs text-neutral-600 mt-2 mb-1" for="geo-name">Area</label>
-          <select id="geo-name" class="w-full border border-neutral-300 rounded px-2 py-1 text-sm" disabled>
-            <option>&nbsp;</option>
-          </select>
+          <div id="geo-name-wrap">
+            <label class="block text-xs text-neutral-600 mt-2 mb-1" for="geo-name">Area</label>
+            <select id="geo-name" class="w-full border border-neutral-300 rounded px-2 py-1 text-sm" disabled>
+              <option>&nbsp;</option>
+            </select>
+          </div>
           <p class="text-xs text-neutral-500 mt-2 leading-snug">
             <strong>Coverage:</strong> Manitoba &amp; Saskatchewan are <strong>full</strong> — province, CMA/CA, survey zones &amp; neighbourhoods, with complete history. Other provinces: major centres (province + CMA/CA) only, most recent 10 years.
           </p>

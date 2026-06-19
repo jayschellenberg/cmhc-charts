@@ -6,72 +6,84 @@
       {
         "uid": "48",
         "name": "Alberta",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "59",
         "name": "British Columbia",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "46",
         "name": "Manitoba",
+        "prov": "46",
         "yearMin": 1990,
         "yearMax": 2025
       },
       {
         "uid": "13",
         "name": "New Brunswick",
+        "prov": "13",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "10",
         "name": "Newfoundland and Labrador",
+        "prov": "10",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "61",
         "name": "Northwest Territories",
+        "prov": "61",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "12",
         "name": "Nova Scotia",
+        "prov": "12",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "35",
         "name": "Ontario",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "11",
         "name": "Prince Edward Island",
+        "prov": "11",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "24",
         "name": "Quebec",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "47",
         "name": "Saskatchewan",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "60",
         "name": "Yukon",
+        "prov": "60",
         "yearMin": 2016,
         "yearMax": 2025
       }
@@ -80,912 +92,1064 @@
       {
         "uid": "932",
         "name": "Abbotsford - Mission",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "410",
         "name": "Alma",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "481",
         "name": "Amos V",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "406",
         "name": "Baie-Comeau",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "568",
         "name": "Barrie",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "328",
         "name": "Bathurst",
+        "prov": "13",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "522",
         "name": "Belleville - Quinte West",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "610",
         "name": "Brandon",
+        "prov": "46",
         "yearMin": 1990,
         "yearMax": 2025
       },
       {
         "uid": "543",
         "name": "Brantford",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "512",
         "name": "Brockville",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "806",
         "name": "Brooks",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "825",
         "name": "Calgary",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "944",
         "name": "Campbell River",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "330",
         "name": "Campbellton",
+        "prov": "13",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "833",
         "name": "Camrose",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "828",
         "name": "Canmore",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "225",
         "name": "Cape Breton",
+        "prov": "12",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "531",
         "name": "Centre Wellington",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "105",
         "name": "Charlottetown",
+        "prov": "11",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "556",
         "name": "Chatham-Kent",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "930",
         "name": "Chilliwack",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "527",
         "name": "Cobourg",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "567",
         "name": "Collingwood",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "015",
         "name": "Corner Brook",
+        "prov": "10",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "501",
         "name": "Cornwall",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "943",
         "name": "Courtenay",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "437",
         "name": "Cowansville",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "905",
         "name": "Cranbrook",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "975",
         "name": "Dawson Creek",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "411",
         "name": "Dolbeau-Mistassini",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "447",
         "name": "Drummondville",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "937",
         "name": "Duncan",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "835",
         "name": "Edmonton",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "335",
         "name": "Edmundston",
+        "prov": "13",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "582",
         "name": "Elliot Lake",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "750",
         "name": "Estevan",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "977",
         "name": "Fort St. John",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "320",
         "name": "Fredericton",
+        "prov": "13",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "011",
         "name": "Gander",
+        "prov": "10",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "24505",
         "name": "Gatineau",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "450",
         "name": "Granby",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "010",
         "name": "Grand Falls-Windsor",
+        "prov": "10",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "850",
         "name": "Grande Prairie",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "580",
         "name": "Greater Sudbury / Grand Sudbury",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "550",
         "name": "Guelph",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "205",
         "name": "Halifax",
+        "prov": "12",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "537",
         "name": "Hamilton",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "502",
         "name": "Hawkesbury",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "821",
         "name": "High River",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "533",
         "name": "Ingersoll",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "456",
         "name": "Joliette",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "925",
         "name": "Kamloops",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "530",
         "name": "Kawartha Lakes",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "915",
         "name": "Kelowna",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "598",
         "name": "Kenora",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "210",
         "name": "Kentville",
+        "prov": "12",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "521",
         "name": "Kingston",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "541",
         "name": "Kitchener - Cambridge - Waterloo",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "468",
         "name": "Lachute",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "832",
         "name": "Lacombe",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "936",
         "name": "Ladysmith",
+        "prov": "59",
         "yearMin": 2023,
         "yearMax": 2025
       },
       {
         "uid": "810",
         "name": "Lethbridge",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "840",
         "name": "Lloydminster",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "555",
         "name": "London",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "403",
         "name": "Matane",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "805",
         "name": "Medicine Hat",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "571",
         "name": "Midland",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "329",
         "name": "Miramichi",
+        "prov": "13",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "305",
         "name": "Moncton",
+        "prov": "13",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "462",
         "name": "Montréal",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "715",
         "name": "Moose Jaw",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "938",
         "name": "Nanaimo",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "907",
         "name": "Nelson",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "220",
         "name": "New Glasgow",
+        "prov": "12",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "547",
         "name": "Norfolk",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "735",
         "name": "North Battleford",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "575",
         "name": "North Bay",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "820",
         "name": "Okotoks",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "569",
         "name": "Orillia",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "532",
         "name": "Oshawa",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "35505",
         "name": "Ottawa",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "566",
         "name": "Owen Sound",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "939",
         "name": "Parksville",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "515",
         "name": "Pembroke",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "913",
         "name": "Penticton",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "516",
         "name": "Petawawa",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "529",
         "name": "Peterborough",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "940",
         "name": "Port Alberni",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "528",
         "name": "Port Hope",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "607",
         "name": "Portage la Prairie",
+        "prov": "46",
         "yearMin": 1990,
         "yearMax": 2025
       },
       {
         "uid": "945",
         "name": "Powell River",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "745",
         "name": "Prince Albert",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "970",
         "name": "Prince George",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "955",
         "name": "Prince Rupert",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "952",
         "name": "Quesnel",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "421",
         "name": "Québec",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "830",
         "name": "Red Deer",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "705",
         "name": "Regina",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "404",
         "name": "Rimouski",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "405",
         "name": "Rivière-du-Loup",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "485",
         "name": "Rouyn-Noranda",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "408",
         "name": "Saguenay",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "310",
         "name": "Saint John",
+        "prov": "13",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "428",
         "name": "Saint-Georges",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "452",
         "name": "Saint-Hyacinthe",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "467",
         "name": "Sainte-Agathe-des-Monts",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "423",
         "name": "Sainte-Marie",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "465",
         "name": "Salaberry-de-Valleyfield",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "920",
         "name": "Salmon Arm",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "562",
         "name": "Sarnia",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "725",
         "name": "Saskatoon",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "590",
         "name": "Sault Ste. Marie",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "412",
         "name": "Sept-Îles",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "444",
         "name": "Shawinigan",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "433",
         "name": "Sherbrooke",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "454",
         "name": "Sorel-Tracy",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "934",
         "name": "Squamish",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "539",
         "name": "St. Catharines - Niagara",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "001",
         "name": "St. John's",
+        "prov": "10",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "605",
         "name": "Steinbach",
+        "prov": "46",
         "yearMin": 2008,
         "yearMax": 2025
       },
       {
         "uid": "553",
         "name": "Stratford",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "826",
         "name": "Strathmore",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "110",
         "name": "Summerside",
+        "prov": "11",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "720",
         "name": "Swift Current",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "831",
         "name": "Sylvan Lake",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "965",
         "name": "Terrace",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "430",
         "name": "Thetford Mines",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "640",
         "name": "Thompson",
+        "prov": "46",
         "yearMin": 1990,
         "yearMax": 2025
       },
       {
         "uid": "595",
         "name": "Thunder Bay",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "546",
         "name": "Tillsonburg",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "586",
         "name": "Timmins",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "535",
         "name": "Toronto",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "910",
         "name": "Trail",
+        "prov": "59",
         "yearMin": 2023,
         "yearMax": 2025
       },
       {
         "uid": "442",
         "name": "Trois-Rivières",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "215",
         "name": "Truro",
+        "prov": "12",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "480",
         "name": "Val-d'Or",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "933",
         "name": "Vancouver",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "918",
         "name": "Vernon",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "935",
         "name": "Victoria",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "440",
         "name": "Victoriaville",
+        "prov": "24",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "565",
         "name": "Wasaga Beach",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "865",
         "name": "Wetaskiwin",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "755",
         "name": "Weyburn",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "990",
         "name": "Whitehorse",
+        "prov": "60",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "950",
         "name": "Williams Lake",
+        "prov": "59",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "559",
         "name": "Windsor",
+        "prov": "35",
         "yearMin": 2023,
         "yearMax": 2025
       },
       {
         "uid": "603",
         "name": "Winkler",
+        "prov": "46",
         "yearMin": 2013,
         "yearMax": 2025
       },
       {
         "uid": "602",
         "name": "Winnipeg",
+        "prov": "46",
         "yearMin": 1990,
         "yearMax": 2025
       },
       {
         "uid": "860",
         "name": "Wood Buffalo",
+        "prov": "48",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "544",
         "name": "Woodstock",
+        "prov": "35",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "995",
         "name": "Yellowknife",
+        "prov": "61",
         "yearMin": 2016,
         "yearMax": 2025
       },
       {
         "uid": "710",
         "name": "Yorkton",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025
       }
@@ -994,6 +1158,7 @@
       {
         "uid": "4613047",
         "name": "Selkirk CY",
+        "prov": "46",
         "yearMin": 2018,
         "yearMax": 2025
       }
@@ -1002,6 +1167,7 @@
       {
         "uid": "602-assiniboine-park",
         "name": "Assiniboine Park",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1010,6 +1176,7 @@
       {
         "uid": "602-centennial",
         "name": "Centennial",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1018,6 +1185,7 @@
       {
         "uid": "705-central",
         "name": "Central",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1026,6 +1194,7 @@
       {
         "uid": "725-central",
         "name": "Central",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1034,6 +1203,7 @@
       {
         "uid": "705-east",
         "name": "East",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1042,6 +1212,7 @@
       {
         "uid": "602-east-kildonan",
         "name": "East Kildonan",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1050,6 +1221,7 @@
       {
         "uid": "602-fort-garry",
         "name": "Fort Garry",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1058,6 +1230,7 @@
       {
         "uid": "602-fort-rouge",
         "name": "Fort Rouge",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1066,6 +1239,7 @@
       {
         "uid": "602-lord-selkirk",
         "name": "Lord Selkirk",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1074,6 +1248,7 @@
       {
         "uid": "602-midland",
         "name": "Midland",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1082,6 +1257,7 @@
       {
         "uid": "725-north",
         "name": "North",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1090,6 +1266,7 @@
       {
         "uid": "705-northeast",
         "name": "Northeast",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1098,6 +1275,7 @@
       {
         "uid": "725-northeast",
         "name": "Northeast",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1106,6 +1284,7 @@
       {
         "uid": "705-northwest",
         "name": "Northwest",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1114,6 +1293,7 @@
       {
         "uid": "602-outlying-areas",
         "name": "Outlying Areas",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1122,6 +1302,7 @@
       {
         "uid": "705-outlying-areas",
         "name": "Outlying Areas",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1130,6 +1311,7 @@
       {
         "uid": "725-outlying-areas",
         "name": "Outlying Areas",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1138,6 +1320,7 @@
       {
         "uid": "725-south",
         "name": "South",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1146,6 +1329,7 @@
       {
         "uid": "705-south-lakeview-albert-park",
         "name": "South: Lakeview/Albert Park",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1154,6 +1338,7 @@
       {
         "uid": "705-south-wascana-university",
         "name": "South: Wascana University",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1162,6 +1347,7 @@
       {
         "uid": "725-southeast",
         "name": "Southeast",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1170,6 +1356,7 @@
       {
         "uid": "725-southwest",
         "name": "Southwest",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1178,6 +1365,7 @@
       {
         "uid": "602-st-boniface",
         "name": "St. Boniface",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1186,6 +1374,7 @@
       {
         "uid": "602-st-james",
         "name": "St. James",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1194,6 +1383,7 @@
       {
         "uid": "602-st-vital",
         "name": "St. Vital",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1202,6 +1392,7 @@
       {
         "uid": "602-transcona",
         "name": "Transcona",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1210,6 +1401,7 @@
       {
         "uid": "705-west",
         "name": "West",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1218,6 +1410,7 @@
       {
         "uid": "725-west",
         "name": "West",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1226,6 +1419,7 @@
       {
         "uid": "602-west-kildonan",
         "name": "West Kildonan",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1236,6 +1430,7 @@
       {
         "uid": "705-albert-park-north",
         "name": "Albert Park North",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1244,6 +1439,7 @@
       {
         "uid": "705-albert-park-south",
         "name": "Albert Park South",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1252,6 +1448,7 @@
       {
         "uid": "705-central",
         "name": "Central",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1260,6 +1457,7 @@
       {
         "uid": "725-central",
         "name": "Central",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1268,6 +1466,7 @@
       {
         "uid": "602-charleswood",
         "name": "Charleswood",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1276,6 +1475,7 @@
       {
         "uid": "725-confederation-east",
         "name": "Confederation East",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1284,6 +1484,7 @@
       {
         "uid": "725-confederation-west",
         "name": "Confederation West",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1292,6 +1493,7 @@
       {
         "uid": "705-coronation-park",
         "name": "Coronation Park",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1300,6 +1502,7 @@
       {
         "uid": "602-downtown",
         "name": "Downtown",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1308,6 +1511,7 @@
       {
         "uid": "705-downtown-east",
         "name": "Downtown East",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1316,6 +1520,7 @@
       {
         "uid": "705-downtown-west",
         "name": "Downtown West",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1324,6 +1529,7 @@
       {
         "uid": "705-east",
         "name": "East",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1332,6 +1538,7 @@
       {
         "uid": "725-east-central",
         "name": "East Central",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1340,6 +1547,7 @@
       {
         "uid": "602-east-st-boniface",
         "name": "East St. Boniface",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1348,6 +1556,7 @@
       {
         "uid": "602-elmwood",
         "name": "Elmwood",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1356,6 +1565,7 @@
       {
         "uid": "602-fort-garry-north",
         "name": "Fort Garry North",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1364,6 +1574,7 @@
       {
         "uid": "602-fort-richmond",
         "name": "Fort Richmond",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1372,6 +1583,7 @@
       {
         "uid": "602-fort-rouge-west",
         "name": "Fort Rouge West",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1380,6 +1592,7 @@
       {
         "uid": "602-garden-city",
         "name": "Garden City",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1388,6 +1601,7 @@
       {
         "uid": "705-hillsdale",
         "name": "Hillsdale",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1396,6 +1610,7 @@
       {
         "uid": "602-inkster",
         "name": "Inkster",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1404,6 +1619,7 @@
       {
         "uid": "705-lakeview-north",
         "name": "Lakeview North",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1412,6 +1628,7 @@
       {
         "uid": "705-lakeview-south",
         "name": "Lakeview South",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1420,6 +1637,7 @@
       {
         "uid": "725-lakewood-north",
         "name": "Lakewood North",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1428,6 +1646,7 @@
       {
         "uid": "725-lakewood-south",
         "name": "Lakewood South",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1436,6 +1655,7 @@
       {
         "uid": "725-lower-southwest",
         "name": "Lower Southwest",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1444,6 +1664,7 @@
       {
         "uid": "602-monroe",
         "name": "Monroe",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1452,6 +1673,7 @@
       {
         "uid": "705-normanview",
         "name": "Normanview",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1460,6 +1682,7 @@
       {
         "uid": "725-north",
         "name": "North",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1468,6 +1691,7 @@
       {
         "uid": "705-north-central",
         "name": "North Central",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1476,6 +1700,7 @@
       {
         "uid": "705-northeast",
         "name": "Northeast",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1484,6 +1709,7 @@
       {
         "uid": "705-northeast-arcola",
         "name": "Northeast Arcola",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1492,6 +1718,7 @@
       {
         "uid": "705-northwest",
         "name": "Northwest",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1500,6 +1727,7 @@
       {
         "uid": "725-northwest",
         "name": "Northwest",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1508,6 +1736,7 @@
       {
         "uid": "602-norwood",
         "name": "Norwood",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1516,6 +1745,7 @@
       {
         "uid": "725-nutana-north",
         "name": "Nutana North",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1524,6 +1754,7 @@
       {
         "uid": "725-nutana-south",
         "name": "Nutana South",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1532,6 +1763,7 @@
       {
         "uid": "602-old-st-vital",
         "name": "Old St. Vital",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1540,6 +1772,7 @@
       {
         "uid": "602-outlying-areas",
         "name": "Outlying Areas",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1548,6 +1781,7 @@
       {
         "uid": "705-outlying-areas",
         "name": "Outlying Areas",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1556,6 +1790,7 @@
       {
         "uid": "725-outlying-areas",
         "name": "Outlying Areas",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1564,6 +1799,7 @@
       {
         "uid": "602-point-douglas",
         "name": "Point Douglas",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1572,6 +1808,7 @@
       {
         "uid": "602-river-osborne",
         "name": "River Osborne",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2015,
         "parentUid": "602",
@@ -1580,6 +1817,7 @@
       {
         "uid": "602-river-osborne",
         "name": "River-Osborne",
+        "prov": "46",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1588,6 +1826,7 @@
       {
         "uid": "705-rosemont-mount-royal",
         "name": "Rosemont/Mount Royal",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1596,6 +1835,7 @@
       {
         "uid": "602-rossmere-concordia",
         "name": "Rossmere-Concordia",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1604,6 +1844,7 @@
       {
         "uid": "602-seven-oaks",
         "name": "Seven Oaks",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1612,6 +1853,7 @@
       {
         "uid": "602-south-osborne",
         "name": "South Osborne",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1620,6 +1862,7 @@
       {
         "uid": "602-south-st-vital",
         "name": "South St. Vital",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1628,6 +1871,7 @@
       {
         "uid": "705-southeast-arcola",
         "name": "Southeast Arcola",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1636,6 +1880,7 @@
       {
         "uid": "705-southwest-cathedral-area",
         "name": "Southwest/Cathedral Area",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1644,6 +1889,7 @@
       {
         "uid": "602-spence",
         "name": "Spence",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1652,6 +1898,7 @@
       {
         "uid": "602-st-boniface",
         "name": "St. Boniface",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1660,6 +1907,7 @@
       {
         "uid": "602-st-james-east",
         "name": "St. James East",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1668,6 +1916,7 @@
       {
         "uid": "602-st-james-west",
         "name": "St. James West",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1676,6 +1925,7 @@
       {
         "uid": "602-transcona",
         "name": "Transcona",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1684,6 +1934,7 @@
       {
         "uid": "602-tuxedo",
         "name": "Tuxedo",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1692,6 +1943,7 @@
       {
         "uid": "725-university-heights",
         "name": "University Heights",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1700,6 +1952,7 @@
       {
         "uid": "725-upper-southwest",
         "name": "Upper Southwest",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1708,6 +1961,7 @@
       {
         "uid": "705-west",
         "name": "West",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1716,6 +1970,7 @@
       {
         "uid": "725-west",
         "name": "West",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1724,6 +1979,7 @@
       {
         "uid": "602-west-alexander-centennial",
         "name": "West Alexander/Centennial",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1732,6 +1988,7 @@
       {
         "uid": "602-west-broadway",
         "name": "West Broadway",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1740,6 +1997,7 @@
       {
         "uid": "725-west-central",
         "name": "West Central",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "725",
@@ -1748,6 +2006,7 @@
       {
         "uid": "602-west-end",
         "name": "West End",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
@@ -1756,6 +2015,7 @@
       {
         "uid": "705-whitmore-park",
         "name": "Whitmore Park",
+        "prov": "47",
         "yearMin": 2016,
         "yearMax": 2025,
         "parentUid": "705",
@@ -1764,6 +2024,7 @@
       {
         "uid": "602-wolseley",
         "name": "Wolseley",
+        "prov": "46",
         "yearMin": 2010,
         "yearMax": 2025,
         "parentUid": "602",
