@@ -269,7 +269,7 @@ export function buildBarCard(container, { title }) {
     const svgEl = Plot.plot(themed({
       height: 280, marginTop: 24, marginBottom: 22, marginLeft: 54,
       fx: { label: null, domain: categories },
-      x: { axis: null, label: null },
+      x: { axis: null, label: null, domain: areas },
       y: { label: isVac ? 'Vacancy Rate (%)' : 'Median Rent ($)', tickFormat: yFmt, domain: [0, maxV * 1.12] },
       color: { domain: areas, range: PALETTE, legend: false, label: null },
       marks: [
