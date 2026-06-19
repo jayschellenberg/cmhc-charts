@@ -77,10 +77,12 @@ clean per-cluster/per-CA `.xlsx`; 2011/2006 are summed from per-neighbourhood
 and 2006 is trends-only). It also pulls **dwelling condition** (% needing major
 repairs, incl. a City 2021 pass since CensusMapper has no condition vector) so
 the **Housing Stock** tab can offer the Winnipeg clusters/CAs alongside the
-standard geographies. It also grafts the City's **2016 per-neighbourhood**
-profiles onto the WPG_Nbhd geos (matched by name — ~180 of 211; the rest are
-industrial/zero-population areas with no City profile), giving neighbourhoods a
-2016 + 2021 view. Run it after `r/12` (`census-refresh.bat` does both):
+standard geographies. It also grafts the City's **2006/2011/2016 per-
+neighbourhood** profiles onto the WPG_Nbhd geos (matched by name — ~175–180 of
+211; the rest are industrial/zero-population areas with no City profile, plus a
+few that changed names/boundaries between censuses), giving neighbourhoods a
+2006→2021 trend (2006 trends-only) + 2011/2016 demographics. Run it after `r/12`
+(`census-refresh.bat` does both):
 
 ```pwsh
 Rscript r/12b_wpg_city_history.R   # no key; appends WPG cluster/CA 2006–2016
@@ -90,8 +92,8 @@ Coverage: all Manitoba PR / CMA-CA / CD / CSD geographies, plus the City of
 Winnipeg virtual geographies (Community Area / Cluster / Neighbourhood,
 dissemination-area aggregated via `r/lib/wpg_geography_lookup.csv`; clusters and
 community areas additionally carry 2006–2021 trends + 2011/2016 demographics
-from the City of Winnipeg, and most neighbourhoods carry 2016 from the City's
-per-neighbourhood profiles). Free
+from the City of Winnipeg, and most neighbourhoods carry 2006–2021 trends +
+2011/2016 demographics from the City's per-neighbourhood profiles). Free
 CensusMapper keys are capped at **500 region identifiers/day (5,000/month)**, and
 Winnipeg has ~1,130 dissemination areas — more than one day's allowance — so the
 DA pull is chunked (18 DAs/request) and the cache is persistent, making the run
