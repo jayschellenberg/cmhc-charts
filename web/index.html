@@ -27,6 +27,10 @@
         class="cmhc-tab" data-tab="tables" aria-selected="false">
         Rental Tables
       </button>
+      <button type="button" role="tab" id="tab-btn-compare"
+        class="cmhc-tab" data-tab="compare" aria-selected="false">
+        Compare Areas
+      </button>
       <button type="button" role="tab" id="tab-btn-secondary"
         class="cmhc-tab" data-tab="secondary" aria-selected="false">
         Secondary Rental
@@ -133,6 +137,91 @@
 
         <footer class="text-xs text-neutral-500 pt-4 border-t border-neutral-200" id="footer">
           Adapted from CMHC, Rental Market Survey (Rms), <span id="data-as-of">…</span>. This does not constitute an endorsement by CMHC of this product.
+        </footer>
+      </main>
+    </div>
+
+    <!-- ============================================================
+         Compare Areas tab — overlay several areas (within one province)
+         as time-series lines for a single metric + fixed breakdown
+         category, with a matching areas × years table. A new view; it
+         does not touch the single-area Rental Charts tab. Reuses the
+         chart-card renderer (colours lines by area) + series shards.
+         ============================================================ -->
+    <div id="tab-panel-compare" class="grid md:grid-cols-[320px_1fr] min-h-[calc(100vh-110px)]" role="tabpanel" aria-labelledby="tab-btn-compare" hidden>
+      <aside class="bg-white border-r border-neutral-200 p-4 space-y-4 overflow-y-auto" aria-label="Compare-areas filters">
+        <section>
+          <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Province</h2>
+          <select id="cmp-province" class="w-full border border-neutral-300 rounded px-2 py-1 text-sm"></select>
+          <p class="text-xs text-neutral-500 mt-2 leading-snug">Compare areas within one province over time.</p>
+        </section>
+
+        <section>
+          <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Areas <span class="normal-case font-normal text-neutral-400">(pick 2–6)</span></h2>
+          <div id="cmp-areas" class="max-h-56 overflow-y-auto border border-neutral-200 rounded p-2 grid gap-1 text-sm"></div>
+        </section>
+
+        <section>
+          <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Metric</h2>
+          <div id="cmp-metric" class="grid gap-1 text-sm" role="radiogroup" aria-label="Metric">
+            <label class="flex items-center gap-1"><input type="radio" name="cmpMetric" value="Median Rent" checked /> Median Rent</label>
+            <label class="flex items-center gap-1"><input type="radio" name="cmpMetric" value="Average Rent" /> Average Rent</label>
+            <label class="flex items-center gap-1"><input type="radio" name="cmpMetric" value="Vacancy Rate" /> Vacancy Rate</label>
+            <label class="flex items-center gap-1"><input type="radio" name="cmpMetric" value="Average Rent Change" /> Avg Rent Change</label>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Breakdown</h2>
+          <div id="cmp-breakdown" class="grid gap-1 text-sm" role="radiogroup" aria-label="Breakdown dimension">
+            <label class="flex items-center gap-1"><input type="radio" name="cmpBreakdown" value="Bedroom Type" checked /> Bedroom Type</label>
+            <label class="flex items-center gap-1"><input type="radio" name="cmpBreakdown" value="Year of Construction" /> Year of Construction</label>
+            <label class="flex items-center gap-1"><input type="radio" name="cmpBreakdown" value="Structure Size" /> Structure Size</label>
+            <label class="flex items-center gap-1"><input type="radio" name="cmpBreakdown" value="Rent Ranges" /> Rent Ranges</label>
+          </div>
+          <label class="block text-xs text-neutral-600 mt-2 mb-1" for="cmp-category">Category (fixed)</label>
+          <select id="cmp-category" class="w-full border border-neutral-300 rounded px-2 py-1 text-sm"></select>
+        </section>
+
+        <section>
+          <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Dwelling type</h2>
+          <div id="cmp-dwelling" class="flex gap-2 text-sm" role="radiogroup" aria-label="Dwelling type">
+            <label class="flex items-center gap-1"><input type="radio" name="cmpDwelling" value="All" checked /> All</label>
+            <label class="flex items-center gap-1"><input type="radio" name="cmpDwelling" value="Apartment" /> Apartment</label>
+            <label class="flex items-center gap-1"><input type="radio" name="cmpDwelling" value="Row" /> Row</label>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Year range</h2>
+          <div class="flex items-center gap-2 text-sm">
+            <input id="cmp-year-from" type="number" class="w-20 border border-neutral-300 rounded px-2 py-1" min="1990" max="2100" />
+            <span>to</span>
+            <input id="cmp-year-to"   type="number" class="w-20 border border-neutral-300 rounded px-2 py-1" min="1990" max="2100" />
+          </div>
+        </section>
+
+        <section class="pt-2 border-t border-neutral-200 space-y-2">
+          <button id="cmp-copy" type="button"
+            class="w-full text-sm bg-accent-500 hover:bg-accent-600 text-white rounded px-3 py-1.5">
+            Copy table (paste into Word)
+          </button>
+          <button id="cmp-download-xlsx" type="button"
+            class="w-full text-sm bg-accent-500 hover:bg-accent-600 text-white rounded px-3 py-1.5">
+            Download Excel (table)
+          </button>
+          <p class="text-xs text-neutral-500">The chart has its own Download PNG button.</p>
+        </section>
+      </aside>
+
+      <main class="p-4 space-y-4 overflow-x-hidden">
+        <div id="cmp-empty" class="hidden bg-neutral-100 border border-neutral-200 text-neutral-700 text-sm rounded px-3 py-2">
+          Pick at least 2 areas to compare.
+        </div>
+        <section id="cmp-chart-grid" class="grid gap-4"></section>
+        <div id="cmp-table" class="space-y-4"></div>
+        <footer class="text-xs text-neutral-500 pt-4 border-t border-neutral-200">
+          Adapted from CMHC, Rental Market Survey (Rms), October snapshot. Areas are compared within a single province. This does not constitute an endorsement by CMHC of this product.
         </footer>
       </main>
     </div>

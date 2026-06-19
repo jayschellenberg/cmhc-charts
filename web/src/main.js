@@ -10,6 +10,7 @@ import { initFilters } from './filters.js';
 import { buildChartCard } from './chart.js';
 import { decodeState, syncURL } from './state.js';
 import { initTables } from './tables.js';
+import { initCompare } from './compare.js';
 import { initStarts } from './starts.js';
 import { initSecondary } from './secondary.js';
 import { initIndicators } from './indicators.js';
@@ -96,6 +97,7 @@ function setupTabs(initial) {
   const tabs = {
     charts:     { btn: document.getElementById('tab-btn-charts'),     panel: document.getElementById('tab-panel-charts') },
     tables:     { btn: document.getElementById('tab-btn-tables'),     panel: document.getElementById('tab-panel-tables') },
+    compare:    { btn: document.getElementById('tab-btn-compare'),    panel: document.getElementById('tab-panel-compare') },
     starts:     { btn: document.getElementById('tab-btn-starts'),     panel: document.getElementById('tab-panel-starts') },
     secondary:  { btn: document.getElementById('tab-btn-secondary'),  panel: document.getElementById('tab-panel-secondary') },
     housing:    { btn: document.getElementById('tab-btn-housing'),    panel: document.getElementById('tab-panel-housing') },
@@ -189,7 +191,7 @@ async function bootstrap() {
   // sidebar TOC work after a hard refresh.
   const rawHash = window.location.hash.replace('#', '');
   let initialTab = 'charts';
-  if (['charts', 'tables', 'starts', 'secondary', 'housing', 'census', 'snapshot', 'indicators', 'economic'].includes(rawHash)) {
+  if (['charts', 'tables', 'compare', 'starts', 'secondary', 'housing', 'census', 'snapshot', 'indicators', 'economic'].includes(rawHash)) {
     initialTab = rawHash;
   } else if (rawHash.startsWith('mi-section-')) {
     initialTab = 'indicators';
@@ -205,6 +207,7 @@ async function bootstrap() {
   // plan: convert to lazy first-activation initialisation so first paint
   // doesn't fetch 7MB of JSON the user may never look at.)
   initTables({ geographies, manifest, loadShard });
+  initCompare({ geographies, capabilities, manifest, categoryOrder: CATEGORY_ORDER, loadShard });
   initStarts({ manifest });
   initSecondary({ manifest }).catch(err => console.error('[secondary bootstrap]', err));
   initIndicators().catch(err => console.error('[indicators bootstrap]', err));
