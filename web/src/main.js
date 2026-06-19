@@ -282,8 +282,11 @@ async function bootstrap() {
 
     let anyData = false;
     for (const card of cards) {
-      const dims = capabilities?.series?.[card.series]?.dimensions || [];
-      const dim  = dims.includes(state.breakdown) ? state.breakdown : dims[0];
+      // Use the selected breakdown directly. A series that doesn't publish it
+      // (e.g. Median Rent has no "Rent Ranges") simply has no matching records,
+      // so the panel renders "No data" for that breakdown — rather than silently
+      // falling back to a different dimension, which read as "not updating".
+      const dim = state.breakdown;
       const hiddenForDim = new Set(state.hiddenCategories?.[dim] || []);
       const filtered = (shard.records || []).filter(r =>
         r.series === card.series &&

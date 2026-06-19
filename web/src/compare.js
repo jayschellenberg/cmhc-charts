@@ -95,6 +95,7 @@ export function initCompare({ geographies, capabilities, manifest, categoryOrder
   const fmtFor = (metric) => (metric === 'Vacancy Rate' || metric === 'Average Rent Change')
     ? (v) => (v == null ? null : `${Number(v).toFixed(1)}%`)
     : (v) => (v == null ? null : `$${Math.round(Number(v)).toLocaleString()}`);
+  const dimsFor = (metric) => capabilities?.series?.[metric]?.dimensions || [];
 
   let lastTables = [];
 
@@ -120,8 +121,20 @@ export function initCompare({ geographies, capabilities, manifest, categoryOrder
     lastTables = [];
     const subBase = `by ${cat} — ${DWELLING_LABEL[dwelling] || dwelling}`;
 
+    // Only the metrics CMHC actually publishes for this breakdown (e.g. only
+    // Vacancy Rate is published by rent range; Avg Rent Change only by bedroom
+    // type) — otherwise those panels would just show empty "No data" cards.
+    const shown   = METRICS.filter(m => dimsFor(m).includes(dim));
+    const omitted = METRICS.filter(m => !dimsFor(m).includes(dim));
+    if (omitted.length) {
+      const note = document.createElement('p');
+      note.className = 'text-xs text-neutral-500';
+      note.textContent = `Not published by ${dim}: ${omitted.join(', ')}.`;
+      $output.appendChild(note);
+    }
+
     // One chart + table pair per metric.
-    for (const metric of METRICS) {
+    for (const metric of shown) {
       const chartRows = [];
       const yearsSet = new Set();
       const byArea = new Map();
@@ -138,9 +151,9 @@ export function initCompare({ geographies, capabilities, manifest, categoryOrder
 
       // Row: chart card (left) + table (right).
       const row = document.createElement('div');
-      row.className = 'grid md:grid-cols-[3fr_2fr] gap-4 items-start';
+      row.className = 'grid md:grid-cols-2 gap-4 items-start';
       const chartCell = document.createElement('div');
-      chartCell.className = 'cmp-chart min-w-0';
+      chartCell.className = 'min-w-0';
       const tableCell = document.createElement('div');
       tableCell.className = 'overflow-x-auto min-w-0';
       row.append(chartCell, tableCell);
