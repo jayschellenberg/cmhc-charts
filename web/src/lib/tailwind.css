@@ -298,6 +298,18 @@
   word-break: break-word;
 }
 
+/* Compare Areas tab: the chart sits beside the table, so stack the area legend
+   BELOW the plot (wrapping horizontally) — the plot then claims the full card
+   width instead of giving ~140px to a right-side legend. */
+#cmp-chart-grid .cmhc-plot-wrap { flex-direction: column; align-items: stretch; }
+#cmp-chart-grid .cmhc-plot-legend {
+  flex-direction: row;
+  flex-wrap: wrap;
+  max-width: none;
+  gap: 4px 14px;
+  margin-top: 6px;
+}
+
 /* --- Market Indicators tab ------------------------------------------------ */
 
 .cmhc-snapshot-wrap {

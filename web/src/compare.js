@@ -153,23 +153,25 @@ export function initCompare({ geographies, capabilities, manifest, categoryOrder
     ensureCard(metric);
     chartCard.render(chartRows, `by ${cat} — ${DWELLING_LABEL[dwelling] || dwelling}`, order, { season: 'October' });
 
-    // Table: areas × years.
+    // Table: transposed — years down the rows, areas across the columns — so it
+    // stays narrow enough to sit beside the chart (2–6 area columns beats 10+
+    // year columns). Reads naturally next to the chart's year x-axis.
     const years = [...yearsSet].sort((a, b) => a - b);
     const fmt = fmtFor(metric);
     const title = `${metric} by ${cat} — ${DWELLING_LABEL[dwelling] || dwelling}`;
-    const rows = order.map(name => {
-      const m = byArea.get(name) || new Map();
-      return { area: name, values: years.map(y => fmt(m.get(y))) };
-    });
-    renderTable(title, years.map(String), rows);
-    lastTable = { title, columns: years.map(String),
+    const rows = years.map(y => ({
+      area: String(y),
+      values: order.map(name => fmt((byArea.get(name) || new Map()).get(y))),
+    }));
+    renderTable(title, 'Year', order, rows);
+    lastTable = { title, columns: order.slice(),
       rows: rows.map(r => ({ area: r.area, values: r.values.map(v => v == null ? '**' : v) })) };
   }
 
-  function renderTable(title, cols, rows) {
+  function renderTable(title, corner, cols, rows) {
     $table.innerHTML = `<section class="cmhc-table-block">
       <div class="cmhc-table-title">${esc(title)}</div>
-      <table class="cmhc-table"><thead><tr><th></th>${cols.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead>
+      <table class="cmhc-table"><thead><tr><th>${esc(corner)}</th>${cols.map(c => `<th>${esc(c)}</th>`).join('')}</tr></thead>
       <tbody>${rows.map(r => `<tr><td>${esc(r.area)}</td>${r.values.map(v =>
         v == null ? '<td class="cmhc-table-na">**</td>' : `<td>${esc(v)}</td>`).join('')}</tr>`).join('')}</tbody>
       </table></section>`;

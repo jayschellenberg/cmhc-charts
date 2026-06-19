@@ -218,8 +218,10 @@
         <div id="cmp-empty" class="hidden bg-neutral-100 border border-neutral-200 text-neutral-700 text-sm rounded px-3 py-2">
           Pick at least 2 areas to compare.
         </div>
-        <section id="cmp-chart-grid" class="grid gap-4"></section>
-        <div id="cmp-table" class="space-y-4"></div>
+        <div class="grid md:grid-cols-[3fr_2fr] gap-4 items-start">
+          <section id="cmp-chart-grid" class="min-w-0"></section>
+          <div id="cmp-table" class="overflow-x-auto min-w-0"></div>
+        </div>
         <footer class="text-xs text-neutral-500 pt-4 border-t border-neutral-200">
           Adapted from CMHC, Rental Market Survey (Rms), October snapshot. Areas are compared within a single province. This does not constitute an endorsement by CMHC of this product.
         </footer>
