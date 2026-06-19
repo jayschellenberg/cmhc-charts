@@ -277,8 +277,8 @@ export async function initCensus() {
         if (!isWpg) return '';
         const nYears = years.filter(y => t[y]?.population != null).length;
         return nYears <= 1
-          ? ' Winnipeg neighbourhood figures are shown for 2021 only (dissemination-area boundaries differ in earlier censuses).'
-          : ' 2006–2016 Winnipeg cluster/community-area figures are from City of Winnipeg census profiles (custom tabulation); 2021 is from CensusMapper, so a 2016→2021 step can be partly a source difference.';
+          ? ' Shown for 2021 only — earlier censuses use different dissemination-area boundaries for this Winnipeg geography.'
+          : ' Pre-2021 Winnipeg figures are from City of Winnipeg census profiles (custom tabulation); 2021 is from CensusMapper, so a 2016→2021 step can be partly a source difference.';
       })()}</p>`;
 
     const rows = TREND_ROWS.map(row => row.header

@@ -357,6 +357,40 @@ for (i in seq_along(doc$regions)) {
     stats$matched <- stats$matched + 1; stats$t <- stats$t + 1
   } else message("    NO city match for ", r$level, " ", r$name)
 }
+
+# =============================================================================
+# 4. Neighbourhood 2016 history — per-neighbourhood .xls onto WPG_Nbhd regions.
+# The WPG_Nbhd geos are 2021-only (DA-aggregated by r/12); this grafts the City's
+# 2016 neighbourhood profile (trends + demographics) onto each by name. The City
+# 2016 neighbourhood set (~194) and our 2021 set (211) differ a little, so some
+# don't match either way — reported, not fatal.
+# =============================================================================
+message("[12b] 2016 neighbourhoods: per-neighbourhood .xls onto WPG_Nbhd …")
+nb_rows <- man[man$year == 2016 | man$year == "2016", ]
+nb_norm <- function(s) trimws(gsub("[^a-z0-9]+", " ", tolower(gsub("[‘’']", "", s %||% ""))))
+nb_idx <- list()
+for (i in seq_along(doc$regions))
+  if (doc$regions[[i]]$level == "WPG_Nbhd") nb_idx[[nb_norm(doc$regions[[i]]$name)]] <- i
+nb_matched <- 0L; nb_unmatched <- character(0)
+for (k in seq_len(nrow(nb_rows))) {
+  ri <- nb_idx[[nb_norm(nb_rows$neighbourhood[k])]]
+  if (is.null(ri)) { nb_unmatched <- c(nb_unmatched, nb_rows$neighbourhood[k]); next }
+  ckey <- sprintf("2016nb_%s.xlsx", gsub("[^A-Za-z0-9]+", "_", nb_rows$neighbourhood[k]))
+  f <- fetch_cached(nb_rows$xls_url[k], ckey)
+  if (is.na(f)) next
+  o <- tryCatch(parse_file(f, "2016"), error = function(e) NULL)
+  if (is.null(o)) next
+  tr <- as_year_keyed(doc$regions[[ri]]$trends); dm <- as_year_keyed(doc$regions[[ri]]$demo)
+  tr[["2016"]] <- trend_obj(o)
+  dm[["2016"]] <- demo_obj(o, o$median_hh_income)   # single-area medians are valid
+  doc$regions[[ri]]$trends <- tr[order(names(tr))]
+  doc$regions[[ri]]$demo   <- dm[order(names(dm))]
+  nb_matched <- nb_matched + 1L
+  if (k %% 50 == 0) message(sprintf("      …%d/%d", k, nrow(nb_rows)))
+}
+message(sprintf("[12b]   enriched %d WPG_Nbhd with 2016; %d City files had no WPG_Nbhd match",
+                nb_matched, length(nb_unmatched)))
+
 doc$source <- paste0(doc$source,
   "; Winnipeg cluster/community-area history (2006/2011/2016) from City of Winnipeg ",
   "census profiles (Community Social Data Strategy custom tabulation)")
