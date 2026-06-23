@@ -1,8 +1,9 @@
 /*
  * Secondary Rental Market view — Srms (condo + other secondary rental) data
- * loaded from web/public/data/secondary.json. CMHC publishes Srms for
- * Winnipeg only in Manitoba, so the view skips the geography picker entirely
- * and goes straight to year range + per-dimension category toggles.
+ * loaded from web/public/data/secondary.json. CMHC only publishes Srms for the
+ * larger centres — currently Winnipeg (MB) plus Regina + Saskatoon (SK) — so
+ * the sidebar has a Province → Centre picker (default Manitoba / Winnipeg) that
+ * filters the records, then year range + per-dimension category toggles.
  *
  * Layout mirrors Housing Starts:
  *   - 5 chart cards (one per series) reusing buildChartCard from chart.js
@@ -53,7 +54,8 @@ export async function initSecondary({ manifest }) {
   const $tables   = document.getElementById('sr-table-grid');
   const $dl       = document.getElementById('sr-download-xlsx');
   const $asOf     = document.getElementById('sr-data-as-of');
-  const $geo      = document.getElementById('sr-geo-name');
+  const $province = document.getElementById('sr-province');
+  const $centre   = document.getElementById('sr-centre');
 
   if (!records.length) {
     if ($empty) {
@@ -64,21 +66,55 @@ export async function initSecondary({ manifest }) {
     return;
   }
 
-  // The single-geo guarantee from the R pipeline lets us short-circuit any
-  // geography filter. Show what we got, in case CMHC ever starts publishing
-  // a second centre and we want it visible without code changes.
-  const geos = [...new Set(records.map(r => r.geoName))];
-  if ($geo) $geo.textContent = geos.join(', ');
+  // --- Province → Centre geography index, built from whatever the Srms scrape
+  // returned (currently Winnipeg in MB; Regina + Saskatoon in SK). prov/provName
+  // are carried on every record by r/06; new centres appear here automatically.
+  const PROV_ORDER     = ['46', '47'];                  // Manitoba first, then Saskatchewan
+  const DEFAULT_CENTRE = { '46': '602', '47': '725' };  // Winnipeg / Saskatoon
+  const provNames      = new Map();
+  const centresByProv  = new Map();                     // prov uid → Map(geoUid → name)
+  for (const r of records) {
+    if (r.geoLevel === 'province') continue;            // skip any province-level aggregate
+    const p = String(r.prov ?? '46');
+    provNames.set(p, r.provName || p);
+    if (!centresByProv.has(p)) centresByProv.set(p, new Map());
+    centresByProv.get(p).set(String(r.geoUid), r.geoName);
+  }
+  const provs = [...PROV_ORDER.filter(p => centresByProv.has(p)),
+                 ...[...centresByProv.keys()].filter(p => !PROV_ORDER.includes(p))];
+  const centresFor = (p) => [...(centresByProv.get(p)?.entries() || [])]
+    .map(([uid, name]) => ({ uid, name }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+  const pickDefaultCentre = (p) => {
+    const list = centresFor(p), pref = DEFAULT_CENTRE[p];
+    return (pref && list.some(c => c.uid === pref) ? pref : list[0]?.uid) || '';
+  };
 
   // Year range — start with the last 10 years by default.
   const years = records.map(r => Number(r.year)).filter(Number.isFinite);
   const yMin = Math.min(...years), yMax = Math.max(...years);
 
   const state = {
+    prov:     provs.includes('46') ? '46' : provs[0],
+    centre:   '',
     yearFrom: Math.max(yMin, yMax - 9),
     yearTo:   yMax,
     hidden: { 'Bedroom Type': new Set(), 'Structure Size': new Set() },
   };
+  state.centre = pickDefaultCentre(state.prov);
+
+  function populateProvinces() {
+    $province.innerHTML = provs.map(p =>
+      `<option value="${escapeHtml(p)}">${escapeHtml(provNames.get(p) || p)}</option>`).join('');
+    $province.value = state.prov;
+  }
+  function populateCentres() {
+    $centre.innerHTML = centresFor(state.prov).map(c =>
+      `<option value="${escapeHtml(c.uid)}">${escapeHtml(c.name)}</option>`).join('');
+    $centre.value = state.centre;
+  }
+  populateProvinces();
+  populateCentres();
   $yFrom.min = yMin; $yFrom.max = yMax; $yFrom.value = state.yearFrom;
   $yTo  .min = yMin; $yTo  .max = yMax; $yTo  .value = state.yearTo;
 
@@ -134,11 +170,12 @@ export async function initSecondary({ manifest }) {
     $tables.replaceChildren();
     let anyData = false;
     const built = [];
-    const geoLabel = geos[0] || 'Winnipeg';
+    const geoLabel = centresByProv.get(state.prov)?.get(state.centre) || 'Selected centre';
 
     for (const card of cards) {
       const hiddenSet = state.hidden[card.dim];
       const matching = records.filter(r =>
+        String(r.geoUid) === state.centre &&
         r.series === card.name &&
         r.dimension === card.dim &&
         Number(r.year) >= state.yearFrom &&
@@ -232,13 +269,24 @@ export async function initSecondary({ manifest }) {
       rows: t.rows.map(r => ({ area: String(r.period), values: r.values })),
       dwellingSuffix: ` — by ${t.dimension}`,
     }));
-    const filename = `CMHC_SecondaryRental_${new Date().toISOString().slice(0,10)}.xlsx`;
+    const centreTag = (centresByProv.get(state.prov)?.get(state.centre) || 'Centre').replace(/\s+/g, '');
+    const filename = `CMHC_SecondaryRental_${centreTag}_${new Date().toISOString().slice(0,10)}.xlsx`;
     await exportTablesToExcel(stamped, {
       filename, maxYear: manifest?.cmhcMaxYear ?? new Date().getFullYear(),
     });
   });
 
   // ----- Event wiring --------------------------------------------------------
+  $province.addEventListener('change', () => {
+    state.prov = $province.value;
+    state.centre = pickDefaultCentre(state.prov);   // default centre per province
+    populateCentres();
+    scheduleRender();
+  });
+  $centre.addEventListener('change', () => {
+    state.centre = $centre.value;
+    scheduleRender();
+  });
   $yFrom.addEventListener('change', () => {
     const v = parseInt($yFrom.value, 10);
     if (Number.isFinite(v)) { state.yearFrom = v; scheduleRender(); }

@@ -430,8 +430,11 @@ export async function initCensus() {
     const maxV = Math.max(...rows.map(d => d.value));
     const svg = Plot.plot(themed({
       height: 250, marginBottom: 34,
-      fx: { label: null },
-      x: { axis: null, label: null },
+      // Pin the facet (category) order to the noted sequence and the within-group
+      // bar order to regionNames so both match the legend — otherwise Plot sorts
+      // each band domain alphabetically (e.g. Manitoba before Winnipeg (CMA)).
+      fx: { label: null, domain: cats.map(([, lbl]) => lbl) },
+      x: { axis: null, label: null, domain: regionNames },
       y: { label: yLabel, tickFormat: v => `${v}%`, domain: [0, maxV * 1.15] },
       color: { domain: regionNames, range: PALETTE, legend: true },
       marks: [

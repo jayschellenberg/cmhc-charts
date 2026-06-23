@@ -82,9 +82,17 @@ export async function initStarts({ manifest }) {
     .map(l => `<option value="${l}">${LEVEL_LABEL[l] ?? l}</option>`)
     .join('');
 
+  // Open on Manitoba (province uid 46) when provinces are the first level;
+  // otherwise fall back to the first item in that level.
+  const defaultLevel = availableLevels[0] || 'province';
+  const defaultList  = levels[defaultLevel] || [];
+  const defaultItem  = (defaultLevel === 'province'
+      && defaultList.find(it => it.uid === '46' || it.name === 'Manitoba'))
+    || defaultList[0];
+
   const state = {
-    geoLevel: availableLevels[0] || 'province',
-    geoUid:   levels[availableLevels[0]]?.[0]?.uid || '',
+    geoLevel: defaultLevel,
+    geoUid:   defaultItem?.uid || '',
     frequency: 'Annual',
     breakdown: 'Dwelling Type',
     yearFrom:  null,
@@ -351,6 +359,7 @@ export async function initStarts({ manifest }) {
 
   // Initial setup
   populateNames();
+  if (state.geoUid) $name.value = state.geoUid;   // reflect the Manitoba default in the dropdown
   renderCategoryToggles();
   render();
 }

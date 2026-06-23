@@ -33,14 +33,25 @@ SRMS_SERIES <- c(
 )
 SRMS_DIMENSIONS <- c("Bedroom Type", "Structure Size")
 
+# Geographies to probe. CMHC only returns Srms for the larger centres, so we
+# query Manitoba + Saskatchewan province / CMA / CA / centre-CSD rows and let
+# safe_srms drop the geos that return nothing. prov_uid is carried through so
+# the web app can build a Province -> Centre picker.
+sk_cmas <- CMAS %>%
+  dplyr::filter(prov_uid == "47") %>%
+  dplyr::transmute(uid, name, level, prov_uid)
 geos <- bind_rows(
-  tibble::tibble(uid = MB_PROVINCE_UID, name = "Manitoba", level = "province"),
-  MB_CMAS,
-  MB_CENTRE_CSDS
+  tibble::tibble(uid   = c(MB_PROVINCE_UID, "47"),
+                 name  = c("Manitoba", "Saskatchewan"),
+                 level = "province",
+                 prov_uid = c("46", "47")),
+  MB_CMAS        %>% dplyr::mutate(prov_uid = "46"),
+  sk_cmas,
+  MB_CENTRE_CSDS %>% dplyr::mutate(prov_uid = "46")
 )
 
 # --- Safe Srms wrapper ---------------------------------------------------
-safe_srms <- function(series, dimension, geo_uid, geo_name, geo_level) {
+safe_srms <- function(series, dimension, geo_uid, geo_name, geo_level, geo_prov) {
   tryCatch({
     df <- cmhc::get_cmhc(
       survey    = "Srms",
@@ -57,7 +68,8 @@ safe_srms <- function(series, dimension, geo_uid, geo_name, geo_level) {
         Dimension = dimension,
         GeoUID    = as.character(geo_uid),
         GeoName   = geo_name,
-        GeoLevel  = geo_level
+        GeoLevel  = geo_level,
+        GeoProv   = geo_prov
       )
   }, error = function(e) NULL)
 }
@@ -73,7 +85,7 @@ message(sprintf("[06] Srms queries: %d", nrow(grid)))
 results <- pmap(grid, function(geo_idx, series, dimension) {
   g <- geos[geo_idx, ]
   message(sprintf("[06] %s | %s | %s", g$name, series, dimension))
-  safe_srms(series, dimension, g$uid, g$name, g$level)
+  safe_srms(series, dimension, g$uid, g$name, g$level, g$prov_uid)
 })
 ok <- compact(results)
 message(sprintf("[06] queries with data: %d / %d", length(ok), length(results)))
@@ -104,6 +116,7 @@ slim <- combined %>%
     GeoUID   = as.character(GeoUID),
     GeoName  = as.character(GeoName),
     GeoLevel = as.character(GeoLevel),
+    GeoProv  = as.character(GeoProv),
     Year     = as.integer(Year),
     Series   = as.character(Series),
     Dimension = as.character(Dimension),
@@ -132,6 +145,9 @@ records <- slim %>%
     geoUid   = GeoUID,
     geoName  = GeoName,
     geoLevel = GeoLevel,
+    prov     = GeoProv,
+    provName = dplyr::recode(GeoProv, "46" = "Manitoba", "47" = "Saskatchewan",
+                             .default = GeoProv),
     year     = Year,
     series   = Series,
     dimension = Dimension,
