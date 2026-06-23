@@ -45,35 +45,52 @@ export async function initAffordability() {
   const $tables  = document.getElementById('aff-tables');
   if (!$area || !$tables) return;
 
-  const [profile, mls, mortgage] = await Promise.all([
+  const [profile, mls, mortgage, extra] = await Promise.all([
     fetch('./data/housing/census_profile.json').then(r => r.ok ? r.json() : null).catch(() => null),
     fetch('./data/economy/mls_benchmark.json').then(r => r.ok ? r.json() : null).catch(() => null),
     fetch('./data/indicators/mortgage_market.json').then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch('./data/economy/affordability_extra.json').then(r => r.ok ? r.json() : null).catch(() => null),
   ]);
   if (!profile || !Array.isArray(profile.regions)) {
     $tables.innerHTML = '<p class="text-sm text-red-700">Census profile data not found.</p>';
     return;
   }
 
-  // --- Area model: income + rent from the newest census year per region -------
-  const LEVEL_GROUP = {
+  // --- Area model: income + rent per area, grouped by province + level --------
+  const PROV_LABEL = { '46': 'Manitoba', '47': 'Saskatchewan' };
+  const LEVEL_LABEL = {
     PR: 'Province', CMA: 'CMAs / CAs', CD: 'Census divisions', CSD: 'Municipalities',
     WPG_CA: 'Winnipeg — Community Areas', WPG_Cluster: 'Winnipeg — Clusters', WPG_Nbhd: 'Winnipeg — Neighbourhoods',
   };
-  const GROUP_ORDER = ['Province', 'CMAs / CAs', 'Municipalities', 'Census divisions',
-                       'Winnipeg — Community Areas', 'Winnipeg — Clusters', 'Winnipeg — Neighbourhoods'];
+  const groupOf = (prov, level) => `${PROV_LABEL[prov] || prov} · ${LEVEL_LABEL[level] || level}`;
+  const GROUP_ORDER = [];
+  for (const p of ['46', '47'])
+    for (const lv of ['PR', 'CMA', 'CSD', 'CD', 'WPG_CA', 'WPG_Cluster', 'WPG_Nbhd']) GROUP_ORDER.push(groupOf(p, lv));
+
   const newestDemo = (r) => {
     const yrs = Object.keys(r.demo || {}).filter(y => r.demo[y]?.median_hh_income != null).sort();
     const y = yrs[yrs.length - 1];
     return y ? { year: y, ...r.demo[y] } : null;
   };
+  // CMHC average rent for MB centres (keyed by census_profile uid) — pairs with
+  // the census median rent so MB & SK centre factors share the CMHC basis.
+  const mbCmhc = new Map((extra?.mbCmhcRent || []).map(m => [String(m.uid), m]));
   const areas = [];
-  for (const r of profile.regions) {
+  for (const r of profile.regions) {                // Manitoba — census income + median rent; CMHC avg rent for centres
     const d = newestDemo(r);
     if (!d) continue;
+    const cmhc = mbCmhc.get(String(r.uid));
     areas.push({
-      uid: String(r.uid), name: r.name, level: r.level, group: LEVEL_GROUP[r.level] || r.level,
-      year: d.year, income: d.median_hh_income, rent: d.median_rent,
+      uid: String(r.uid), name: r.name, level: r.level, prov: '46',
+      group: groupOf('46', r.level), year: d.year, income: d.median_hh_income,
+      medianRent: d.median_rent, avgRent: cmhc?.avgRent ?? null, avgRentYear: cmhc?.rentYear ?? null,
+    });
+  }
+  for (const a of (extra?.sk || [])) {              // Saskatchewan — census income + CMHC current rent (average only)
+    areas.push({
+      uid: String(a.uid), name: a.name, level: a.level, prov: '47',
+      group: groupOf('47', a.level), year: a.incomeYear || '2021', income: a.income,
+      medianRent: null, avgRent: a.rent ?? null, avgRentYear: a.rentYear ?? null,
     });
   }
   const byUid = new Map(areas.map(a => [a.uid, a]));
@@ -113,14 +130,18 @@ export async function initAffordability() {
   if ($rate) $rate.value = state.rate;
 
   // --- Per-area affordability computation -------------------------------------
+  // Rental factor uses CMHC average rent where available (MB centres + SK), else
+  // the census median rent (MB municipalities) — so centre factors are comparable.
   function factors(a) {
     if (!a) return null;
     const mInc = a.income ? a.income / 12 : null;
-    const rentFactor = (mInc && a.rent != null) ? a.rent / mInc * 100 : null;
+    const rentUsed = a.avgRent ?? a.medianRent ?? null;
+    const rentBasis = a.avgRent != null ? 'CMHC' : (a.medianRent != null ? 'census' : null);
+    const rentFactor = (mInc && rentUsed != null) ? rentUsed / mInc * 100 : null;
     const price = priceByUid.get(a.uid) ?? null;
     const payment = price != null ? monthlyPayment(price * (1 - DOWN_PCT / 100), state.rate, AMORT_YEARS) : null;
     const buyFactor = (mInc && payment != null) ? payment / mInc * 100 : null;
-    return { ...a, mInc, rentFactor, price, payment, buyFactor };
+    return { ...a, mInc, rentUsed, rentBasis, rentFactor, price, payment, buyFactor };
   }
   const band = (f) => miss(f) ? '' : f < AFFORD_LINE ? 'aff-ok' : f < 50 ? 'aff-warn' : 'aff-bad';
   const bandWord = (f) => miss(f) ? 'no data' : f < AFFORD_LINE ? 'affordable' : f < 50 ? 'burdened' : 'severely burdened';
@@ -146,7 +167,7 @@ export async function initAffordability() {
       </div>`;
     const cards = [];
     if (showRent) cards.push(card('Rental', sel.rentFactor,
-      miss(sel.rentFactor) ? 'no income/rent data' : `${fUsd(sel.rent)}/mo · ${bandWord(sel.rentFactor)}`));
+      miss(sel.rentFactor) ? 'no income/rent data' : `${fUsd(sel.rentUsed)}/mo (${sel.rentBasis === 'CMHC' ? 'CMHC avg' : 'census median'}) · ${bandWord(sel.rentFactor)}`));
     if (showBuy) cards.push(card('Purchase', sel.buyFactor,
       miss(sel.buyFactor) ? 'no home-price data' : `${fUsd(sel.payment)}/mo · ${bandWord(sel.buyFactor)}`));
     $headline.innerHTML = `
@@ -183,7 +204,7 @@ export async function initAffordability() {
     }));
     const card = document.createElement('section');
     card.className = 'chart-card';
-    card.innerHTML = `<header class="chart-title">${label} affordability — Manitoba</header>
+    card.innerHTML = `<header class="chart-title">${label} affordability — Manitoba &amp; Saskatchewan</header>
       <p class="chart-sub">Housing payment as % of median household income · red line = ${AFFORD_LINE}% affordability threshold</p>
       <div data-role="plot"></div>
       <div class="chart-caption"><span class="chart-caption-left"></span>
@@ -198,21 +219,21 @@ export async function initAffordability() {
       const av = miss(a[k]) ? Infinity : a[k], bv = miss(b[k]) ? Infinity : b[k];
       return av - bv;
     });
-    const head = ['Area', 'Median income'];
-    if (showRent) head.push('Median rent', 'Rental factor');
+    const head = ['Area', 'Prov.', 'Median income'];
+    if (showRent) head.push('Median rent', 'Avg rent (CMHC)', 'Rental factor');
     if (showBuy)  head.push('Home price', 'Mortgage / mo', 'Purchase factor');
     const body = rows.map(r => {
-      const cells = [`<td>${escapeHtml(r.name)}</td>`, `<td>${fUsd(r.income)}</td>`];
-      if (showRent) cells.push(`<td>${fUsd(r.rent)}</td>`, `<td class="${band(r.rentFactor)}">${fPct(r.rentFactor)}</td>`);
+      const cells = [`<td>${escapeHtml(r.name)}</td>`, `<td>${escapeHtml(PROV_LABEL[r.prov] || '')}</td>`, `<td>${fUsd(r.income)}</td>`];
+      if (showRent) cells.push(`<td>${fUsd(r.medianRent)}</td>`, `<td>${fUsd(r.avgRent)}</td>`, `<td class="${band(r.rentFactor)}">${fPct(r.rentFactor)}</td>`);
       if (showBuy)  cells.push(`<td>${fUsd(r.price)}</td>`, `<td>${fUsd(r.payment)}</td>`, `<td class="${band(r.buyFactor)}">${fPct(r.buyFactor)}</td>`);
       const hi = r.uid === state.uid ? ' class="aff-row-selected"' : '';
       return `<tr${hi}>${cells.join('')}</tr>`;
     }).join('');
     $tables.innerHTML = `
       <section class="cmhc-table-block">
-        <div class="cmhc-table-title">Affordability Factor — Manitoba (ranked, most affordable first)</div>
+        <div class="cmhc-table-title">Affordability Factor — Manitoba &amp; Saskatchewan (ranked, most affordable first)</div>
         <table class="cmhc-table"><thead><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table>
-        <p class="text-xs text-neutral-500 mt-2">Income &amp; rent: ${escapeHtml(rows[0]?.year || '2021')} Census. Mortgage: ${DOWN_PCT}% down, ${AMORT_YEARS}-yr amortization at ${state.rate.toFixed(2)}%${priceAsOf ? `; price as of ${escapeHtml(String(priceAsOf).slice(0, 7))}` : ''}. Purchase factor shows only where a home-price benchmark exists (Winnipeg).</p>
+        <p class="text-xs text-neutral-500 mt-2">Income: 2021 Census (2020 income). <strong>Median rent</strong> = 2021 Census median shelter cost (MB only). <strong>Avg rent (CMHC)</strong> = current CMHC average rent, all bedroom types (centres only). The <strong>rental factor uses CMHC average rent where available</strong> (all centres, MB &amp; SK — comparable) and the census median otherwise. Mortgage: ${DOWN_PCT}% down, ${AMORT_YEARS}-yr amortization at ${state.rate.toFixed(2)}%${priceAsOf ? `; price as of ${escapeHtml(String(priceAsOf).slice(0, 7))}` : ''}. Purchase factor shows only where a home-price benchmark exists (Winnipeg). SK is province + major centres only.</p>
       </section>`;
   }
 
