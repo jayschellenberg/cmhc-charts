@@ -258,6 +258,18 @@ export async function initHousing() {
     if (ageYears.length >= 2) {
       const aFirst = ageYears[0], aLast = ageYears[ageYears.length - 1];
       const rolled = Object.fromEntries(ageYears.map(y => [y, rollAge(isWpg ? CLUSTER_ROLLUP : ROLLUP[y], yd(y).age)]));
+      // Chart: stacked bar of age bands (counts) across census years — mirrors the
+      // dwelling type mix chart so the two sit side by side in the chart grid.
+      const ageData = [];
+      for (const y of ageYears) COMMON_AGE.forEach((lbl, i) => ageData.push({ year: y, band: lbl, value: rolled[y][i] }));
+      const ageChart = Plot.plot(themed({
+        height: 250, marginBottom: 30,
+        x: { type: 'band', label: null },
+        y: { label: 'Occupied dwellings', tickFormat: v => Number(v).toLocaleString() },
+        color: { domain: COMMON_AGE, range: PALETTE, legend: true },
+        marks: [Plot.barY(ageData, { x: 'year', y: 'value', fill: 'band', order: COMMON_AGE }), frameMark()],
+      }));
+      appendCard('Age mix', `${name} — occupied dwellings by period of construction`, ageChart);
       const ageRows = COMMON_AGE.map((lbl, i) => {
         const sh = (y) => tot(y) > 0 ? rolled[y][i] / tot(y) * 100 : null;
         return { area: lbl, values: [...ageYears.map(y => fmtP(sh(y))), fmtDeltaPP(sh(aLast) != null && sh(aFirst) != null ? sh(aLast) - sh(aFirst) : null)] };
