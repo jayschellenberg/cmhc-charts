@@ -1,7 +1,7 @@
 # Market Indicators Tab — Build Plan (v2, revised)
 
 A planning document for a new "Market Indicators" tab on
-[cmhc-charts](https://cmhc-charts.vercel.app/). One tab, grouped sections,
+[housing-economic-data](https://housing-economic-data.vercel.app/). One tab, grouped sections,
 appraiser-focused. Manitoba + national coverage with Winnipeg breakouts
 where the source supports it.
 

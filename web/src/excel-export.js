@@ -21,7 +21,7 @@ const BORDER_THIN = { style: 'thin', color: { argb: 'FF595959' } };
  */
 export async function exportTablesToExcel(built, { filename, maxYear, titleNote }) {
   const wb = new ExcelJS.Workbook();
-  wb.creator = 'CMHC Charts';
+  wb.creator = 'Housing & Economic Data';
   wb.created = new Date();
   const ws = wb.addWorksheet('CMHC Tables', {
     properties: { defaultColWidth: 14 },
@@ -105,7 +105,7 @@ export async function exportTablesToExcel(built, { filename, maxYear, titleNote 
  */
 export async function exportIndicatorsToExcel({ catalog, shards }) {
   const wb = new ExcelJS.Workbook();
-  wb.creator = 'CMHC Charts';
+  wb.creator = 'Housing & Economic Data';
   wb.created = new Date();
 
   const FMT_NUMBER = {
@@ -200,13 +200,13 @@ export async function exportIndicatorsToExcel({ catalog, shards }) {
   meta.getColumn(9).width = 70;
   meta.addRow([]);
   meta.addRow(['Exported', new Date().toISOString().slice(0, 10)]);
-  meta.addRow(['App', 'https://cmhc-charts.vercel.app/']);
+  meta.addRow(['App', 'https://housing-economic-data.vercel.app/']);
   meta.addRow(['Caveats', 'Public data, see source URLs for definitions. Verify before relying on for appraisals.']);
 
   const buf = await wb.xlsx.writeBuffer();
   const blob = new Blob([buf],
     { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-  triggerDownload(blob, `CMHC_MarketIndicators_${new Date().toISOString().slice(0,10)}.xlsx`);
+  triggerDownload(blob, `MarketIndicators_${new Date().toISOString().slice(0,10)}.xlsx`);
 }
 
 /**
@@ -218,7 +218,7 @@ export async function exportIndicatorsToExcel({ catalog, shards }) {
  */
 export async function exportChartsToExcel(captures, { filename }) {
   const wb = new ExcelJS.Workbook();
-  wb.creator = 'CMHC Charts';
+  wb.creator = 'Housing & Economic Data';
   wb.created = new Date();
 
   const used = new Set();

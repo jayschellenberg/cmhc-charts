@@ -1,4 +1,4 @@
-# CMHC Charts
+# Housing & Economic Data
 
 Interactive line charts of CMHC rental and vacancy data for Canada, filterable by geography (Province / CMA / CSD / Survey Zone / Neighbourhood), dwelling type (Apartment / Row / All), and a choice of breakdown dimension (Bedroom Type / Year of Construction / Structure Size / Rent Ranges).
 

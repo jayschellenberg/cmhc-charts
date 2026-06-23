@@ -98,9 +98,9 @@ jobs:
           secure:         true
           username:       ${{ secrets.MAIL_USERNAME }}
           password:       ${{ secrets.MAIL_PASSWORD }}
-          from:           CMHC Charts <${{ secrets.MAIL_USERNAME }}>
+          from:           Housing & Economic Data <${{ secrets.MAIL_USERNAME }}>
           to:             ${{ vars.MAIL_TO }}
-          subject:        "[CMHC Charts] Indicators refresh OK — ${{ steps.stamp.outputs.date }}"
+          subject:        "[Housing & Economic Data] Indicators refresh OK — ${{ steps.stamp.outputs.date }}"
           body: |
             The weekly indicators refresh completed and pushed new data to main.
 
@@ -133,9 +133,9 @@ jobs:
           secure:         true
           username:       ${{ secrets.MAIL_USERNAME }}
           password:       ${{ secrets.MAIL_PASSWORD }}
-          from:           CMHC Charts <${{ secrets.MAIL_USERNAME }}>
+          from:           Housing & Economic Data <${{ secrets.MAIL_USERNAME }}>
           to:             ${{ vars.MAIL_TO }}
-          subject:        "[CMHC Charts] Indicators refresh FAILED — ${{ steps.stamp.outputs.date }}"
+          subject:        "[Housing & Economic Data] Indicators refresh FAILED — ${{ steps.stamp.outputs.date }}"
           body: |
             The weekly indicators refresh FAILED.
 

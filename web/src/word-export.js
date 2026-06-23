@@ -85,7 +85,7 @@ export async function exportTablesToWord(built, { filename, maxYear }) {
   });
 
   const doc = new Document({
-    creator: 'CMHC Charts',
+    creator: 'Housing & Economic Data',
     description: 'CMHC Rental Market Survey comparison tables',
     sections: [{ children }],
   });
@@ -121,8 +121,8 @@ export async function exportChartsToWord(captures, { filename }) {
   }
 
   const doc = new Document({
-    creator: 'CMHC Charts',
-    description: 'CMHC chart exports',
+    creator: 'Housing & Economic Data',
+    description: 'Chart exports',
     sections: [{ children }],
   });
 
@@ -164,7 +164,7 @@ export async function exportNarrativeToWord(blocks, { filename }) {
   }
 
   const doc = new Document({
-    creator: 'CMHC Charts',
+    creator: 'Housing & Economic Data',
     description: 'Province of Manitoba — Overview and Economic Outlook',
     sections: [{ children }],
   });

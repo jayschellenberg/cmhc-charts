@@ -142,7 +142,7 @@ if (!is.null(bench)) {
 # extract a full, sane figure set we keep the committed last-good values and
 # leave stale=TRUE. (Seeded cache already holds the most recent known release.)
 scrape_headline <- function() {
-  ua <- add_headers(`User-Agent` = "Mozilla/5.0 (compatible; cmhc-charts/1.0)")
+  ua <- add_headers(`User-Agent` = "Mozilla/5.0 (compatible; housing-economic-data/1.0)")
   # Find the latest WRREB market-release article from the listing page.
   listing <- "https://www.winnipegregionalrealestatenews.com/market-statistics/market-releases"
   pg <- tryCatch(rvest::read_html(GET(listing, ua, timeout(45))), error = function(e) NULL)

@@ -119,9 +119,9 @@ jobs:
           secure:         true
           username:       ${{ secrets.MAIL_USERNAME }}
           password:       ${{ secrets.MAIL_PASSWORD }}
-          from:           CMHC Charts <${{ secrets.MAIL_USERNAME }}>
+          from:           Housing & Economic Data <${{ secrets.MAIL_USERNAME }}>
           to:             ${{ vars.MAIL_TO }}
-          subject:        "[CMHC Charts] Refresh OK — ${{ steps.stamp.outputs.date }}"
+          subject:        "[Housing & Economic Data] Refresh OK — ${{ steps.stamp.outputs.date }}"
           body: |
             The scheduled CMHC-data refresh completed and pushed new data to main.
 
@@ -154,9 +154,9 @@ jobs:
           secure:         true
           username:       ${{ secrets.MAIL_USERNAME }}
           password:       ${{ secrets.MAIL_PASSWORD }}
-          from:           CMHC Charts <${{ secrets.MAIL_USERNAME }}>
+          from:           Housing & Economic Data <${{ secrets.MAIL_USERNAME }}>
           to:             ${{ vars.MAIL_TO }}
-          subject:        "[CMHC Charts] Refresh FAILED — ${{ steps.stamp.outputs.date }}"
+          subject:        "[Housing & Economic Data] Refresh FAILED — ${{ steps.stamp.outputs.date }}"
           body: |
             The scheduled CMHC-data refresh FAILED.
 

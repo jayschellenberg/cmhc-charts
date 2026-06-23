@@ -77,10 +77,10 @@ export function wireChartDocExports({ docxBtnId, xlsxBtnId, getNodes, baseName, 
         const date = new Date().toISOString().slice(0, 10);
         if (kind === 'docx') {
           const { exportChartsToWord } = await import('./word-export.js');
-          await exportChartsToWord(captures, { filename: `CMHC_${baseName}_${date}.docx` });
+          await exportChartsToWord(captures, { filename: `${baseName}_${date}.docx` });
         } else {
           const { exportChartsToExcel } = await import('./excel-export.js');
-          await exportChartsToExcel(captures, { filename: `CMHC_${baseName}_${date}.xlsx` });
+          await exportChartsToExcel(captures, { filename: `${baseName}_${date}.xlsx` });
         }
       } catch (err) {
         console.error(`[${baseName} ${kind} export]`, err);
