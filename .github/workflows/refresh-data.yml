@@ -45,9 +45,10 @@ jobs:
 
       - name: Install R packages
         run: |
+          # No explicit repos= — it would override the RSPM binary repo that
+          # use-public-rspm: true configured, forcing slow source compilation.
           install.packages(c("cmhc", "cansim", "httr", "dplyr", "tidyr",
-                             "purrr", "readr", "jsonlite", "readxl", "rvest"),
-                           repos = "https://cloud.r-project.org")
+                             "purrr", "readr", "jsonlite", "readxl", "rvest"))
         shell: Rscript {0}
 
       - name: Run pipeline

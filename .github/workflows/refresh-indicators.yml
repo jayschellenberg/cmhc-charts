@@ -45,9 +45,10 @@ jobs:
           # sources r/lib/cmhc_helpers.R which builds its CMAS table from
           # cmhc::cmhc_cma_translation_data at load time — so it must be present
           # or the whole pipeline fails at the first Rscript.
+          # No explicit repos= — it would override the RSPM binary repo that
+          # use-public-rspm: true configured, forcing slow source compilation.
           install.packages(c("cmhc", "cansim", "httr", "dplyr", "tidyr",
-                             "purrr", "readr", "jsonlite", "readxl", "rvest"),
-                           repos = "https://cloud.r-project.org")
+                             "purrr", "readr", "jsonlite", "readxl", "rvest"))
         shell: Rscript {0}
 
       - name: Run indicators pipeline
