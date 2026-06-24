@@ -356,21 +356,25 @@ export async function initCensus() {
     $charts.replaceChildren();
     const t = subject.trends || {};
     const regionNames = cols.map(r => r.name);
+    // Time-series charts stop at the selected census period — picking 2016
+    // shows 2006/2011/2016 but not 2021.
+    const shownYears = years.filter(y => Number(y) <= Number(period));
 
-    // 1. Population trend — one line per chosen area, across all censuses.
+    // 1. Population trend — one line per chosen area, up to the selected census.
     const popRows = [];
     for (const r of cols) {
       const tr = r.trends || {};
-      for (const y of years) if (tr[y]?.population != null)
+      for (const y of shownYears) if (tr[y]?.population != null)
         popRows.push({ region: r.name, year: +y, value: tr[y].population });
     }
     if (popRows.length) {
-      const yrs = years.map(Number);
+      const yrs = shownYears.map(Number);
+      const loY = Math.min(...yrs), hiY = Math.max(...yrs);
       const maxV = Math.max(...popRows.map(d => d.value));
       const single = regionNames.length === 1;
       const svg = Plot.plot(themed({
         height: 250,
-        x: { domain: [Math.min(...yrs) - 0.5, Math.max(...yrs) + 0.5], ticks: yrs, tickFormat: 'd' },
+        x: { domain: [loY - 0.5, hiY + 0.5], ticks: yrs, tickFormat: 'd' },
         y: { label: 'Population', tickFormat: v => Number(v).toLocaleString(), domain: [0, maxV * 1.12] },
         color: { domain: regionNames, range: PALETTE, legend: !single },
         marks: [
@@ -380,13 +384,14 @@ export async function initCensus() {
           frameMark(),
         ],
       }));
-      appendCard('Population trend', `${years[0]}–${years[years.length - 1]} — ${regionNames.join(' vs ')}`, svg);
+      appendCard('Population trend', `${loY}–${hiY} — ${regionNames.join(' vs ')}`, svg);
     }
 
-    // 2. Occupied dwellings by type — stacked bar by census year (Area 1).
+    // 2. Occupied dwellings by type — stacked bar by census year (Area 1), up
+    //    to the selected census.
     const typeOrder = TYPE_SERIES.map(([, lbl]) => lbl);
     const barData = [];
-    for (const y of years) {
+    for (const y of shownYears) {
       const yr = t[y]; if (!yr) continue;
       for (const [key, lbl] of TYPE_SERIES) {
         if (yr[key] != null) barData.push({ year: y, type: lbl, value: yr[key] });
