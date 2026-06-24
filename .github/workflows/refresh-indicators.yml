@@ -37,7 +37,11 @@ jobs:
 
       - name: Install R packages
         run: |
-          install.packages(c("cansim", "httr", "dplyr", "tidyr",
+          # cmhc: not used by the indicator scrapes themselves, but every script
+          # sources r/lib/cmhc_helpers.R which builds its CMAS table from
+          # cmhc::cmhc_cma_translation_data at load time — so it must be present
+          # or the whole pipeline fails at the first Rscript.
+          install.packages(c("cmhc", "cansim", "httr", "dplyr", "tidyr",
                              "purrr", "readr", "jsonlite", "readxl", "rvest"),
                            repos = "https://cloud.r-project.org")
         shell: Rscript {0}
