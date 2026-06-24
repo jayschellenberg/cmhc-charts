@@ -80,8 +80,13 @@ const FRESHNESS_DAYS = {
 // and the broker variable line lags a few days, so the daily/weekly defaults
 // flag false staleness mid-cycle. 15 days covers the normal weekly cycle plus
 // buffer — the chart only warns if a rate is genuinely more than ~2 weeks old.
+// GoC bond yields: BoC publishes them daily but we pull them on the weekly
+// indicators refresh, so the 7-day "daily" default false-flags late each cycle;
+// 15 days covers the normal weekly cadence (warns only if a refresh truly broke).
 const FRESHNESS_OVERRIDE_DAYS = {
-  mortgage_rates: 15,
+  mortgage_rates:     15,
+  goc_yields:         15,
+  cap_rate_pressure:  15,   // derived from the 5-yr GoC yield — same weekly cadence
 };
 
 /**
