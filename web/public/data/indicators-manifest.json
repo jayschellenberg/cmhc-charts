@@ -1,13 +1,13 @@
 {
   "version": 1,
-  "generated": "2026-06-24T19:29:20Z",
+  "generated": "2026-06-24T23:36:49Z",
   "groups": [
     {
       "group": "mortgage_market",
       "file": "mortgage_market.json",
       "seriesCount": 9,
-      "recordCount": 26939,
-      "latestDate": "2026-06-15"
+      "recordCount": 26971,
+      "latestDate": "2026-06-24"
     },
     {
       "group": "credit_conditions",
@@ -59,20 +59,20 @@
       "latestDate": "2026-01-01"
     },
     {
+      "group": "derived",
+      "file": "derived.json",
+      "seriesCount": 10,
+      "recordCount": 22757,
+      "latestDate": "2026-06-24"
+    },
+    {
       "group": "distress",
       "file": "distress.json",
       "seriesCount": 12,
       "recordCount": 3690,
       "latestDate": "2026-04-01"
-    },
-    {
-      "group": "derived",
-      "file": "derived.json",
-      "seriesCount": 10,
-      "recordCount": 22731,
-      "latestDate": "2026-06-15"
     }
   ],
   "totalSeries": 125,
-  "totalRecords": 77146
+  "totalRecords": 77204
 }

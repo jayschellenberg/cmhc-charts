@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "lastUpdated": "2026-06-17T01:38:32Z",
+  "lastUpdated": "2026-06-24T23:35:33Z",
   "cmhcMaxYear": 2025,
-  "shardCount": 260,
-  "totalRecords": 470284,
+  "shardCount": 397,
+  "totalRecords": 636082,
   "shards": [
     {
       "file": "cma_001.json",
@@ -1977,6 +1977,978 @@
       "yearMax": 2025
     },
     {
+      "file": "neighbourhood_825-airdrie.json",
+      "geoUid": "825-airdrie",
+      "geoName": "Airdrie",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1003,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-altadore-south-calgary-cfb-currie-lincoln-park-richmond-upper-mount-royal-elbow-park-rideau-park.json",
+      "geoUid": "825-altadore-south-calgary-cfb-currie-lincoln-park-richmond-upper-mount-royal-elbow-park-rideau-park",
+      "geoName": "Altadore/South Calgary/CFB Currie/Lincoln Park/Richmond/Upper Mount Royal/Elbow Park/Rideau Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1199,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-bankview.json",
+      "geoUid": "825-bankview",
+      "geoName": "Bankview",
+      "geoLevel": "neighbourhood",
+      "recordCount": 920,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-bel-aire-mayfair-kelvin-grove-eagle-ridge-chinook-park.json",
+      "geoUid": "825-bel-aire-mayfair-kelvin-grove-eagle-ridge-chinook-park",
+      "geoName": "Bel-Aire/Mayfair/Kelvin Grove/Eagle Ridge/Chinook Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 571,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-bowness.json",
+      "geoUid": "825-bowness",
+      "geoName": "Bowness",
+      "geoLevel": "neighbourhood",
+      "recordCount": 984,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-braeside-bayview-palliser-pump-hill-oakridge-cedarbrae.json",
+      "geoUid": "825-braeside-bayview-palliser-pump-hill-oakridge-cedarbrae",
+      "geoName": "Braeside/Bayview/Palliser/Pump Hill/Oakridge/Cedarbrae",
+      "geoLevel": "neighbourhood",
+      "recordCount": 849,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-bridgeland-riverside.json",
+      "geoUid": "825-bridgeland-riverside",
+      "geoName": "Bridgeland/Riverside",
+      "geoLevel": "neighbourhood",
+      "recordCount": 770,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-bridlewood-evergreen-shawnee-slope-millrise-shawnessy-somerset-silverado-midnapore-parkland-deer-ridge-deer-run-sundanc.json",
+      "geoUid": "825-bridlewood-evergreen-shawnee-slope-millrise-shawnessy-somerset-silverado-midnapore-parkland-deer-ridge-deer-run-sundanc",
+      "geoName": "Bridlewood/Evergreen/Shawnee Slope/Millrise/Shawnessy/Somerset/Silverado/Midnapore/Parkland/Deer Ridge/Deer Run/Sundanc",
+      "geoLevel": "neighbourhood",
+      "recordCount": 70,
+      "yearMin": 2016,
+      "yearMax": 2016
+    },
+    {
+      "file": "neighbourhood_825-bridlewood-evergreen-shawnee-slope-millrise-shawnessy-somerset-silverado-midnapore-parkland-deer-ridge-deer-run-sundance-chaparral-walden-legacy.json",
+      "geoUid": "825-bridlewood-evergreen-shawnee-slope-millrise-shawnessy-somerset-silverado-midnapore-parkland-deer-ridge-deer-run-sundance-chaparral-walden-legacy",
+      "geoName": "Bridlewood/Evergreen/Shawnee Slope/Millrise/Shawnessy/Somerset/Silverado/Midnapore/Parkland/Deer Ridge/Deer Run/Sundance/Chaparral/Walden/Legacy",
+      "geoLevel": "neighbourhood",
+      "recordCount": 804,
+      "yearMin": 2017,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-calgary-cma-rural-calgary-city-rocky-view-county-chestermere-crossfield-irricana-beiseker.json",
+      "geoUid": "825-calgary-cma-rural-calgary-city-rocky-view-county-chestermere-crossfield-irricana-beiseker",
+      "geoName": "Calgary CMA (Rural Calgary City/Rocky View County/Chestermere/Crossfield/Irricana/Beiseker)",
+      "geoLevel": "neighbourhood",
+      "recordCount": 427,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-canyon-meadows-woodlands-woodbine-lake-bonavista-bonavista-downs-diamond-cove-queensland.json",
+      "geoUid": "825-canyon-meadows-woodlands-woodbine-lake-bonavista-bonavista-downs-diamond-cove-queensland",
+      "geoName": "Canyon Meadows/Woodlands/Woodbine/Lake Bonavista/Bonavista Downs/Diamond Cove/Queensland",
+      "geoLevel": "neighbourhood",
+      "recordCount": 626,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-capitol-hill-rosemont-banff-trail.json",
+      "geoUid": "825-capitol-hill-rosemont-banff-trail",
+      "geoName": "Capitol Hill/Rosemont/Banff Trail",
+      "geoLevel": "neighbourhood",
+      "recordCount": 741,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-charleswood-collingwood-brentwood.json",
+      "geoUid": "825-charleswood-collingwood-brentwood",
+      "geoName": "Charleswood/Collingwood/Brentwood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 705,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-cochrane.json",
+      "geoUid": "825-cochrane",
+      "geoName": "Cochrane",
+      "geoLevel": "neighbourhood",
+      "recordCount": 770,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-dalhousie.json",
+      "geoUid": "825-dalhousie",
+      "geoName": "Dalhousie",
+      "geoLevel": "neighbourhood",
+      "recordCount": 370,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-dover-southview-inglewood-alyth-bonnybrook-erin-woods-eastfield-golden-triangle.json",
+      "geoUid": "825-dover-southview-inglewood-alyth-bonnybrook-erin-woods-eastfield-golden-triangle",
+      "geoName": "Dover/Southview/Inglewood/Alyth/Bonnybrook/Erin Woods/Eastfield/Golden Triangle",
+      "geoLevel": "neighbourhood",
+      "recordCount": 927,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-downtown-eau-claire.json",
+      "geoUid": "825-downtown-eau-claire",
+      "geoName": "Downtown/Eau Claire",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1030,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-fairview-industrial-fairview-kingsland.json",
+      "geoUid": "825-fairview-industrial-fairview-kingsland",
+      "geoName": "Fairview Industrial/Fairview/Kingsland",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1093,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-falconridge-castleridge-coral-springs-martindale-skyview-ranch-saddle-ridge-taradale-horizon-sunridge-westwinds.json",
+      "geoUid": "825-falconridge-castleridge-coral-springs-martindale-skyview-ranch-saddle-ridge-taradale-horizon-sunridge-westwinds",
+      "geoName": "Falconridge/Castleridge/Coral Springs/Martindale/Skyview Ranch/Saddle Ridge/Taradale/Horizon/Sunridge/Westwinds",
+      "geoLevel": "neighbourhood",
+      "recordCount": 933,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-forest-lawn-forest-heights-penbrooke-meadows-red-carpet-applewood-park.json",
+      "geoUid": "825-forest-lawn-forest-heights-penbrooke-meadows-red-carpet-applewood-park",
+      "geoName": "Forest Lawn/Forest Heights/Penbrooke Meadows/Red Carpet/Applewood Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1352,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-glendale-glenbrook.json",
+      "geoUid": "825-glendale-glenbrook",
+      "geoName": "Glendale/Glenbrook",
+      "geoLevel": "neighbourhood",
+      "recordCount": 920,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-huntington-hills-beddington-heights-evanston-panorama-hills-country-hills-coventry-hills-country-hills-village-harvest-hills-hanson-ranch-hidden-valley-sandstone-valley-macewan-glen.json",
+      "geoUid": "825-huntington-hills-beddington-heights-evanston-panorama-hills-country-hills-coventry-hills-country-hills-village-harvest-hills-hanson-ranch-hidden-valley-sandstone-valley-macewan-glen",
+      "geoName": "Huntington Hills/Beddington Heights/Evanston/Panorama Hills/Country Hills/Coventry Hills/Country Hills Village/Harvest Hills/Hanson Ranch/Hidden Valley/Sandstone Valley/MacEwan Glen",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1016,
+      "yearMin": 2017,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-huntington-hills-beddington-heights-evanston-panorama-hills-country-hills-coventry-hills-country-hills-village-harvest.json",
+      "geoUid": "825-huntington-hills-beddington-heights-evanston-panorama-hills-country-hills-coventry-hills-country-hills-village-harvest",
+      "geoName": "Huntington Hills/Beddington Heights/Evanston/Panorama Hills/Country Hills/Coventry Hills/Country Hills Village/Harvest",
+      "geoLevel": "neighbourhood",
+      "recordCount": 104,
+      "yearMin": 2016,
+      "yearMax": 2016
+    },
+    {
+      "file": "neighbourhood_825-killarney-glengarry.json",
+      "geoUid": "825-killarney-glengarry",
+      "geoName": "Killarney/Glengarry",
+      "geoLevel": "neighbourhood",
+      "recordCount": 827,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-lower-mount-royal-cliff-bungalow.json",
+      "geoUid": "825-lower-mount-royal-cliff-bungalow",
+      "geoName": "Lower Mount Royal/Cliff Bungalow",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1013,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-manchester-industrial-roxboro-erlton.json",
+      "geoUid": "825-manchester-industrial-roxboro-erlton",
+      "geoName": "Manchester Industrial/Roxboro/Erlton",
+      "geoLevel": "neighbourhood",
+      "recordCount": 759,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-marlborough-park-marlborough-abbeydale.json",
+      "geoUid": "825-marlborough-park-marlborough-abbeydale",
+      "geoName": "Marlborough Park/Marlborough/Abbeydale",
+      "geoLevel": "neighbourhood",
+      "recordCount": 713,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-mckenzie-towne-new-brighton-copperfield-cranston-auburn-bay-mahogany-mckenzie-lake-douglasdale-glen.json",
+      "geoUid": "825-mckenzie-towne-new-brighton-copperfield-cranston-auburn-bay-mahogany-mckenzie-lake-douglasdale-glen",
+      "geoName": "McKenzie Towne/New Brighton/Copperfield/Cranston/Auburn Bay/Mahogany/McKenzie Lake/Douglasdale/Glen",
+      "geoLevel": "neighbourhood",
+      "recordCount": 561,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-meridian-franklin-albert-park-radisson-heights.json",
+      "geoUid": "825-meridian-franklin-albert-park-radisson-heights",
+      "geoName": "Meridian/Franklin/Albert Park/Radisson Heights",
+      "geoLevel": "neighbourhood",
+      "recordCount": 903,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-misson-beltline.json",
+      "geoUid": "825-misson-beltline",
+      "geoName": "Misson/Beltline",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1423,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-montgomery-point-mckay-university-heights.json",
+      "geoUid": "825-montgomery-point-mckay-university-heights",
+      "geoName": "Montgomery/Point McKay/University Heights",
+      "geoLevel": "neighbourhood",
+      "recordCount": 824,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-mount-pleasant.json",
+      "geoUid": "825-mount-pleasant",
+      "geoName": "Mount Pleasant",
+      "geoLevel": "neighbourhood",
+      "recordCount": 349,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-north-glenmore-park-lakeview.json",
+      "geoUid": "825-north-glenmore-park-lakeview",
+      "geoName": "North Glenmore Park/Lakeview",
+      "geoLevel": "neighbourhood",
+      "recordCount": 704,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-north-haven-upper-north-haven-thorncliffe-highwood-greenview-cambrian-heights-queens-park-village.json",
+      "geoUid": "825-north-haven-upper-north-haven-thorncliffe-highwood-greenview-cambrian-heights-queens-park-village",
+      "geoName": "North Haven/Upper North Haven/Thorncliffe/Highwood/Greenview/Cambrian Heights/Queens Park Village",
+      "geoLevel": "neighbourhood",
+      "recordCount": 970,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-parkdale-st-andrews-heights-hounsfield-heights-briar-hill-hillhurst-west-hillhurst.json",
+      "geoUid": "825-parkdale-st-andrews-heights-hounsfield-heights-briar-hill-hillhurst-west-hillhurst",
+      "geoName": "Parkdale/St. Andrews Heights/Hounsfield Heights/Briar Hill/Hillhurst/West Hillhurst",
+      "geoLevel": "neighbourhood",
+      "recordCount": 976,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-ranchlands-hawkwood-arbour-lake-citadel-rocky-ridge-royal-oak.json",
+      "geoUid": "825-ranchlands-hawkwood-arbour-lake-citadel-rocky-ridge-royal-oak",
+      "geoName": "Ranchlands/Hawkwood/Arbour Lake/Citadel/Rocky Ridge/Royal Oak",
+      "geoLevel": "neighbourhood",
+      "recordCount": 322,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-rosedale-sunnyside-crescent-heights-renfrew.json",
+      "geoUid": "825-rosedale-sunnyside-crescent-heights-renfrew",
+      "geoName": "Rosedale/Sunnyside/Crescent Heights/Renfrew",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1202,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-rundle-pine-ridge-monterey-park.json",
+      "geoUid": "825-rundle-pine-ridge-monterey-park",
+      "geoName": "Rundle/Pine Ridge/Monterey Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 717,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-rutland-park-glamorgan.json",
+      "geoUid": "825-rutland-park-glamorgan",
+      "geoName": "Rutland Park/Glamorgan",
+      "geoLevel": "neighbourhood",
+      "recordCount": 759,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-scarboro-sunalta.json",
+      "geoUid": "825-scarboro-sunalta",
+      "geoName": "Scarboro/Sunalta",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1015,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-sherwood-kincora-hamptons-edgemont.json",
+      "geoUid": "825-sherwood-kincora-hamptons-edgemont",
+      "geoName": "Sherwood/Kincora/Hamptons/Edgemont",
+      "geoLevel": "neighbourhood",
+      "recordCount": 653,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-silver-springs-scenic-acres-tuscany.json",
+      "geoUid": "825-silver-springs-scenic-acres-tuscany",
+      "geoName": "Silver Springs/Scenic Acres/Tuscany",
+      "geoLevel": "neighbourhood",
+      "recordCount": 425,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-southeast-industrial-area-and-surrounding-communities.json",
+      "geoUid": "825-southeast-industrial-area-and-surrounding-communities",
+      "geoName": "Southeast Industrial Area and Surrounding Communities",
+      "geoLevel": "neighbourhood",
+      "recordCount": 981,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-strathcona-park-christie-park-patterson-coach-hill-signal-hill.json",
+      "geoUid": "825-strathcona-park-christie-park-patterson-coach-hill-signal-hill",
+      "geoName": "Strathcona Park/Christie Park/Patterson/Coach Hill/Signal Hill",
+      "geoLevel": "neighbourhood",
+      "recordCount": 375,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-valley-ridge-crestmont-cougar-ridge-west-springs-aspen-woods-springbank-hill-discovery-ridge.json",
+      "geoUid": "825-valley-ridge-crestmont-cougar-ridge-west-springs-aspen-woods-springbank-hill-discovery-ridge",
+      "geoName": "Valley Ridge/Crestmont/Cougar Ridge/West Springs/Aspen Woods/Springbank Hill/Discovery Ridge",
+      "geoLevel": "neighbourhood",
+      "recordCount": 174,
+      "yearMin": 2021,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-varsity.json",
+      "geoUid": "825-varsity",
+      "geoName": "Varsity",
+      "geoLevel": "neighbourhood",
+      "recordCount": 889,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-vista-heights-skyline-east-pegasus-mccall-north-airways-south-airways-mayland-heights-mayland.json",
+      "geoUid": "825-vista-heights-skyline-east-pegasus-mccall-north-airways-south-airways-mayland-heights-mayland",
+      "geoName": "Vista Heights/Skyline East/Pegasus/McCall/North Airways/South Airways/Mayland Heights/Mayland",
+      "geoLevel": "neighbourhood",
+      "recordCount": 984,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-whitehorn-temple.json",
+      "geoUid": "825-whitehorn-temple",
+      "geoName": "Whitehorn/Temple",
+      "geoLevel": "neighbourhood",
+      "recordCount": 352,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-wildwood-spruce-cliff-shaganappi-westgate-rosscarrock.json",
+      "geoUid": "825-wildwood-spruce-cliff-shaganappi-westgate-rosscarrock",
+      "geoName": "Wildwood/Spruce Cliff/Shaganappi/Westgate/Rosscarrock",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1101,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-willow-park-acadia-haysboro-southwood.json",
+      "geoUid": "825-willow-park-acadia-haysboro-southwood",
+      "geoName": "Willow Park/Acadia/Haysboro/Southwood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1384,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-windsor-park-meadowlark-park-britannia-elboya.json",
+      "geoUid": "825-windsor-park-meadowlark-park-britannia-elboya",
+      "geoName": "Windsor Park/Meadowlark Park/Britannia/Elboya",
+      "geoLevel": "neighbourhood",
+      "recordCount": 839,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_825-winston-heights-mountview-tuxedo-park-highland-park.json",
+      "geoUid": "825-winston-heights-mountview-tuxedo-park-highland-park",
+      "geoName": "Winston Heights/Mountview/Tuxedo Park/Highland Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 861,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-beverly-rundle-heights.json",
+      "geoUid": "835-beverly-rundle-heights",
+      "geoName": "Beverly/Rundle Heights",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1039,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-bonny-doon.json",
+      "geoUid": "835-bonny-doon",
+      "geoName": "Bonny Doon",
+      "geoLevel": "neighbourhood",
+      "recordCount": 908,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-britannia.json",
+      "geoUid": "835-britannia",
+      "geoName": "Britannia",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1099,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-callingwood.json",
+      "geoUid": "835-callingwood",
+      "geoName": "Callingwood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1140,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-capilano-upper-east-central.json",
+      "geoUid": "835-capilano-upper-east-central",
+      "geoName": "Capilano/Upper East Central",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1038,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-central-mcdougall.json",
+      "geoUid": "835-central-mcdougall",
+      "geoName": "Central McDougall",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1078,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-central-millwoods.json",
+      "geoUid": "835-central-millwoods",
+      "geoName": "Central Millwoods",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1073,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-central-south-west.json",
+      "geoUid": "835-central-south-west",
+      "geoName": "Central South West",
+      "geoLevel": "neighbourhood",
+      "recordCount": 937,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-clairview.json",
+      "geoUid": "835-clairview",
+      "geoName": "Clairview",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1133,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-confederation-park.json",
+      "geoUid": "835-confederation-park",
+      "geoName": "Confederation Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1173,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-delton-eastwood.json",
+      "geoUid": "835-delton-eastwood",
+      "geoName": "Delton/Eastwood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1110,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-devon.json",
+      "geoUid": "835-devon",
+      "geoName": "Devon",
+      "geoLevel": "neighbourhood",
+      "recordCount": 780,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-downtown.json",
+      "geoUid": "835-downtown",
+      "geoName": "Downtown",
+      "geoLevel": "neighbourhood",
+      "recordCount": 3028,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-east-castle-downs.json",
+      "geoUid": "835-east-castle-downs",
+      "geoName": "East Castle Downs",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1116,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-edmonton-cma-remainder.json",
+      "geoUid": "835-edmonton-cma-remainder",
+      "geoName": "Edmonton CMA Remainder",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1074,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-fort-saskatchewan.json",
+      "geoUid": "835-fort-saskatchewan",
+      "geoName": "Fort Saskatchewan",
+      "geoLevel": "neighbourhood",
+      "recordCount": 2807,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-garneau.json",
+      "geoUid": "835-garneau",
+      "geoName": "Garneau",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1178,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-gateway-blvd-west.json",
+      "geoUid": "835-gateway-blvd-west",
+      "geoName": "Gateway Blvd West",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1180,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-genwood-west-jasper-place.json",
+      "geoUid": "835-genwood-west-jasper-place",
+      "geoName": "Genwood/West Jasper Place",
+      "geoLevel": "neighbourhood",
+      "recordCount": 925,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-grandin.json",
+      "geoUid": "835-grandin",
+      "geoName": "Grandin",
+      "geoLevel": "neighbourhood",
+      "recordCount": 995,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-highlands-alberta-avenue.json",
+      "geoUid": "835-highlands-alberta-avenue",
+      "geoName": "Highlands/Alberta Avenue",
+      "geoLevel": "neighbourhood",
+      "recordCount": 624,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-leduc.json",
+      "geoUid": "835-leduc",
+      "geoName": "Leduc",
+      "geoLevel": "neighbourhood",
+      "recordCount": 2920,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-londonderry.json",
+      "geoUid": "835-londonderry",
+      "geoName": "Londonderry",
+      "geoLevel": "neighbourhood",
+      "recordCount": 766,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-lower-east-central.json",
+      "geoUid": "835-lower-east-central",
+      "geoName": "Lower East Central",
+      "geoLevel": "neighbourhood",
+      "recordCount": 982,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-mccauley.json",
+      "geoUid": "835-mccauley",
+      "geoName": "McCauley",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1273,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-mcleod-park-casselman.json",
+      "geoUid": "835-mcleod-park-casselman",
+      "geoName": "McLeod Park/Casselman",
+      "geoLevel": "neighbourhood",
+      "recordCount": 899,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-morinville.json",
+      "geoUid": "835-morinville",
+      "geoName": "Morinville",
+      "geoLevel": "neighbourhood",
+      "recordCount": 617,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-north-central-east.json",
+      "geoUid": "835-north-central-east",
+      "geoName": "North Central (East)",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1052,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-north-central-west.json",
+      "geoUid": "835-north-central-west",
+      "geoName": "North Central (West)",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1049,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-north-east.json",
+      "geoUid": "835-north-east",
+      "geoName": "North East",
+      "geoLevel": "neighbourhood",
+      "recordCount": 2920,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-north-jasper-place.json",
+      "geoUid": "835-north-jasper-place",
+      "geoName": "North Jasper Place",
+      "geoLevel": "neighbourhood",
+      "recordCount": 681,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-north-millwoods.json",
+      "geoUid": "835-north-millwoods",
+      "geoName": "North Millwoods",
+      "geoLevel": "neighbourhood",
+      "recordCount": 951,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-north-west-jasper-place.json",
+      "geoUid": "835-north-west-jasper-place",
+      "geoName": "North West Jasper Place",
+      "geoLevel": "neighbourhood",
+      "recordCount": 976,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-northmount-evansdale.json",
+      "geoUid": "835-northmount-evansdale",
+      "geoName": "Northmount/Evansdale",
+      "geoLevel": "neighbourhood",
+      "recordCount": 686,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-oliver.json",
+      "geoUid": "835-oliver",
+      "geoName": "Oliver",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1400,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-queen-mary-park.json",
+      "geoUid": "835-queen-mary-park",
+      "geoName": "Queen Mary Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1185,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-riverbend-whitemud-creek.json",
+      "geoUid": "835-riverbend-whitemud-creek",
+      "geoName": "Riverbend/Whitemud Creek",
+      "geoLevel": "neighbourhood",
+      "recordCount": 979,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-sherwood-park.json",
+      "geoUid": "835-sherwood-park",
+      "geoName": "Sherwood Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 978,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-south-jasper-place.json",
+      "geoUid": "835-south-jasper-place",
+      "geoName": "South Jasper Place",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1055,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-south-millwoods.json",
+      "geoUid": "835-south-millwoods",
+      "geoName": "South Millwoods",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1308,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-south-west-jasper-place.json",
+      "geoUid": "835-south-west-jasper-place",
+      "geoName": "South West Jasper Place",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1010,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-southgate-district.json",
+      "geoUid": "835-southgate-district",
+      "geoName": "Southgate District",
+      "geoLevel": "neighbourhood",
+      "recordCount": 972,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-spruce-grove.json",
+      "geoUid": "835-spruce-grove",
+      "geoName": "Spruce Grove",
+      "geoLevel": "neighbourhood",
+      "recordCount": 2372,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-st-albert.json",
+      "geoUid": "835-st-albert",
+      "geoName": "St. Albert",
+      "geoLevel": "neighbourhood",
+      "recordCount": 2676,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-stony-plain.json",
+      "geoUid": "835-stony-plain",
+      "geoName": "Stony Plain",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1989,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-strathcona-county-remainder.json",
+      "geoUid": "835-strathcona-county-remainder",
+      "geoName": "Strathcona County Remainder",
+      "geoLevel": "neighbourhood",
+      "recordCount": 734,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-strathearn-holyrood.json",
+      "geoUid": "835-strathearn-holyrood",
+      "geoName": "Strathearn/Holyrood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 904,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-terwillegar-rural-southwest.json",
+      "geoUid": "835-terwillegar-rural-southwest",
+      "geoName": "Terwillegar/Rural Southwest",
+      "geoLevel": "neighbourhood",
+      "recordCount": 941,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-thorncliffe-aldergrove.json",
+      "geoUid": "835-thorncliffe-aldergrove",
+      "geoName": "Thorncliffe/Aldergrove",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1034,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-university.json",
+      "geoUid": "835-university",
+      "geoName": "University",
+      "geoLevel": "neighbourhood",
+      "recordCount": 2790,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-west-castledowns.json",
+      "geoUid": "835-west-castledowns",
+      "geoName": "West Castledowns",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1209,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-west-central-north.json",
+      "geoUid": "835-west-central-north",
+      "geoName": "West Central (North)",
+      "geoLevel": "neighbourhood",
+      "recordCount": 946,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-west-central-south.json",
+      "geoUid": "835-west-central-south",
+      "geoName": "West Central (South)",
+      "geoLevel": "neighbourhood",
+      "recordCount": 705,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-west-jasper-place-rural.json",
+      "geoUid": "835-west-jasper-place-rural",
+      "geoName": "West Jasper Place/Rural",
+      "geoLevel": "neighbourhood",
+      "recordCount": 691,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-westwood.json",
+      "geoUid": "835-westwood",
+      "geoName": "Westwood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 911,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "neighbourhood_835-woodcroft-inglewood.json",
+      "geoUid": "835-woodcroft-inglewood",
+      "geoName": "Woodcroft/Inglewood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1187,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
       "file": "province_10.json",
       "geoUid": "10",
       "geoName": "Newfoundland and Labrador",
@@ -2344,10 +3316,271 @@
       "recordCount": 2639,
       "yearMin": 2016,
       "yearMax": 2025
+    },
+    {
+      "file": "zone_825-beltline.json",
+      "geoUid": "825-beltline",
+      "geoName": "Beltline",
+      "geoLevel": "zone",
+      "recordCount": 1668,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_825-chinook.json",
+      "geoUid": "825-chinook",
+      "geoName": "Chinook",
+      "geoLevel": "zone",
+      "recordCount": 1554,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_825-downtown.json",
+      "geoUid": "825-downtown",
+      "geoName": "Downtown",
+      "geoLevel": "zone",
+      "recordCount": 1521,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_825-fish-creek.json",
+      "geoUid": "825-fish-creek",
+      "geoName": "Fish Creek",
+      "geoLevel": "zone",
+      "recordCount": 1731,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_825-north-hill.json",
+      "geoUid": "825-north-hill",
+      "geoName": "North Hill",
+      "geoLevel": "zone",
+      "recordCount": 1604,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_825-northeast.json",
+      "geoUid": "825-northeast",
+      "geoName": "Northeast",
+      "geoLevel": "zone",
+      "recordCount": 1591,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_825-northwest.json",
+      "geoUid": "825-northwest",
+      "geoName": "Northwest",
+      "geoLevel": "zone",
+      "recordCount": 1854,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_825-other-centres.json",
+      "geoUid": "825-other-centres",
+      "geoName": "Other Centres",
+      "geoLevel": "zone",
+      "recordCount": 1400,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_825-southeast.json",
+      "geoUid": "825-southeast",
+      "geoName": "Southeast",
+      "geoLevel": "zone",
+      "recordCount": 1722,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_825-southwest.json",
+      "geoUid": "825-southwest",
+      "geoName": "Southwest",
+      "geoLevel": "zone",
+      "recordCount": 1725,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-castledown.json",
+      "geoUid": "835-castledown",
+      "geoName": "Castledown",
+      "geoLevel": "zone",
+      "recordCount": 1579,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-downtown.json",
+      "geoUid": "835-downtown",
+      "geoName": "Downtown",
+      "geoLevel": "zone",
+      "recordCount": 3028,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-east-central.json",
+      "geoUid": "835-east-central",
+      "geoName": "East Central",
+      "geoLevel": "zone",
+      "recordCount": 1658,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-fort-saskatchewan.json",
+      "geoUid": "835-fort-saskatchewan",
+      "geoName": "Fort Saskatchewan",
+      "geoLevel": "zone",
+      "recordCount": 2807,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-hudson-s-bay-reserve.json",
+      "geoUid": "835-hudson-s-bay-reserve",
+      "geoName": "Hudson's Bay Reserve",
+      "geoLevel": "zone",
+      "recordCount": 1455,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-jasper-place.json",
+      "geoUid": "835-jasper-place",
+      "geoName": "Jasper Place",
+      "geoLevel": "zone",
+      "recordCount": 1530,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-leduc.json",
+      "geoUid": "835-leduc",
+      "geoName": "Leduc",
+      "geoLevel": "zone",
+      "recordCount": 2920,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-millwoods.json",
+      "geoUid": "835-millwoods",
+      "geoName": "Millwoods",
+      "geoLevel": "zone",
+      "recordCount": 1690,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-north-central.json",
+      "geoUid": "835-north-central",
+      "geoName": "North Central",
+      "geoLevel": "zone",
+      "recordCount": 1712,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-north-east.json",
+      "geoUid": "835-north-east",
+      "geoName": "North East",
+      "geoLevel": "zone",
+      "recordCount": 2920,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-other-outlying-areas.json",
+      "geoUid": "835-other-outlying-areas",
+      "geoName": "Other Outlying Areas",
+      "geoLevel": "zone",
+      "recordCount": 1495,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-south-west.json",
+      "geoUid": "835-south-west",
+      "geoName": "South West",
+      "geoLevel": "zone",
+      "recordCount": 1793,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-spruce-grove.json",
+      "geoUid": "835-spruce-grove",
+      "geoName": "Spruce Grove",
+      "geoLevel": "zone",
+      "recordCount": 2372,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-st-albert.json",
+      "geoUid": "835-st-albert",
+      "geoName": "St. Albert",
+      "geoLevel": "zone",
+      "recordCount": 2676,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-stony-plain.json",
+      "geoUid": "835-stony-plain",
+      "geoName": "Stony Plain",
+      "geoLevel": "zone",
+      "recordCount": 1989,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-strathcona-county.json",
+      "geoUid": "835-strathcona-county",
+      "geoName": "Strathcona County",
+      "geoLevel": "zone",
+      "recordCount": 1275,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-university.json",
+      "geoUid": "835-university",
+      "geoName": "University",
+      "geoLevel": "zone",
+      "recordCount": 2790,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-west-central.json",
+      "geoUid": "835-west-central",
+      "geoName": "West Central",
+      "geoLevel": "zone",
+      "recordCount": 1549,
+      "yearMin": 2016,
+      "yearMax": 2025
+    },
+    {
+      "file": "zone_835-west-jasper-place.json",
+      "geoUid": "835-west-jasper-place",
+      "geoName": "West Jasper Place",
+      "geoLevel": "zone",
+      "recordCount": 1768,
+      "yearMin": 2016,
+      "yearMax": 2025
     }
   ],
-  "startsShardCount": 260,
-  "startsTotalRecords": 550935,
+  "startsShardCount": 397,
+  "startsTotalRecords": 700425,
   "startsShards": [
     {
       "file": "cma_001.json",
@@ -3883,6 +5116,762 @@
       "recordCount": 1980
     },
     {
+      "file": "neighbourhood_825-airdrie.json",
+      "geoUid": "825-airdrie",
+      "geoName": "Airdrie",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-altadore-south-calgary-cfb-currie-lincoln-park-richmond-upper-mount-royal-elbow-park-rideau-park.json",
+      "geoUid": "825-altadore-south-calgary-cfb-currie-lincoln-park-richmond-upper-mount-royal-elbow-park-rideau-park",
+      "geoName": "Altadore/South Calgary/CFB Currie/Lincoln Park/Richmond/Upper Mount Royal/Elbow Park/Rideau Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-bankview.json",
+      "geoUid": "825-bankview",
+      "geoName": "Bankview",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-bel-aire-mayfair-kelvin-grove-eagle-ridge-chinook-park.json",
+      "geoUid": "825-bel-aire-mayfair-kelvin-grove-eagle-ridge-chinook-park",
+      "geoName": "Bel-Aire/Mayfair/Kelvin Grove/Eagle Ridge/Chinook Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-bowness.json",
+      "geoUid": "825-bowness",
+      "geoName": "Bowness",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-braeside-bayview-palliser-pump-hill-oakridge-cedarbrae.json",
+      "geoUid": "825-braeside-bayview-palliser-pump-hill-oakridge-cedarbrae",
+      "geoName": "Braeside/Bayview/Palliser/Pump Hill/Oakridge/Cedarbrae",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-bridgeland-riverside.json",
+      "geoUid": "825-bridgeland-riverside",
+      "geoName": "Bridgeland/Riverside",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-bridlewood-evergreen-shawnee-slope-millrise-shawnessy-somerset-silverado-midnapore-parkland-deer-ridge-deer-run-sundanc.json",
+      "geoUid": "825-bridlewood-evergreen-shawnee-slope-millrise-shawnessy-somerset-silverado-midnapore-parkland-deer-ridge-deer-run-sundanc",
+      "geoName": "Bridlewood/Evergreen/Shawnee Slope/Millrise/Shawnessy/Somerset/Silverado/Midnapore/Parkland/Deer Ridge/Deer Run/Sundanc",
+      "geoLevel": "neighbourhood",
+      "recordCount": 90
+    },
+    {
+      "file": "neighbourhood_825-bridlewood-evergreen-shawnee-slope-millrise-shawnessy-somerset-silverado-midnapore-parkland-deer-ridge-deer-run-sundance-chaparral-walden-legacy.json",
+      "geoUid": "825-bridlewood-evergreen-shawnee-slope-millrise-shawnessy-somerset-silverado-midnapore-parkland-deer-ridge-deer-run-sundance-chaparral-walden-legacy",
+      "geoName": "Bridlewood/Evergreen/Shawnee Slope/Millrise/Shawnessy/Somerset/Silverado/Midnapore/Parkland/Deer Ridge/Deer Run/Sundance/Chaparral/Walden/Legacy",
+      "geoLevel": "neighbourhood",
+      "recordCount": 900
+    },
+    {
+      "file": "neighbourhood_825-calgary-cma-rural-calgary-city-rocky-view-county-chestermere-crossfield-irricana-beiseker.json",
+      "geoUid": "825-calgary-cma-rural-calgary-city-rocky-view-county-chestermere-crossfield-irricana-beiseker",
+      "geoName": "Calgary CMA (Rural Calgary City/Rocky View County/Chestermere/Crossfield/Irricana/Beiseker)",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-canyon-meadows-woodlands-woodbine-lake-bonavista-bonavista-downs-diamond-cove-queensland.json",
+      "geoUid": "825-canyon-meadows-woodlands-woodbine-lake-bonavista-bonavista-downs-diamond-cove-queensland",
+      "geoName": "Canyon Meadows/Woodlands/Woodbine/Lake Bonavista/Bonavista Downs/Diamond Cove/Queensland",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-capitol-hill-rosemont-banff-trail.json",
+      "geoUid": "825-capitol-hill-rosemont-banff-trail",
+      "geoName": "Capitol Hill/Rosemont/Banff Trail",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-charleswood-collingwood-brentwood.json",
+      "geoUid": "825-charleswood-collingwood-brentwood",
+      "geoName": "Charleswood/Collingwood/Brentwood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-cochrane.json",
+      "geoUid": "825-cochrane",
+      "geoName": "Cochrane",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-dalhousie.json",
+      "geoUid": "825-dalhousie",
+      "geoName": "Dalhousie",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-dover-southview-inglewood-alyth-bonnybrook-erin-woods-eastfield-golden-triangle.json",
+      "geoUid": "825-dover-southview-inglewood-alyth-bonnybrook-erin-woods-eastfield-golden-triangle",
+      "geoName": "Dover/Southview/Inglewood/Alyth/Bonnybrook/Erin Woods/Eastfield/Golden Triangle",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-downtown-eau-claire.json",
+      "geoUid": "825-downtown-eau-claire",
+      "geoName": "Downtown/Eau Claire",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-fairview-industrial-fairview-kingsland.json",
+      "geoUid": "825-fairview-industrial-fairview-kingsland",
+      "geoName": "Fairview Industrial/Fairview/Kingsland",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-falconridge-castleridge-coral-springs-martindale-skyview-ranch-saddle-ridge-taradale-horizon-sunridge-westwinds.json",
+      "geoUid": "825-falconridge-castleridge-coral-springs-martindale-skyview-ranch-saddle-ridge-taradale-horizon-sunridge-westwinds",
+      "geoName": "Falconridge/Castleridge/Coral Springs/Martindale/Skyview Ranch/Saddle Ridge/Taradale/Horizon/Sunridge/Westwinds",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-forest-lawn-forest-heights-penbrooke-meadows-red-carpet-applewood-park.json",
+      "geoUid": "825-forest-lawn-forest-heights-penbrooke-meadows-red-carpet-applewood-park",
+      "geoName": "Forest Lawn/Forest Heights/Penbrooke Meadows/Red Carpet/Applewood Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-glendale-glenbrook.json",
+      "geoUid": "825-glendale-glenbrook",
+      "geoName": "Glendale/Glenbrook",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-huntington-hills-beddington-heights-evanston-panorama-hills-country-hills-coventry-hills-country-hills-village-harvest-hills-hanson-ranch-hidden-valley-sandstone-valley-macewan-glen.json",
+      "geoUid": "825-huntington-hills-beddington-heights-evanston-panorama-hills-country-hills-coventry-hills-country-hills-village-harvest-hills-hanson-ranch-hidden-valley-sandstone-valley-macewan-glen",
+      "geoName": "Huntington Hills/Beddington Heights/Evanston/Panorama Hills/Country Hills/Coventry Hills/Country Hills Village/Harvest Hills/Hanson Ranch/Hidden Valley/Sandstone Valley/MacEwan Glen",
+      "geoLevel": "neighbourhood",
+      "recordCount": 900
+    },
+    {
+      "file": "neighbourhood_825-huntington-hills-beddington-heights-evanston-panorama-hills-country-hills-coventry-hills-country-hills-village-harvest.json",
+      "geoUid": "825-huntington-hills-beddington-heights-evanston-panorama-hills-country-hills-coventry-hills-country-hills-village-harvest",
+      "geoName": "Huntington Hills/Beddington Heights/Evanston/Panorama Hills/Country Hills/Coventry Hills/Country Hills Village/Harvest",
+      "geoLevel": "neighbourhood",
+      "recordCount": 90
+    },
+    {
+      "file": "neighbourhood_825-killarney-glengarry.json",
+      "geoUid": "825-killarney-glengarry",
+      "geoName": "Killarney/Glengarry",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-lower-mount-royal-cliff-bungalow.json",
+      "geoUid": "825-lower-mount-royal-cliff-bungalow",
+      "geoName": "Lower Mount Royal/Cliff Bungalow",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-manchester-industrial-roxboro-erlton.json",
+      "geoUid": "825-manchester-industrial-roxboro-erlton",
+      "geoName": "Manchester Industrial/Roxboro/Erlton",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-marlborough-park-marlborough-abbeydale.json",
+      "geoUid": "825-marlborough-park-marlborough-abbeydale",
+      "geoName": "Marlborough Park/Marlborough/Abbeydale",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-mckenzie-towne-new-brighton-copperfield-cranston-auburn-bay-mahogany-mckenzie-lake-douglasdale-glen.json",
+      "geoUid": "825-mckenzie-towne-new-brighton-copperfield-cranston-auburn-bay-mahogany-mckenzie-lake-douglasdale-glen",
+      "geoName": "McKenzie Towne/New Brighton/Copperfield/Cranston/Auburn Bay/Mahogany/McKenzie Lake/Douglasdale/Glen",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-meridian-franklin-albert-park-radisson-heights.json",
+      "geoUid": "825-meridian-franklin-albert-park-radisson-heights",
+      "geoName": "Meridian/Franklin/Albert Park/Radisson Heights",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-misson-beltline.json",
+      "geoUid": "825-misson-beltline",
+      "geoName": "Misson/Beltline",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-montgomery-point-mckay-university-heights.json",
+      "geoUid": "825-montgomery-point-mckay-university-heights",
+      "geoName": "Montgomery/Point McKay/University Heights",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-mount-pleasant.json",
+      "geoUid": "825-mount-pleasant",
+      "geoName": "Mount Pleasant",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-north-glenmore-park-lakeview.json",
+      "geoUid": "825-north-glenmore-park-lakeview",
+      "geoName": "North Glenmore Park/Lakeview",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-north-haven-upper-north-haven-thorncliffe-highwood-greenview-cambrian-heights-queens-park-village.json",
+      "geoUid": "825-north-haven-upper-north-haven-thorncliffe-highwood-greenview-cambrian-heights-queens-park-village",
+      "geoName": "North Haven/Upper North Haven/Thorncliffe/Highwood/Greenview/Cambrian Heights/Queens Park Village",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-parkdale-st-andrews-heights-hounsfield-heights-briar-hill-hillhurst-west-hillhurst.json",
+      "geoUid": "825-parkdale-st-andrews-heights-hounsfield-heights-briar-hill-hillhurst-west-hillhurst",
+      "geoName": "Parkdale/St. Andrews Heights/Hounsfield Heights/Briar Hill/Hillhurst/West Hillhurst",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-ranchlands-hawkwood-arbour-lake-citadel-rocky-ridge-royal-oak.json",
+      "geoUid": "825-ranchlands-hawkwood-arbour-lake-citadel-rocky-ridge-royal-oak",
+      "geoName": "Ranchlands/Hawkwood/Arbour Lake/Citadel/Rocky Ridge/Royal Oak",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-rosedale-sunnyside-crescent-heights-renfrew.json",
+      "geoUid": "825-rosedale-sunnyside-crescent-heights-renfrew",
+      "geoName": "Rosedale/Sunnyside/Crescent Heights/Renfrew",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-rundle-pine-ridge-monterey-park.json",
+      "geoUid": "825-rundle-pine-ridge-monterey-park",
+      "geoName": "Rundle/Pine Ridge/Monterey Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-rutland-park-glamorgan.json",
+      "geoUid": "825-rutland-park-glamorgan",
+      "geoName": "Rutland Park/Glamorgan",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-scarboro-sunalta.json",
+      "geoUid": "825-scarboro-sunalta",
+      "geoName": "Scarboro/Sunalta",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-sherwood-kincora-hamptons-edgemont.json",
+      "geoUid": "825-sherwood-kincora-hamptons-edgemont",
+      "geoName": "Sherwood/Kincora/Hamptons/Edgemont",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-silver-springs-scenic-acres-tuscany.json",
+      "geoUid": "825-silver-springs-scenic-acres-tuscany",
+      "geoName": "Silver Springs/Scenic Acres/Tuscany",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-southeast-industrial-area-and-surrounding-communities.json",
+      "geoUid": "825-southeast-industrial-area-and-surrounding-communities",
+      "geoName": "Southeast Industrial Area and Surrounding Communities",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-strathcona-park-christie-park-patterson-coach-hill-signal-hill.json",
+      "geoUid": "825-strathcona-park-christie-park-patterson-coach-hill-signal-hill",
+      "geoName": "Strathcona Park/Christie Park/Patterson/Coach Hill/Signal Hill",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-valley-ridge-crestmont-cougar-ridge-west-springs-aspen-woods-springbank-hill-discovery-ridge.json",
+      "geoUid": "825-valley-ridge-crestmont-cougar-ridge-west-springs-aspen-woods-springbank-hill-discovery-ridge",
+      "geoName": "Valley Ridge/Crestmont/Cougar Ridge/West Springs/Aspen Woods/Springbank Hill/Discovery Ridge",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-varsity.json",
+      "geoUid": "825-varsity",
+      "geoName": "Varsity",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-vista-heights-skyline-east-pegasus-mccall-north-airways-south-airways-mayland-heights-mayland.json",
+      "geoUid": "825-vista-heights-skyline-east-pegasus-mccall-north-airways-south-airways-mayland-heights-mayland",
+      "geoName": "Vista Heights/Skyline East/Pegasus/McCall/North Airways/South Airways/Mayland Heights/Mayland",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-whitehorn-temple.json",
+      "geoUid": "825-whitehorn-temple",
+      "geoName": "Whitehorn/Temple",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-wildwood-spruce-cliff-shaganappi-westgate-rosscarrock.json",
+      "geoUid": "825-wildwood-spruce-cliff-shaganappi-westgate-rosscarrock",
+      "geoName": "Wildwood/Spruce Cliff/Shaganappi/Westgate/Rosscarrock",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-willow-park-acadia-haysboro-southwood.json",
+      "geoUid": "825-willow-park-acadia-haysboro-southwood",
+      "geoName": "Willow Park/Acadia/Haysboro/Southwood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-windsor-park-meadowlark-park-britannia-elboya.json",
+      "geoUid": "825-windsor-park-meadowlark-park-britannia-elboya",
+      "geoName": "Windsor Park/Meadowlark Park/Britannia/Elboya",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_825-winston-heights-mountview-tuxedo-park-highland-park.json",
+      "geoUid": "825-winston-heights-mountview-tuxedo-park-highland-park",
+      "geoName": "Winston Heights/Mountview/Tuxedo Park/Highland Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-beverly-rundle-heights.json",
+      "geoUid": "835-beverly-rundle-heights",
+      "geoName": "Beverly/Rundle Heights",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-bonny-doon.json",
+      "geoUid": "835-bonny-doon",
+      "geoName": "Bonny Doon",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-britannia.json",
+      "geoUid": "835-britannia",
+      "geoName": "Britannia",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-callingwood.json",
+      "geoUid": "835-callingwood",
+      "geoName": "Callingwood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-capilano-upper-east-central.json",
+      "geoUid": "835-capilano-upper-east-central",
+      "geoName": "Capilano/Upper East Central",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-central-mcdougall.json",
+      "geoUid": "835-central-mcdougall",
+      "geoName": "Central McDougall",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-central-millwoods.json",
+      "geoUid": "835-central-millwoods",
+      "geoName": "Central Millwoods",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-central-south-west.json",
+      "geoUid": "835-central-south-west",
+      "geoName": "Central South West",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-clairview.json",
+      "geoUid": "835-clairview",
+      "geoName": "Clairview",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-confederation-park.json",
+      "geoUid": "835-confederation-park",
+      "geoName": "Confederation Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-delton-eastwood.json",
+      "geoUid": "835-delton-eastwood",
+      "geoName": "Delton/Eastwood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-devon.json",
+      "geoUid": "835-devon",
+      "geoName": "Devon",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-downtown.json",
+      "geoUid": "835-downtown",
+      "geoName": "Downtown",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1980
+    },
+    {
+      "file": "neighbourhood_835-east-castle-downs.json",
+      "geoUid": "835-east-castle-downs",
+      "geoName": "East Castle Downs",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-edmonton-cma-remainder.json",
+      "geoUid": "835-edmonton-cma-remainder",
+      "geoName": "Edmonton CMA Remainder",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-fort-saskatchewan.json",
+      "geoUid": "835-fort-saskatchewan",
+      "geoName": "Fort Saskatchewan",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1980
+    },
+    {
+      "file": "neighbourhood_835-garneau.json",
+      "geoUid": "835-garneau",
+      "geoName": "Garneau",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-gateway-blvd-west.json",
+      "geoUid": "835-gateway-blvd-west",
+      "geoName": "Gateway Blvd West",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-genwood-west-jasper-place.json",
+      "geoUid": "835-genwood-west-jasper-place",
+      "geoName": "Genwood/West Jasper Place",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-grandin.json",
+      "geoUid": "835-grandin",
+      "geoName": "Grandin",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-highlands-alberta-avenue.json",
+      "geoUid": "835-highlands-alberta-avenue",
+      "geoName": "Highlands/Alberta Avenue",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-leduc.json",
+      "geoUid": "835-leduc",
+      "geoName": "Leduc",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1980
+    },
+    {
+      "file": "neighbourhood_835-londonderry.json",
+      "geoUid": "835-londonderry",
+      "geoName": "Londonderry",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-lower-east-central.json",
+      "geoUid": "835-lower-east-central",
+      "geoName": "Lower East Central",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-mccauley.json",
+      "geoUid": "835-mccauley",
+      "geoName": "McCauley",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-mcleod-park-casselman.json",
+      "geoUid": "835-mcleod-park-casselman",
+      "geoName": "McLeod Park/Casselman",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-morinville.json",
+      "geoUid": "835-morinville",
+      "geoName": "Morinville",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-north-central-east.json",
+      "geoUid": "835-north-central-east",
+      "geoName": "North Central (East)",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-north-central-west.json",
+      "geoUid": "835-north-central-west",
+      "geoName": "North Central (West)",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-north-east.json",
+      "geoUid": "835-north-east",
+      "geoName": "North East",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1980
+    },
+    {
+      "file": "neighbourhood_835-north-jasper-place.json",
+      "geoUid": "835-north-jasper-place",
+      "geoName": "North Jasper Place",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-north-millwoods.json",
+      "geoUid": "835-north-millwoods",
+      "geoName": "North Millwoods",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-north-west-jasper-place.json",
+      "geoUid": "835-north-west-jasper-place",
+      "geoName": "North West Jasper Place",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-northmount-evansdale.json",
+      "geoUid": "835-northmount-evansdale",
+      "geoName": "Northmount/Evansdale",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-oliver.json",
+      "geoUid": "835-oliver",
+      "geoName": "Oliver",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-queen-mary-park.json",
+      "geoUid": "835-queen-mary-park",
+      "geoName": "Queen Mary Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-riverbend-whitemud-creek.json",
+      "geoUid": "835-riverbend-whitemud-creek",
+      "geoName": "Riverbend/Whitemud Creek",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-sherwood-park.json",
+      "geoUid": "835-sherwood-park",
+      "geoName": "Sherwood Park",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-south-jasper-place.json",
+      "geoUid": "835-south-jasper-place",
+      "geoName": "South Jasper Place",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-south-millwoods.json",
+      "geoUid": "835-south-millwoods",
+      "geoName": "South Millwoods",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-south-west-jasper-place.json",
+      "geoUid": "835-south-west-jasper-place",
+      "geoName": "South West Jasper Place",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-southgate-district.json",
+      "geoUid": "835-southgate-district",
+      "geoName": "Southgate District",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-spruce-grove.json",
+      "geoUid": "835-spruce-grove",
+      "geoName": "Spruce Grove",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1980
+    },
+    {
+      "file": "neighbourhood_835-st-albert.json",
+      "geoUid": "835-st-albert",
+      "geoName": "St. Albert",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1980
+    },
+    {
+      "file": "neighbourhood_835-stony-plain.json",
+      "geoUid": "835-stony-plain",
+      "geoName": "Stony Plain",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1980
+    },
+    {
+      "file": "neighbourhood_835-strathcona-county-remainder.json",
+      "geoUid": "835-strathcona-county-remainder",
+      "geoName": "Strathcona County Remainder",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-strathearn-holyrood.json",
+      "geoUid": "835-strathearn-holyrood",
+      "geoName": "Strathearn/Holyrood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-terwillegar-rural-southwest.json",
+      "geoUid": "835-terwillegar-rural-southwest",
+      "geoName": "Terwillegar/Rural Southwest",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-thorncliffe-aldergrove.json",
+      "geoUid": "835-thorncliffe-aldergrove",
+      "geoName": "Thorncliffe/Aldergrove",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-university.json",
+      "geoUid": "835-university",
+      "geoName": "University",
+      "geoLevel": "neighbourhood",
+      "recordCount": 1980
+    },
+    {
+      "file": "neighbourhood_835-west-castledowns.json",
+      "geoUid": "835-west-castledowns",
+      "geoName": "West Castledowns",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-west-central-north.json",
+      "geoUid": "835-west-central-north",
+      "geoName": "West Central (North)",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-west-central-south.json",
+      "geoUid": "835-west-central-south",
+      "geoName": "West Central (South)",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-west-jasper-place-rural.json",
+      "geoUid": "835-west-jasper-place-rural",
+      "geoName": "West Jasper Place/Rural",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-westwood.json",
+      "geoUid": "835-westwood",
+      "geoName": "Westwood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
+      "file": "neighbourhood_835-woodcroft-inglewood.json",
+      "geoUid": "835-woodcroft-inglewood",
+      "geoName": "Woodcroft/Inglewood",
+      "geoLevel": "neighbourhood",
+      "recordCount": 990
+    },
+    {
       "file": "province_10.json",
       "geoUid": "10",
       "geoName": "Newfoundland and Labrador",
@@ -4168,7 +6157,210 @@
       "geoName": "West",
       "geoLevel": "zone",
       "recordCount": 1980
+    },
+    {
+      "file": "zone_825-beltline.json",
+      "geoUid": "825-beltline",
+      "geoName": "Beltline",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_825-chinook.json",
+      "geoUid": "825-chinook",
+      "geoName": "Chinook",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_825-downtown.json",
+      "geoUid": "825-downtown",
+      "geoName": "Downtown",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_825-fish-creek.json",
+      "geoUid": "825-fish-creek",
+      "geoName": "Fish Creek",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_825-north-hill.json",
+      "geoUid": "825-north-hill",
+      "geoName": "North Hill",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_825-northeast.json",
+      "geoUid": "825-northeast",
+      "geoName": "Northeast",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_825-northwest.json",
+      "geoUid": "825-northwest",
+      "geoName": "Northwest",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_825-other-centres.json",
+      "geoUid": "825-other-centres",
+      "geoName": "Other Centres",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_825-southeast.json",
+      "geoUid": "825-southeast",
+      "geoName": "Southeast",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_825-southwest.json",
+      "geoUid": "825-southwest",
+      "geoName": "Southwest",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_835-castledown.json",
+      "geoUid": "835-castledown",
+      "geoName": "Castledown",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_835-downtown.json",
+      "geoUid": "835-downtown",
+      "geoName": "Downtown",
+      "geoLevel": "zone",
+      "recordCount": 1980
+    },
+    {
+      "file": "zone_835-east-central.json",
+      "geoUid": "835-east-central",
+      "geoName": "East Central",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_835-fort-saskatchewan.json",
+      "geoUid": "835-fort-saskatchewan",
+      "geoName": "Fort Saskatchewan",
+      "geoLevel": "zone",
+      "recordCount": 1980
+    },
+    {
+      "file": "zone_835-hudson-s-bay-reserve.json",
+      "geoUid": "835-hudson-s-bay-reserve",
+      "geoName": "Hudson's Bay Reserve",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_835-jasper-place.json",
+      "geoUid": "835-jasper-place",
+      "geoName": "Jasper Place",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_835-leduc.json",
+      "geoUid": "835-leduc",
+      "geoName": "Leduc",
+      "geoLevel": "zone",
+      "recordCount": 1980
+    },
+    {
+      "file": "zone_835-millwoods.json",
+      "geoUid": "835-millwoods",
+      "geoName": "Millwoods",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_835-north-central.json",
+      "geoUid": "835-north-central",
+      "geoName": "North Central",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_835-north-east.json",
+      "geoUid": "835-north-east",
+      "geoName": "North East",
+      "geoLevel": "zone",
+      "recordCount": 1980
+    },
+    {
+      "file": "zone_835-other-outlying-areas.json",
+      "geoUid": "835-other-outlying-areas",
+      "geoName": "Other Outlying Areas",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_835-south-west.json",
+      "geoUid": "835-south-west",
+      "geoName": "South West",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_835-spruce-grove.json",
+      "geoUid": "835-spruce-grove",
+      "geoName": "Spruce Grove",
+      "geoLevel": "zone",
+      "recordCount": 1980
+    },
+    {
+      "file": "zone_835-st-albert.json",
+      "geoUid": "835-st-albert",
+      "geoName": "St. Albert",
+      "geoLevel": "zone",
+      "recordCount": 1980
+    },
+    {
+      "file": "zone_835-stony-plain.json",
+      "geoUid": "835-stony-plain",
+      "geoName": "Stony Plain",
+      "geoLevel": "zone",
+      "recordCount": 1980
+    },
+    {
+      "file": "zone_835-strathcona-county.json",
+      "geoUid": "835-strathcona-county",
+      "geoName": "Strathcona County",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_835-university.json",
+      "geoUid": "835-university",
+      "geoName": "University",
+      "geoLevel": "zone",
+      "recordCount": 1980
+    },
+    {
+      "file": "zone_835-west-central.json",
+      "geoUid": "835-west-central",
+      "geoName": "West Central",
+      "geoLevel": "zone",
+      "recordCount": 990
+    },
+    {
+      "file": "zone_835-west-jasper-place.json",
+      "geoUid": "835-west-jasper-place",
+      "geoName": "West Jasper Place",
+      "geoLevel": "zone",
+      "recordCount": 990
     }
   ],
-  "secondaryTotalRecords": 284
+  "secondaryTotalRecords": 1825
 }
