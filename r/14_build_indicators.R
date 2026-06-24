@@ -215,6 +215,42 @@ if (length(derived_series) > 0) {
   }
 }
 
+# --- Preserve series we couldn't rebuild this run ---------------------------
+# Some upstreams aren't present in every workflow — e.g. the weekly indicators
+# refresh has no data/historical_rental.csv (that's the monthly rental scrape's
+# output), so cmhc.rent.* and the derived.rent.* off them can't be built here.
+# The shards get rebuilt from scratch (clear_dir below), so carry any non-disabled
+# catalog series that's missing from all_obs forward from the existing shards.
+built_ids   <- unique(all_obs$id)
+catalog_ids <- vapply(Filter(function(s) !isTRUE(s$disabled), catalog$series),
+                      function(s) s$id %||% "", character(1))
+missing_ids <- setdiff(catalog_ids, built_ids)
+if (length(missing_ids) && dir.exists(INDICATORS_DIR)) {
+  shard_files <- setdiff(list.files(INDICATORS_DIR, pattern = "\\.json$", full.names = TRUE),
+                         file.path(INDICATORS_DIR, "_catalog.json"))
+  preserved <- bind_rows(lapply(shard_files, function(f) {
+    doc <- tryCatch(jsonlite::read_json(f, simplifyVector = TRUE), error = function(e) NULL)
+    if (is.null(doc$records) || !length(doc$records)) return(NULL)
+    recs <- tibble::as_tibble(doc$records)
+    recs[recs$id %in% missing_ids, , drop = FALSE]
+  }))
+  if (nrow(preserved) > 0) {
+    preserved <- preserved %>% rowwise() %>% mutate(
+      seriesId  = cat_by_id[[id]]$seriesId %||% cat_by_id[[id]]$vectorId %||% id,
+      units     = cat_by_id[[id]]$units     %||% NA_character_,
+      geo       = cat_by_id[[id]]$geo       %||% NA_character_,
+      frequency = cat_by_id[[id]]$frequency %||% NA_character_,
+      transform = cat_by_id[[id]]$transform %||% NA_character_
+    ) %>% ungroup() %>%
+      transmute(id, seriesId, date = as.character(date), value = as.numeric(value),
+                units, geo, frequency, transform)
+    all_obs <- bind_rows(all_obs, preserved)
+    message(sprintf("[14] preserved %d records for %d unbuilt series (%s)",
+                    nrow(preserved), length(unique(preserved$id)),
+                    paste(unique(preserved$id), collapse = ", ")))
+  }
+}
+
 # --- Attach catalog metadata + map to displayGroup --------------------------
 all_obs <- all_obs %>%
   mutate(date = as.character(as.Date(date))) %>%

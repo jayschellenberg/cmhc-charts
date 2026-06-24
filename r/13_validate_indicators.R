@@ -123,8 +123,12 @@ validate_cmhc <- function(row) {
   # check is just "the upstream CSV exists and has rows".
   csv <- file.path(DATA_DIR, "historical_rental.csv")
   if (!file.exists(csv)) {
-    return(list(ok = FALSE, actualTitle = NA, latest = NA,
-                reason = "data/historical_rental.csv missing — run r/01_scrape_historical.R"))
+    # historical_rental.csv is produced by the monthly rental scrape
+    # (r/01_scrape_historical.R), NOT the weekly indicators refresh — so it's
+    # legitimately absent here. Soft-pass: r/14 carries the existing cmhc.rent
+    # records forward when it can't rebuild them, so don't abort the pipeline.
+    return(list(ok = TRUE, actualTitle = row$expectedTitle, latest = NA,
+                reason = "WARN: historical_rental.csv absent — cmhc.rent preserved from last build"))
   }
   list(ok = TRUE, actualTitle = row$expectedTitle, latest = NA, reason = "")
 }
