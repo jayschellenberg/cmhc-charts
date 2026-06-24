@@ -40,13 +40,17 @@ SRMS_DIMENSIONS <- c("Bedroom Type", "Structure Size")
 sk_cmas <- CMAS %>%
   dplyr::filter(prov_uid == "47") %>%
   dplyr::transmute(uid, name, level, prov_uid)
+ab_cmas <- CMAS %>%
+  dplyr::filter(prov_uid == "48") %>%
+  dplyr::transmute(uid, name, level, prov_uid)
 geos <- bind_rows(
-  tibble::tibble(uid   = c(MB_PROVINCE_UID, "47"),
-                 name  = c("Manitoba", "Saskatchewan"),
+  tibble::tibble(uid   = c(MB_PROVINCE_UID, "47", "48"),
+                 name  = c("Manitoba", "Saskatchewan", "Alberta"),
                  level = "province",
-                 prov_uid = c("46", "47")),
+                 prov_uid = c("46", "47", "48")),
   MB_CMAS        %>% dplyr::mutate(prov_uid = "46"),
   sk_cmas,
+  ab_cmas,
   MB_CENTRE_CSDS %>% dplyr::mutate(prov_uid = "46")
 )
 
@@ -147,7 +151,7 @@ records <- slim %>%
     geoLevel = GeoLevel,
     prov     = GeoProv,
     provName = dplyr::recode(GeoProv, "46" = "Manitoba", "47" = "Saskatchewan",
-                             .default = GeoProv),
+                             "48" = "Alberta", .default = GeoProv),
     year     = Year,
     series   = Series,
     dimension = Dimension,

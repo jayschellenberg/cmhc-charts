@@ -58,7 +58,7 @@ PROVINCES <- tibble::tribble(
   "13",  "New Brunswick",               "basic",
   "24",  "Quebec",                      "basic",
   "35",  "Ontario",                     "basic",
-  "48",  "Alberta",                     "basic",
+  "48",  "Alberta",                     "full",
   "59",  "British Columbia",            "basic",
   "60",  "Yukon",                       "basic",
   "61",  "Northwest Territories",       "basic"
@@ -127,7 +127,8 @@ CENTRE_CSDS <- tibble::tribble(
 # current data only Winnipeg yields zone/neighbourhood shards (the smaller MB
 # CAs return empty). Regina + Saskatoon are Saskatchewan's equivalents.
 # Filtered to the in-scope provinces' CMA UIDs.
-ZONE_CMAS <- c("Winnipeg" = "602", "Regina" = "705", "Saskatoon" = "725")
+ZONE_CMAS <- c("Winnipeg" = "602", "Regina" = "705", "Saskatoon" = "725",
+               "Calgary" = "825", "Edmonton" = "835")
 ZONE_CMAS <- ZONE_CMAS[unname(ZONE_CMAS) %in% CMAS$uid]
 
 # --- RMS catalog -------------------------------------------------------------
