@@ -164,12 +164,8 @@ for (bk in c("Survey Zones", "Neighbourhoods")) {
 # =============================================================================
 # Part 3 — Unify and write
 # =============================================================================
-slug <- function(x) {
-  x <- tolower(x)
-  x <- gsub("[^a-z0-9]+", "-", x)
-  x <- gsub("^-+|-+$", "", x)
-  x
-}
+# Zone / neighbourhood GeoUID slug is the capped, Windows-path-safe zone_slug()
+# from cmhc_helpers.R (shared with r/02).
 
 # Helper: extract Year + Quarter for an Scss result frame. Defensive against
 # missing DateString (zone-snapshot responses) and missing Date (rare).
@@ -219,7 +215,7 @@ flatten_zone <- function(df_list, level_label) {
         Category = if (first(.$Dimension) %in% names(df)) df[[first(.$Dimension)]] else NA_character_,
         GeoLevel = level_label,
         GeoName  = ZoneName,
-        GeoUID   = paste0(ParentUID, "-", slug(ZoneName))
+        GeoUID   = paste0(ParentUID, "-", zone_slug(ZoneName))
       )
   }))
 }
