@@ -69,8 +69,12 @@ export async function initSecondary({ manifest }) {
   // --- Province → Centre geography index, built from whatever the Srms scrape
   // returned (currently Winnipeg in MB; Regina + Saskatoon in SK). prov/provName
   // are carried on every record by r/06; new centres appear here automatically.
-  const PROV_ORDER     = ['46', '47'];                  // Manitoba first, then Saskatchewan
+  const MB_UID         = '46';                          // Manitoba — pinned first / default
   const DEFAULT_CENTRE = { '46': '602', '47': '725' };  // Winnipeg / Saskatoon
+  // Remember the last-used province across visits (falls back to Manitoba).
+  const PROV_LS_KEY = 'sr-prov';
+  const readSavedProv = () => { try { return localStorage.getItem(PROV_LS_KEY); } catch { return null; } };
+  const saveProv = (p) => { try { localStorage.setItem(PROV_LS_KEY, p); } catch {} };
   const provNames      = new Map();
   const centresByProv  = new Map();                     // prov uid → Map(geoUid → name)
   for (const r of records) {
@@ -80,8 +84,13 @@ export async function initSecondary({ manifest }) {
     if (!centresByProv.has(p)) centresByProv.set(p, new Map());
     centresByProv.get(p).set(String(r.geoUid), r.geoName);
   }
-  const provs = [...PROV_ORDER.filter(p => centresByProv.has(p)),
-                 ...[...centresByProv.keys()].filter(p => !PROV_ORDER.includes(p))];
+  // Manitoba pinned first (home province / default); every other province with
+  // Srms data follows alphabetically by name.
+  const provs = [
+    ...(centresByProv.has(MB_UID) ? [MB_UID] : []),
+    ...[...centresByProv.keys()].filter(p => p !== MB_UID)
+       .sort((a, b) => (provNames.get(a) || a).localeCompare(provNames.get(b) || b)),
+  ];
   const centresFor = (p) => [...(centresByProv.get(p)?.entries() || [])]
     .map(([uid, name]) => ({ uid, name }))
     .sort((a, b) => a.name.localeCompare(b.name));
@@ -95,7 +104,7 @@ export async function initSecondary({ manifest }) {
   const yMin = Math.min(...years), yMax = Math.max(...years);
 
   const state = {
-    prov:     provs.includes('46') ? '46' : provs[0],
+    prov:     (() => { const s = readSavedProv(); return (s && provs.includes(s)) ? s : (provs.includes(MB_UID) ? MB_UID : provs[0]); })(),
     centre:   '',
     yearFrom: Math.max(yMin, yMax - 9),
     yearTo:   yMax,
@@ -279,6 +288,7 @@ export async function initSecondary({ manifest }) {
   // ----- Event wiring --------------------------------------------------------
   $province.addEventListener('change', () => {
     state.prov = $province.value;
+    saveProv(state.prov);                           // remember for next visit
     state.centre = pickDefaultCentre(state.prov);   // default centre per province
     populateCentres();
     scheduleRender();
