@@ -113,9 +113,10 @@ htp_ok <- compact(htp_pull)
 message(sprintf("[05] HTP rows returned: %d / %d", length(htp_ok), length(htp_pull)))
 
 # =============================================================================
-# Part 2 — Survey Zones + Neighbourhoods via yearly snapshot stitching
+# Part 2 — Survey Zones + Neighbourhoods + Census Subdivisions via yearly
+# snapshot stitching (CMHC exposes CSDs as a per-CMA breakdown, same as zones).
 # =============================================================================
-message("\n[05] === Survey Zones + Neighbourhoods ===")
+message("\n[05] === Survey Zones + Neighbourhoods + Census Subdivisions ===")
 
 current_year <- as.integer(format(Sys.Date(), "%Y"))
 years <- seq(SCSS_ZONE_START_YEAR, current_year)
@@ -152,7 +153,7 @@ pull_zone_snapshot <- function(uid, parent, series, dimension, frequency, year, 
 }
 
 zone_results <- list()
-for (bk in c("Survey Zones", "Neighbourhoods")) {
+for (bk in c("Survey Zones", "Neighbourhoods", "Census Subdivision")) {
   grid <- zone_grid(bk)
   message(sprintf("[05] %s queries: %d", bk, nrow(grid)))
   res <- pmap(grid, pull_zone_snapshot)
@@ -221,8 +222,9 @@ flatten_zone <- function(df_list, level_label) {
 }
 zone_combined <- flatten_zone(zone_results[["Survey Zones"]],    "zone")
 nbhd_combined <- flatten_zone(zone_results[["Neighbourhoods"]], "neighbourhood")
+csd_combined  <- flatten_zone(zone_results[["Census Subdivision"]], "csd")
 
-all_combined <- bind_rows(hist_combined, zone_combined, nbhd_combined)
+all_combined <- bind_rows(hist_combined, zone_combined, nbhd_combined, csd_combined)
 if (nrow(all_combined) == 0) {
   stop("[05] No Scss data returned from any query.")
 }
