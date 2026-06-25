@@ -279,10 +279,32 @@ function geoStripId(id, geo) {
   return parts.join('.');
 }
 
+// A city's tiles/lines only appear when its parent province is also selected —
+// Jason doesn't typically mix cities across provinces. National + province geos
+// pass through unchanged. Applied to both the snapshot and the charts.
+const CITY_PROVINCE = {
+  'Winnipeg-CMA': 'MB', 'Regina-CMA': 'SK', 'Saskatoon-CMA': 'SK',
+  'Calgary-CMA': 'AB', 'Edmonton-CMA': 'AB',
+};
+function effectiveGeos(enabled) {
+  return new Set([...enabled].filter(g => {
+    const prov = CITY_PROVINCE[g];
+    return !prov || enabled.has(prov);
+  }));
+}
+// Geography tier for a tile (drives the snapshot's section grouping).
+function geoTier(geo) {
+  if (geo && /-CMA$/.test(geo)) return 'urban';
+  if (!geo || geo === 'CA') return 'national';
+  return 'provincial';
+}
+
 function buildSnapshot(catalog, shards) {
   const $bar = document.getElementById('mi-snapshot');
   if (!$bar) return;
   $bar.replaceChildren();
+  const eff = effectiveGeos(state.geosEnabled);
+  const tiers = { national: [], provincial: [], urban: [] };
   Object.entries(catalog.charts || {}).forEach(([chartId, c]) => {
     if (!c.snapshotPick) return;
     const shard = shards[c.displayGroup];
@@ -290,17 +312,32 @@ function buildSnapshot(catalog, shards) {
     const pick = (shard.series || []).find(s => s.id === c.snapshotPick);
     if (!pick) return;
     // Geo-aware: one tile per enabled geography for the snapshotPick's metric —
-    // its same-metric siblings (same chartId + same geo-stripped id) across geos.
-    // Single-geo / national metrics always render, ignoring the filter.
+    // its same-metric siblings (same chartId + same geo-stripped id). Single-geo
+    // / national metrics always render; tiles bucket into geography tiers, in
+    // catalog (logical) chart order within each tier.
     const key = geoStripId(pick.id, pick.geo);
     const sibs = (shard.series || [])
       .filter(s => s.chartId === chartId && geoStripId(s.id, s.geo) === key);
     const filterApplies = new Set(sibs.map(s => s.geo)).size > 1 && c.geoFilter !== false;
     sibs
-      .filter(s => !filterApplies || state.geosEnabled.has(s.geo))
+      .filter(s => !filterApplies || eff.has(s.geo))
       .sort((a, b) => (GEO_ORDER.indexOf(a.geo) + 1 || 99) - (GEO_ORDER.indexOf(b.geo) + 1 || 99))
-      .forEach(meta => renderSnapshotTile(c, meta, shard, $bar));
+      .forEach(meta => tiers[geoTier(meta.geo)].push({ c, meta, shard }));
   });
+  [['national', 'National'], ['provincial', 'Provincial'], ['urban', 'Urban Centre']]
+    .forEach(([tier, title]) => {
+      const items = tiers[tier];
+      if (!items.length) return;
+      const section = document.createElement('section');
+      const h = document.createElement('h3');
+      h.className = 'cmhc-snapshot-title';
+      h.textContent = title;
+      const grid = document.createElement('div');
+      grid.className = 'cmhc-snapshot-grid';
+      items.forEach(({ c, meta, shard }) => renderSnapshotTile(c, meta, shard, grid));
+      section.append(h, grid);
+      $bar.appendChild(section);
+    });
 }
 
 function renderSnapshotTile(c, meta, shard, $bar) {
@@ -437,8 +474,9 @@ function buildChartSections(catalog, shards) {
       // also bypass the CA/MB/Winnipeg toggle so all their lines stay visible.
       const chartGeos = new Set(seriesMetaAll.map(s => s.geo));
       const filterApplies = chartGeos.size > 1 && chartCfg.geoFilter !== false;
+      const eff = effectiveGeos(state.geosEnabled);
       const seriesMeta = filterApplies
-        ? seriesMetaAll.filter(s => state.geosEnabled.has(s.geo))
+        ? seriesMetaAll.filter(s => eff.has(s.geo))
         : seriesMetaAll;
       const ids = new Set(seriesMeta.map(s => s.id));
       const records = recordsAll.filter(r => ids.has(r.id));
@@ -611,8 +649,9 @@ function rerenderCards() {
     // (and geoFilter:false charts) always show their lines.
     const chartGeos = new Set(seriesMetaAll.map(s => s.geo));
     const filterApplies = chartGeos.size > 1 && chartCfg?.geoFilter !== false;
+    const eff = effectiveGeos(state.geosEnabled);
     const seriesMeta = filterApplies
-      ? seriesMetaAll.filter(s => state.geosEnabled.has(s.geo))
+      ? seriesMetaAll.filter(s => eff.has(s.geo))
       : seriesMetaAll;
     const ids = new Set(seriesMeta.map(s => s.id));
     const records = recordsAll.filter(r => ids.has(r.id));
