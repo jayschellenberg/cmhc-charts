@@ -1,14 +1,17 @@
 # =============================================================================
 # r/02_scrape_zone_snapshots.R
-# Loop year=CMHC_ZONE_START (default 2000) .. current to pull Survey Zone +
-# Neighbourhood snapshots from
-# CMHC and stitch into long-form CSVs. The cmhc API does not expose historical
-# time series at zone/neighbourhood level — yearly snapshots are the only
-# path. Missing years are silently dropped, not interpolated.
+# Loop year=CMHC_ZONE_START (default 2000) .. current to pull Survey Zone,
+# Neighbourhood, and Census Subdivision snapshots from CMHC and stitch into
+# long-form CSVs. The cmhc API does not expose historical time series at
+# zone/neighbourhood/CSD level — yearly snapshots are the only path. Missing
+# years are silently dropped, not interpolated. (CMHC publishes CSDs as a
+# breakdown OF a CMA, not at province level — the province-level CSD breakdown
+# 500s for every province, so we discover them per-CMA here, same as zones.)
 #
 # Outputs:
 #   data/zone_snapshots.csv
 #   data/neighbourhood_snapshots.csv
+#   data/csd_snapshots.csv
 # =============================================================================
 
 .this_dir <- {
@@ -166,5 +169,6 @@ run_breakdown <- function(breakdown, out_filename, geo_level) {
                   suppressWarnings(max(slim$Year, na.rm = TRUE))))
 }
 
-run_breakdown("Survey Zones",    "zone_snapshots.csv",          "zone")
-run_breakdown("Neighbourhoods",  "neighbourhood_snapshots.csv", "neighbourhood")
+run_breakdown("Survey Zones",       "zone_snapshots.csv",          "zone")
+run_breakdown("Neighbourhoods",     "neighbourhood_snapshots.csv", "neighbourhood")
+run_breakdown("Census Subdivision", "csd_snapshots.csv",           "csd")
