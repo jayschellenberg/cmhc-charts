@@ -558,15 +558,17 @@ function wireSidebar(catalog, manifest) {
     schedule();
   });
 
-  // Geography toggles — live-update charts + KPI tiles.
-  document.querySelectorAll('#mi-geo-toggles input[type=checkbox]').forEach(cb => {
-    cb.addEventListener('change', () => {
-      const geo = cb.dataset.geo;
-      if (cb.checked) state.geosEnabled.add(geo);
-      else            state.geosEnabled.delete(geo);
-      schedule();
-    });
-  });
+  // Geography selectors (multi-select: Province/national + CMA) — live-update
+  // charts + KPI tiles. The enabled set is the union of both dropdowns' selections.
+  const geoSelects = ['mi-geo-prov', 'mi-geo-cma']
+    .map(id => document.getElementById(id)).filter(Boolean);
+  const readGeos = () => new Set(
+    geoSelects.flatMap(sel => [...sel.selectedOptions].map(o => o.value)));
+  if (geoSelects.length) state.geosEnabled = readGeos();   // seed from the dropdowns
+  geoSelects.forEach(sel => sel.addEventListener('change', () => {
+    state.geosEnabled = readGeos();
+    schedule();
+  }));
 }
 
 function applySectionVisibility() {

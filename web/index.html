@@ -454,21 +454,35 @@
 
         <section>
           <h2 class="text-xs font-semibold text-neutral-500 uppercase tracking-wider mb-2">Geographies</h2>
-          <div id="mi-geo-toggles" class="grid gap-1 text-sm">
-            <label class="flex items-center gap-1"><input type="checkbox" data-geo="CA"           checked /> Canada</label>
-            <label class="flex items-center gap-1"><input type="checkbox" data-geo="MB"           checked /> Manitoba</label>
-            <label class="flex items-center gap-1"><input type="checkbox" data-geo="Winnipeg-CMA" checked /> Winnipeg CMA</label>
-            <label class="flex items-center gap-1"><input type="checkbox" data-geo="SK" /> Saskatchewan</label>
-            <label class="flex items-center gap-1"><input type="checkbox" data-geo="AB" /> Alberta</label>
-            <label class="flex items-center gap-1"><input type="checkbox" data-geo="BC" /> British Columbia</label>
-            <label class="flex items-center gap-1"><input type="checkbox" data-geo="ON" /> Ontario</label>
-            <label class="flex items-center gap-1"><input type="checkbox" data-geo="QC" /> Quebec</label>
-            <label class="flex items-center gap-1"><input type="checkbox" data-geo="NB" /> New Brunswick</label>
-            <label class="flex items-center gap-1"><input type="checkbox" data-geo="NS" /> Nova Scotia</label>
-            <label class="flex items-center gap-1"><input type="checkbox" data-geo="PE" /> Prince Edward Island</label>
-            <label class="flex items-center gap-1"><input type="checkbox" data-geo="NL" /> Newfoundland &amp; Labrador</label>
+          <div id="mi-geo-toggles" class="space-y-2 text-sm">
+            <div>
+              <label class="block text-xs text-neutral-600 mb-1" for="mi-geo-prov">Province / national <span class="text-neutral-400">(Ctrl/⌘-click for multiple)</span></label>
+              <select id="mi-geo-prov" multiple size="6" class="w-full border border-neutral-300 rounded px-2 py-1">
+                <option value="CA" selected>Canada</option>
+                <option value="MB" selected>Manitoba</option>
+                <option value="SK">Saskatchewan</option>
+                <option value="AB">Alberta</option>
+                <option value="BC">British Columbia</option>
+                <option value="ON">Ontario</option>
+                <option value="QC">Quebec</option>
+                <option value="NB">New Brunswick</option>
+                <option value="NS">Nova Scotia</option>
+                <option value="PE">Prince Edward Island</option>
+                <option value="NL">Newfoundland &amp; Labrador</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs text-neutral-600 mb-1" for="mi-geo-cma">CMAs</label>
+              <select id="mi-geo-cma" multiple size="5" class="w-full border border-neutral-300 rounded px-2 py-1">
+                <option value="Winnipeg-CMA" selected>Winnipeg</option>
+                <option value="Calgary-CMA">Calgary</option>
+                <option value="Edmonton-CMA">Edmonton</option>
+                <option value="Regina-CMA">Regina</option>
+                <option value="Saskatoon-CMA">Saskatoon</option>
+              </select>
+            </div>
           </div>
-          <p class="text-xs text-neutral-500 mt-1">Filters every multi-geography chart (including population &amp; immigration). National-only series (mortgage rates, bond yields, SLOS) always render because they have no provincial / CMA variant.</p>
+          <p class="text-xs text-neutral-500 mt-1">Multi-select Provinces and CMAs; charts &amp; tiles update live. CMA-level data exists for housing prices, CPI, construction cost, commercial leasing and building permits — not every series (national-only series like mortgage rates &amp; bond yields always render).</p>
         </section>
 
         <section>
