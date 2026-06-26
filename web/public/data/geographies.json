@@ -1,20 +1,20 @@
 {
   "version": 1,
-  "generated": "2026-06-26T03:11:27Z",
+  "generated": "2026-06-26T19:24:39Z",
   "levels": {
     "province": [
       {
         "uid": "48",
         "name": "Alberta",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "59",
         "name": "British Columbia",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
@@ -28,63 +28,63 @@
         "uid": "13",
         "name": "New Brunswick",
         "prov": "13",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "10",
         "name": "Newfoundland and Labrador",
         "prov": "10",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "61",
         "name": "Northwest Territories",
         "prov": "61",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "12",
         "name": "Nova Scotia",
         "prov": "12",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "35",
         "name": "Ontario",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "11",
         "name": "Prince Edward Island",
         "prov": "11",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "24",
         "name": "Quebec",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "47",
         "name": "Saskatchewan",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "60",
         "name": "Yukon",
         "prov": "60",
-        "yearMin": 2016,
+        "yearMin": 2013,
         "yearMax": 2025
       }
     ],
@@ -93,49 +93,49 @@
         "uid": "932",
         "name": "Abbotsford - Mission",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "410",
         "name": "Alma",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "481",
         "name": "Amos V",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "406",
         "name": "Baie-Comeau",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "568",
         "name": "Barrie",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "328",
         "name": "Bathurst",
         "prov": "13",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "522",
         "name": "Belleville - Quinte West",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
@@ -149,364 +149,364 @@
         "uid": "543",
         "name": "Brantford",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "512",
         "name": "Brockville",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "806",
         "name": "Brooks",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "825",
         "name": "Calgary",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "944",
         "name": "Campbell River",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "330",
         "name": "Campbellton",
         "prov": "13",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "833",
         "name": "Camrose",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "828",
         "name": "Canmore",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "225",
         "name": "Cape Breton",
         "prov": "12",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "531",
         "name": "Centre Wellington",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "105",
         "name": "Charlottetown",
         "prov": "11",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "556",
         "name": "Chatham-Kent",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "930",
         "name": "Chilliwack",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "527",
         "name": "Cobourg",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "567",
         "name": "Collingwood",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "015",
         "name": "Corner Brook",
         "prov": "10",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "501",
         "name": "Cornwall",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "943",
         "name": "Courtenay",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "437",
         "name": "Cowansville",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "905",
         "name": "Cranbrook",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "975",
         "name": "Dawson Creek",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "411",
         "name": "Dolbeau-Mistassini",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "447",
         "name": "Drummondville",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "937",
         "name": "Duncan",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "835",
         "name": "Edmonton",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "335",
         "name": "Edmundston",
         "prov": "13",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "582",
         "name": "Elliot Lake",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "750",
         "name": "Estevan",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "977",
         "name": "Fort St. John",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "320",
         "name": "Fredericton",
         "prov": "13",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "011",
         "name": "Gander",
         "prov": "10",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "24505",
         "name": "Gatineau",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "450",
         "name": "Granby",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "010",
         "name": "Grand Falls-Windsor",
         "prov": "10",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "850",
         "name": "Grande Prairie",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "580",
         "name": "Greater Sudbury / Grand Sudbury",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "550",
         "name": "Guelph",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "205",
         "name": "Halifax",
         "prov": "12",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "537",
         "name": "Hamilton",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "502",
         "name": "Hawkesbury",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "821",
         "name": "High River",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "533",
         "name": "Ingersoll",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "456",
         "name": "Joliette",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "925",
         "name": "Kamloops",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "530",
         "name": "Kawartha Lakes",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "915",
         "name": "Kelowna",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "598",
         "name": "Kenora",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "210",
         "name": "Kentville",
         "prov": "12",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "521",
         "name": "Kingston",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "541",
         "name": "Kitchener - Cambridge - Waterloo",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "468",
         "name": "Lachute",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "832",
         "name": "Lacombe",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
@@ -520,196 +520,196 @@
         "uid": "810",
         "name": "Lethbridge",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "840",
         "name": "Lloydminster",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "555",
         "name": "London",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "403",
         "name": "Matane",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "805",
         "name": "Medicine Hat",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "571",
         "name": "Midland",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "329",
         "name": "Miramichi",
         "prov": "13",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "305",
         "name": "Moncton",
         "prov": "13",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "462",
         "name": "Montréal",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "715",
         "name": "Moose Jaw",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "938",
         "name": "Nanaimo",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "907",
         "name": "Nelson",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2013,
         "yearMax": 2025
       },
       {
         "uid": "220",
         "name": "New Glasgow",
         "prov": "12",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "547",
         "name": "Norfolk",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "735",
         "name": "North Battleford",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "575",
         "name": "North Bay",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "820",
         "name": "Okotoks",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "569",
         "name": "Orillia",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "532",
         "name": "Oshawa",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "35505",
         "name": "Ottawa",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "566",
         "name": "Owen Sound",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "939",
         "name": "Parksville",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "515",
         "name": "Pembroke",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "913",
         "name": "Penticton",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "516",
         "name": "Petawawa",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "529",
         "name": "Peterborough",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "940",
         "name": "Port Alberni",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "528",
         "name": "Port Hope",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
@@ -723,203 +723,203 @@
         "uid": "945",
         "name": "Powell River",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "745",
         "name": "Prince Albert",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "970",
         "name": "Prince George",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "955",
         "name": "Prince Rupert",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "952",
         "name": "Quesnel",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "421",
         "name": "Québec",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "830",
         "name": "Red Deer",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "705",
         "name": "Regina",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "404",
         "name": "Rimouski",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "405",
         "name": "Rivière-du-Loup",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "485",
         "name": "Rouyn-Noranda",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "408",
         "name": "Saguenay",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "310",
         "name": "Saint John",
         "prov": "13",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "428",
         "name": "Saint-Georges",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "452",
         "name": "Saint-Hyacinthe",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "467",
         "name": "Sainte-Agathe-des-Monts",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2013,
         "yearMax": 2025
       },
       {
         "uid": "423",
         "name": "Sainte-Marie",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "465",
         "name": "Salaberry-de-Valleyfield",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "920",
         "name": "Salmon Arm",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "562",
         "name": "Sarnia",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "725",
         "name": "Saskatoon",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "590",
         "name": "Sault Ste. Marie",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "412",
         "name": "Sept-Îles",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "444",
         "name": "Shawinigan",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "433",
         "name": "Sherbrooke",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "454",
         "name": "Sorel-Tracy",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "934",
         "name": "Squamish",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "539",
         "name": "St. Catharines - Niagara",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "001",
         "name": "St. John's",
         "prov": "10",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
@@ -933,49 +933,49 @@
         "uid": "553",
         "name": "Stratford",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "826",
         "name": "Strathmore",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "110",
         "name": "Summerside",
         "prov": "11",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "720",
         "name": "Swift Current",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "831",
         "name": "Sylvan Lake",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "965",
         "name": "Terrace",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "430",
         "name": "Thetford Mines",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
@@ -989,28 +989,28 @@
         "uid": "595",
         "name": "Thunder Bay",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "546",
         "name": "Tillsonburg",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "586",
         "name": "Timmins",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "535",
         "name": "Toronto",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
@@ -1024,84 +1024,84 @@
         "uid": "442",
         "name": "Trois-Rivières",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "215",
         "name": "Truro",
         "prov": "12",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "480",
         "name": "Val-d'Or",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "933",
         "name": "Vancouver",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "918",
         "name": "Vernon",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "935",
         "name": "Victoria",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "440",
         "name": "Victoriaville",
         "prov": "24",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "565",
         "name": "Wasaga Beach",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2014,
         "yearMax": 2025
       },
       {
         "uid": "865",
         "name": "Wetaskiwin",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "755",
         "name": "Weyburn",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2013,
         "yearMax": 2025
       },
       {
         "uid": "990",
         "name": "Whitehorse",
         "prov": "60",
-        "yearMin": 2016,
+        "yearMin": 2013,
         "yearMax": 2025
       },
       {
         "uid": "950",
         "name": "Williams Lake",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
@@ -1129,28 +1129,28 @@
         "uid": "860",
         "name": "Wood Buffalo",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "544",
         "name": "Woodstock",
         "prov": "35",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "995",
         "name": "Yellowknife",
         "prov": "61",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       },
       {
         "uid": "710",
         "name": "Yorkton",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025
       }
     ],
@@ -1159,7 +1159,7 @@
         "uid": "825-airdrie-cy",
         "name": "Airdrie (CY)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -1168,7 +1168,7 @@
         "uid": "725-allan-t",
         "name": "Allan (T)",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -1177,7 +1177,7 @@
         "uid": "705-balgonie-t",
         "name": "Balgonie (T)",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -1195,7 +1195,7 @@
         "uid": "835-beaumont-t",
         "name": "Beaumont (T)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2019,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1204,7 +1204,7 @@
         "uid": "825-beiseker-vl",
         "name": "Beiseker (VL)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -1213,7 +1213,7 @@
         "uid": "835-bon-accord-t",
         "name": "Bon Accord (T)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1222,16 +1222,25 @@
         "uid": "933-bowen-island-im",
         "name": "Bowen Island (IM)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
       },
       {
+        "uid": "835-bruderheim-t",
+        "name": "Bruderheim (T)",
+        "prov": "48",
+        "yearMin": 2013,
+        "yearMax": 2013,
+        "parentUid": "835",
+        "parentName": "Edmonton"
+      },
+      {
         "uid": "933-burnaby-cy",
         "name": "Burnaby (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1240,7 +1249,7 @@
         "uid": "825-calgary-cy",
         "name": "Calgary (CY)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -1249,7 +1258,7 @@
         "uid": "835-calmar-t",
         "name": "Calmar (T)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1258,7 +1267,7 @@
         "uid": "935-central-saanich-dm",
         "name": "Central Saanich (DM)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -1276,7 +1285,7 @@
         "uid": "825-cochrane-t",
         "name": "Cochrane (T)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -1285,7 +1294,7 @@
         "uid": "935-colwood-cy",
         "name": "Colwood (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -1294,7 +1303,7 @@
         "uid": "933-coquitlam-cy",
         "name": "Coquitlam (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1312,7 +1321,7 @@
         "uid": "725-delisle-t",
         "name": "Delisle (T)",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -1330,7 +1339,7 @@
         "uid": "933-delta-dm",
         "name": "Delta (DM)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2022,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1339,7 +1348,7 @@
         "uid": "835-devon-t",
         "name": "Devon (T)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1357,7 +1366,7 @@
         "uid": "725-dundurn-no-314-rm",
         "name": "Dundurn No. 314 (RM)",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -1375,7 +1384,7 @@
         "uid": "835-edmonton-cy",
         "name": "Edmonton (CY)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1384,7 +1393,7 @@
         "uid": "935-esquimalt-dm",
         "name": "Esquimalt (DM)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -1411,7 +1420,7 @@
         "uid": "835-fort-saskatchewan-cy",
         "name": "Fort Saskatchewan (CY)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1420,7 +1429,7 @@
         "uid": "835-gibbons-t",
         "name": "Gibbons (T)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1429,7 +1438,7 @@
         "uid": "933-greater-vancouver-a-rda",
         "name": "Greater Vancouver A (RDA)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2022,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1447,7 +1456,7 @@
         "uid": "935-langford-cy",
         "name": "Langford (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -1456,7 +1465,7 @@
         "uid": "725-langham-t",
         "name": "Langham (T)",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -1465,7 +1474,7 @@
         "uid": "933-langley-cy",
         "name": "Langley (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1474,7 +1483,7 @@
         "uid": "933-langley-dm",
         "name": "Langley (DM)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1483,7 +1492,7 @@
         "uid": "835-leduc-cy",
         "name": "Leduc (CY)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1492,7 +1501,7 @@
         "uid": "835-legal-t",
         "name": "Legal (T)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1501,7 +1510,7 @@
         "uid": "705-lumsden-t",
         "name": "Lumsden (T)",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -1525,10 +1534,19 @@
         "parentName": "Vancouver"
       },
       {
+        "uid": "933-maple-ridge-dm",
+        "name": "Maple Ridge (DM)",
+        "prov": "59",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "933",
+        "parentName": "Vancouver"
+      },
+      {
         "uid": "725-martensville-cy",
         "name": "Martensville (CY)",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -1537,7 +1555,7 @@
         "uid": "935-metchosin-dm",
         "name": "Metchosin (DM)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -1555,7 +1573,7 @@
         "uid": "835-morinville-t",
         "name": "Morinville (T)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1564,7 +1582,7 @@
         "uid": "933-new-westminster-cy",
         "name": "New Westminster (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1582,7 +1600,7 @@
         "uid": "933-north-vancouver-cy",
         "name": "North Vancouver (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1591,7 +1609,7 @@
         "uid": "933-north-vancouver-dm",
         "name": "North Vancouver (DM)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1600,7 +1618,7 @@
         "uid": "935-oak-bay-dm",
         "name": "Oak Bay (DM)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -1609,7 +1627,7 @@
         "uid": "725-osler-t",
         "name": "Osler (T)",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -1618,7 +1636,7 @@
         "uid": "835-parkland-county-md",
         "name": "Parkland County (MD)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1627,7 +1645,7 @@
         "uid": "705-pilot-butte-t",
         "name": "Pilot Butte (T)",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -1636,7 +1654,7 @@
         "uid": "933-pitt-meadows-cy",
         "name": "Pitt Meadows (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1645,7 +1663,7 @@
         "uid": "933-port-coquitlam-cy",
         "name": "Port Coquitlam (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1654,7 +1672,7 @@
         "uid": "933-port-moody-cy",
         "name": "Port Moody (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1663,7 +1681,7 @@
         "uid": "835-redwater-t",
         "name": "Redwater (T)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1672,7 +1690,7 @@
         "uid": "705-regina-cy",
         "name": "Regina (CY)",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -1681,7 +1699,7 @@
         "uid": "933-richmond-cy",
         "name": "Richmond (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1699,7 +1717,7 @@
         "uid": "935-saanich-dm",
         "name": "Saanich (DM)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -1708,7 +1726,7 @@
         "uid": "725-saskatoon-cy",
         "name": "Saskatoon (CY)",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -1724,7 +1742,7 @@
         "uid": "935-sidney-t",
         "name": "Sidney (T)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -1733,7 +1751,7 @@
         "uid": "935-sooke-dm",
         "name": "Sooke (DM)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -1751,7 +1769,7 @@
         "uid": "835-spruce-grove-cy",
         "name": "Spruce Grove (CY)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1760,7 +1778,7 @@
         "uid": "835-st-albert-cy",
         "name": "St. Albert (CY)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1787,7 +1805,7 @@
         "uid": "835-stony-plain-t",
         "name": "Stony Plain (T)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1796,7 +1814,7 @@
         "uid": "835-strathcona-county-sm",
         "name": "Strathcona County (SM)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1805,7 +1823,7 @@
         "uid": "933-surrey-cy",
         "name": "Surrey (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1832,7 +1850,7 @@
         "uid": "835-thorsby-vl",
         "name": "Thorsby (VL)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2017,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1841,7 +1859,7 @@
         "uid": "933-vancouver-cy",
         "name": "Vancouver (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1850,7 +1868,7 @@
         "uid": "935-victoria-cy",
         "name": "Victoria (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -1859,7 +1877,7 @@
         "uid": "935-view-royal-t",
         "name": "View Royal (T)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -1868,7 +1886,7 @@
         "uid": "835-wabamun-vl",
         "name": "Wabamun (VL)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2021,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1877,7 +1895,7 @@
         "uid": "835-warburg-vl",
         "name": "Warburg (VL)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1886,8 +1904,17 @@
         "uid": "725-warman-cy",
         "name": "Warman (CY)",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2014,
         "yearMax": 2025,
+        "parentUid": "725",
+        "parentName": "Saskatoon"
+      },
+      {
+        "uid": "725-warman-t",
+        "name": "Warman (T)",
+        "prov": "47",
+        "yearMin": 2011,
+        "yearMax": 2013,
         "parentUid": "725",
         "parentName": "Saskatoon"
       },
@@ -1904,7 +1931,7 @@
         "uid": "933-west-vancouver-dm",
         "name": "West Vancouver (DM)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1922,7 +1949,7 @@
         "uid": "933-white-rock-cy",
         "name": "White Rock (CY)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -1960,7 +1987,7 @@
         "uid": "825-beltline",
         "name": "Beltline",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -1969,7 +1996,7 @@
         "uid": "835-castledown",
         "name": "Castledown",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -1987,7 +2014,7 @@
         "uid": "705-central",
         "name": "Central",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -1996,7 +2023,7 @@
         "uid": "725-central",
         "name": "Central",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -2005,7 +2032,7 @@
         "uid": "933-central-park-metrotown",
         "name": "Central Park/Metrotown",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2014,7 +2041,7 @@
         "uid": "825-chinook",
         "name": "Chinook",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2023,7 +2050,7 @@
         "uid": "935-cook-st-area",
         "name": "Cook St. Area",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -2032,7 +2059,7 @@
         "uid": "933-delta",
         "name": "Delta",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2041,7 +2068,7 @@
         "uid": "825-downtown",
         "name": "Downtown",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2050,7 +2077,7 @@
         "uid": "835-downtown",
         "name": "Downtown",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2059,7 +2086,7 @@
         "uid": "933-downtown",
         "name": "Downtown",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2068,7 +2095,7 @@
         "uid": "705-east",
         "name": "East",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -2077,7 +2104,7 @@
         "uid": "835-east-central",
         "name": "East Central",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2086,7 +2113,7 @@
         "uid": "933-east-hastings",
         "name": "East Hastings",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2104,7 +2131,7 @@
         "uid": "933-english-bay",
         "name": "English Bay",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2113,7 +2140,7 @@
         "uid": "935-esquimalt",
         "name": "Esquimalt",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -2122,7 +2149,7 @@
         "uid": "825-fish-creek",
         "name": "Fish Creek",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2149,7 +2176,7 @@
         "uid": "835-fort-saskatchewan",
         "name": "Fort Saskatchewan",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2158,10 +2185,19 @@
         "uid": "935-fort-st-area",
         "name": "Fort St. Area",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
+      },
+      {
+        "uid": "835-hudson-bay-reserve",
+        "name": "Hudson Bay Reserve",
+        "prov": "48",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "835",
+        "parentName": "Edmonton"
       },
       {
         "uid": "835-hudson-s-bay-reserve",
@@ -2176,7 +2212,7 @@
         "uid": "935-james-bay-area",
         "name": "James Bay Area",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -2185,7 +2221,7 @@
         "uid": "835-jasper-place",
         "name": "Jasper Place",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2194,16 +2230,25 @@
         "uid": "933-kitsilano-point-grey",
         "name": "Kitsilano/Point Grey",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
       },
       {
+        "uid": "725-lakeview",
+        "name": "Lakeview",
+        "prov": "47",
+        "yearMin": 2011,
+        "yearMax": 2013,
+        "parentUid": "725",
+        "parentName": "Saskatoon"
+      },
+      {
         "uid": "935-langford-vw-royal-colwood-sooke",
         "name": "Langford/Vw Royal/Colwood/Sooke",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -2212,7 +2257,7 @@
         "uid": "933-langley-city-and-langley-dm",
         "name": "Langley City and Langley DM",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2221,7 +2266,7 @@
         "uid": "835-leduc",
         "name": "Leduc",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2239,7 +2284,7 @@
         "uid": "933-maple-ridge-pitt-meadows",
         "name": "Maple Ridge/Pitt Meadows",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2248,7 +2293,7 @@
         "uid": "933-marpole",
         "name": "Marpole",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2266,7 +2311,7 @@
         "uid": "835-millwoods",
         "name": "Millwoods",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2275,7 +2320,7 @@
         "uid": "933-mount-pleasant-renfrew-heights",
         "name": "Mount Pleasant/Renfrew Heights",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2284,7 +2329,7 @@
         "uid": "933-new-westminster",
         "name": "New Westminster",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2293,7 +2338,7 @@
         "uid": "725-north",
         "name": "North",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -2302,7 +2347,7 @@
         "uid": "933-north-burnaby",
         "name": "North Burnaby",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2311,7 +2356,7 @@
         "uid": "835-north-central",
         "name": "North Central",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2320,7 +2365,7 @@
         "uid": "835-north-east",
         "name": "North East",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2329,7 +2374,7 @@
         "uid": "825-north-hill",
         "name": "North Hill",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2344,10 +2389,19 @@
         "parentName": "Vancouver"
       },
       {
+        "uid": "933-north-vancouver-city",
+        "name": "North Vancouver City",
+        "prov": "59",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "933",
+        "parentName": "Vancouver"
+      },
+      {
         "uid": "933-north-vancouver-dm",
         "name": "North Vancouver DM",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2356,7 +2410,7 @@
         "uid": "705-northeast",
         "name": "Northeast",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -2365,7 +2419,7 @@
         "uid": "725-northeast",
         "name": "Northeast",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -2374,7 +2428,7 @@
         "uid": "825-northeast",
         "name": "Northeast",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2383,7 +2437,7 @@
         "uid": "705-northwest",
         "name": "Northwest",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -2392,16 +2446,25 @@
         "uid": "825-northwest",
         "name": "Northwest",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
       },
       {
+        "uid": "725-nutana",
+        "name": "Nutana",
+        "prov": "47",
+        "yearMin": 2011,
+        "yearMax": 2013,
+        "parentUid": "725",
+        "parentName": "Saskatoon"
+      },
+      {
         "uid": "935-oak-bay",
         "name": "Oak Bay",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -2410,7 +2473,7 @@
         "uid": "825-other-centres",
         "name": "Other Centres",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2419,7 +2482,7 @@
         "uid": "835-other-outlying-areas",
         "name": "Other Outlying Areas",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2437,7 +2500,7 @@
         "uid": "705-outlying-areas",
         "name": "Outlying Areas",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -2446,7 +2509,7 @@
         "uid": "725-outlying-areas",
         "name": "Outlying Areas",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -2455,7 +2518,7 @@
         "uid": "935-remainder-of-city",
         "name": "Remainder of City",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2023,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -2473,7 +2536,7 @@
         "uid": "933-richmond",
         "name": "Richmond",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2482,7 +2545,7 @@
         "uid": "935-saanich-central-saanich",
         "name": "Saanich/Central Saanich",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -2491,7 +2554,7 @@
         "uid": "935-sidney",
         "name": "Sidney",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -2500,7 +2563,7 @@
         "uid": "725-south",
         "name": "South",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2014,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -2509,7 +2572,7 @@
         "uid": "933-south-granville-oak",
         "name": "South Granville/Oak",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2518,7 +2581,7 @@
         "uid": "835-south-west",
         "name": "South West",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2527,7 +2590,7 @@
         "uid": "705-south-lakeview-albert-park",
         "name": "South: Lakeview/Albert Park",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -2536,7 +2599,7 @@
         "uid": "705-south-wascana-university",
         "name": "South: Wascana University",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -2545,7 +2608,7 @@
         "uid": "725-southeast",
         "name": "Southeast",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2014,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -2554,7 +2617,7 @@
         "uid": "825-southeast",
         "name": "Southeast",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2563,7 +2626,7 @@
         "uid": "933-southeast-burnaby",
         "name": "Southeast Burnaby",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2572,7 +2635,7 @@
         "uid": "933-southeast-vancouver",
         "name": "Southeast Vancouver",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2581,7 +2644,7 @@
         "uid": "725-southwest",
         "name": "Southwest",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -2590,7 +2653,7 @@
         "uid": "825-southwest",
         "name": "Southwest",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2599,7 +2662,7 @@
         "uid": "835-spruce-grove",
         "name": "Spruce Grove",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2608,7 +2671,7 @@
         "uid": "835-st-albert",
         "name": "St. Albert",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2644,7 +2707,7 @@
         "uid": "835-stony-plain",
         "name": "Stony Plain",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2653,7 +2716,7 @@
         "uid": "835-strathcona-county",
         "name": "Strathcona County",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2662,7 +2725,7 @@
         "uid": "933-surrey",
         "name": "Surrey",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2680,7 +2743,7 @@
         "uid": "933-tri-cities",
         "name": "Tri-Cities",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2689,7 +2752,7 @@
         "uid": "835-university",
         "name": "University",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2698,7 +2761,7 @@
         "uid": "933-university-endowment-lands",
         "name": "University Endowment Lands",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2707,7 +2770,7 @@
         "uid": "705-west",
         "name": "West",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -2716,7 +2779,7 @@
         "uid": "725-west",
         "name": "West",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -2725,7 +2788,7 @@
         "uid": "835-west-central",
         "name": "West Central",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2734,7 +2797,7 @@
         "uid": "933-west-end-stanley-park",
         "name": "West End/Stanley Park",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2743,7 +2806,7 @@
         "uid": "835-west-jasper-place",
         "name": "West Jasper Place",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2761,7 +2824,7 @@
         "uid": "933-west-vancouver",
         "name": "West Vancouver",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2770,7 +2833,7 @@
         "uid": "933-westside-kerrisdale",
         "name": "Westside/Kerrisdale",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2779,7 +2842,7 @@
         "uid": "933-white-rock",
         "name": "White Rock",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2790,7 +2853,7 @@
         "uid": "825-airdrie",
         "name": "Airdrie",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2799,7 +2862,7 @@
         "uid": "705-albert-park-north",
         "name": "Albert Park North",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -2808,7 +2871,7 @@
         "uid": "705-albert-park-south",
         "name": "Albert Park South",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -2817,7 +2880,7 @@
         "uid": "825-altadore-south-calgary-cfb-currie-lincoln-park-richmond-u-a911ab",
         "name": "Altadore/South Calgary/CFB Currie/Lincoln Park/Richmond/Upper Mount Royal/Elbow Park/Rideau Park",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2826,7 +2889,7 @@
         "uid": "933-ambleside",
         "name": "Ambleside",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2835,7 +2898,7 @@
         "uid": "825-bankview",
         "name": "Bankview",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2844,7 +2907,7 @@
         "uid": "825-bel-aire-mayfair-kelvin-grove-eagle-ridge-chinook-park",
         "name": "Bel-Aire/Mayfair/Kelvin Grove/Eagle Ridge/Chinook Park",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2853,8 +2916,17 @@
         "uid": "835-beverly-rundle-heights",
         "name": "Beverly/Rundle Heights",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
+        "parentUid": "835",
+        "parentName": "Edmonton"
+      },
+      {
+        "uid": "835-bitannia",
+        "name": "Bitannia",
+        "prov": "48",
+        "yearMin": 2011,
+        "yearMax": 2015,
         "parentUid": "835",
         "parentName": "Edmonton"
       },
@@ -2862,7 +2934,7 @@
         "uid": "835-bonny-doon",
         "name": "Bonny Doon",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2871,7 +2943,7 @@
         "uid": "825-bowness",
         "name": "Bowness",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2880,7 +2952,7 @@
         "uid": "825-braeside-bayview-palliser-pump-hill-oakridge-cedarbrae",
         "name": "Braeside/Bayview/Palliser/Pump Hill/Oakridge/Cedarbrae",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2889,7 +2961,7 @@
         "uid": "825-bridgeland-riverside",
         "name": "Bridgeland/Riverside",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2913,6 +2985,15 @@
         "parentName": "Calgary"
       },
       {
+        "uid": "825-bridlewood-evergreen-shawnee-slope-millrise-shawnessy-som-a5515e",
+        "name": "Bridlewood/Evergreen/Shawnee Slope/Millrise/Shawnessy/Somerset/Silverado/Midnapore/Parkland/Deer Ridge/Deer Run/Sundance/Chaparrel/Walden/Legacy",
+        "prov": "48",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "825",
+        "parentName": "Calgary"
+      },
+      {
         "uid": "835-britannia",
         "name": "Britannia",
         "prov": "48",
@@ -2925,7 +3006,7 @@
         "uid": "935-burnside",
         "name": "Burnside",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -2934,7 +3015,7 @@
         "uid": "825-calgary-cma-rural-calgary-city-rocky-view-county-chesterm-56994a",
         "name": "Calgary CMA (Rural Calgary City/Rocky View County/Chestermere/Crossfield/Irricana/Beiseker)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2943,7 +3024,7 @@
         "uid": "835-callingwood",
         "name": "Callingwood",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2952,7 +3033,7 @@
         "uid": "825-canyon-meadows-woodlands-woodbine-lake-bonavista-bonavist-ab529f",
         "name": "Canyon Meadows/Woodlands/Woodbine/Lake Bonavista/Bonavista Downs/Diamond Cove/Queensland",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2961,7 +3042,7 @@
         "uid": "835-capilano-upper-east-central",
         "name": "Capilano/Upper East Central",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -2970,7 +3051,7 @@
         "uid": "933-capital-hill-brentwood",
         "name": "Capital Hill/Brentwood",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2979,7 +3060,7 @@
         "uid": "825-capitol-hill-rosemont-banff-trail",
         "name": "Capitol Hill/Rosemont/Banff Trail",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -2988,7 +3069,7 @@
         "uid": "933-cedar-cottage",
         "name": "Cedar Cottage",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -2997,7 +3078,7 @@
         "uid": "705-central",
         "name": "Central",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -3006,7 +3087,7 @@
         "uid": "725-central",
         "name": "Central",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -3015,7 +3096,7 @@
         "uid": "933-central-lonsdale",
         "name": "Central Lonsdale",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3024,7 +3105,7 @@
         "uid": "835-central-mcdougall",
         "name": "Central McDougall",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3033,7 +3114,7 @@
         "uid": "835-central-millwoods",
         "name": "Central Millwoods",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3042,7 +3123,7 @@
         "uid": "933-central-park",
         "name": "Central Park",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3051,7 +3132,7 @@
         "uid": "935-central-saanich",
         "name": "Central Saanich",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3060,7 +3141,7 @@
         "uid": "835-central-south-west",
         "name": "Central South West",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3078,7 +3159,7 @@
         "uid": "825-charleswood-collingwood-brentwood",
         "name": "Charleswood/Collingwood/Brentwood",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3087,7 +3168,7 @@
         "uid": "835-clairview",
         "name": "Clairview",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3096,7 +3177,7 @@
         "uid": "933-cloverdale-fleetwood",
         "name": "Cloverdale/Fleetwood",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3105,7 +3186,7 @@
         "uid": "825-cochrane",
         "name": "Cochrane",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3114,7 +3195,7 @@
         "uid": "933-collingwood",
         "name": "Collingwood",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3123,7 +3204,7 @@
         "uid": "935-colwood",
         "name": "Colwood",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3132,7 +3213,7 @@
         "uid": "725-confederation-east",
         "name": "Confederation East",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -3141,7 +3222,7 @@
         "uid": "835-confederation-park",
         "name": "Confederation Park",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3150,7 +3231,7 @@
         "uid": "725-confederation-west",
         "name": "Confederation West",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -3159,7 +3240,7 @@
         "uid": "933-coquitlam-east",
         "name": "Coquitlam East",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3168,7 +3249,7 @@
         "uid": "933-coquitlam-west",
         "name": "Coquitlam West",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3177,16 +3258,25 @@
         "uid": "705-coronation-park",
         "name": "Coronation Park",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
       },
       {
+        "uid": "933-dt-eastside-strathcona",
+        "name": "DT Eastside/Strathcona",
+        "prov": "59",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "933",
+        "parentName": "Vancouver"
+      },
+      {
         "uid": "825-dalhousie",
         "name": "Dalhousie",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3195,7 +3285,7 @@
         "uid": "933-deer-lake",
         "name": "Deer Lake",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3204,7 +3294,7 @@
         "uid": "835-delton-eastwood",
         "name": "Delton/Eastwood",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3213,7 +3303,7 @@
         "uid": "835-devon",
         "name": "Devon",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3222,7 +3312,7 @@
         "uid": "825-dover-southview-inglewood-alyth-bonnybrook-erin-woods-eas-c27a5d",
         "name": "Dover/Southview/Inglewood/Alyth/Bonnybrook/Erin Woods/Eastfield/Golden Triangle",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3240,7 +3330,7 @@
         "uid": "835-downtown",
         "name": "Downtown",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3249,7 +3339,7 @@
         "uid": "933-downtown",
         "name": "Downtown",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3258,7 +3348,7 @@
         "uid": "935-downtown",
         "name": "Downtown",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3267,7 +3357,7 @@
         "uid": "933-downtown-central",
         "name": "Downtown Central",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3276,7 +3366,7 @@
         "uid": "705-downtown-east",
         "name": "Downtown East",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -3294,7 +3384,7 @@
         "uid": "933-downtown-north",
         "name": "Downtown North",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3303,7 +3393,7 @@
         "uid": "705-downtown-west",
         "name": "Downtown West",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -3312,7 +3402,7 @@
         "uid": "825-downtown-eau-claire",
         "name": "Downtown/Eau Claire",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3321,7 +3411,7 @@
         "uid": "933-dundrave-west-vancouver-remainder",
         "name": "Dundrave/West Vancouver Remainder",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3330,7 +3420,7 @@
         "uid": "705-east",
         "name": "East",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -3345,10 +3435,19 @@
         "parentName": "Edmonton"
       },
       {
+        "uid": "835-east-castledowns",
+        "name": "East Castledowns",
+        "prov": "48",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "835",
+        "parentName": "Edmonton"
+      },
+      {
         "uid": "725-east-central",
         "name": "East Central",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -3366,7 +3465,7 @@
         "uid": "933-edmonds",
         "name": "Edmonds",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3375,7 +3474,7 @@
         "uid": "835-edmonton-cma-remainder",
         "name": "Edmonton CMA Remainder",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3393,7 +3492,7 @@
         "uid": "933-english-bay",
         "name": "English Bay",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3402,7 +3501,7 @@
         "uid": "935-esquimalt",
         "name": "Esquimalt",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3411,7 +3510,7 @@
         "uid": "935-fairfield-north",
         "name": "Fairfield North",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3420,7 +3519,7 @@
         "uid": "935-fairfield-south",
         "name": "Fairfield South",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3429,7 +3528,7 @@
         "uid": "935-fairfield-ross-bay",
         "name": "Fairfield-Ross Bay",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3438,8 +3537,17 @@
         "uid": "825-fairview-industrial-fairview-kingsland",
         "name": "Fairview Industrial/Fairview/Kingsland",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
+        "parentUid": "825",
+        "parentName": "Calgary"
+      },
+      {
+        "uid": "825-falconridge-castleridge-coral-springs-martindale-skyview-ae49db",
+        "name": "Falconridge/Castleridge/Coral Springs/Martindale/Skyview Ranch/Saddle Ridge/Taradale/Horizon/Sundrige/Westwinds",
+        "prov": "48",
+        "yearMin": 2011,
+        "yearMax": 2015,
         "parentUid": "825",
         "parentName": "Calgary"
       },
@@ -3456,7 +3564,7 @@
         "uid": "935-fernwood",
         "name": "Fernwood",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3465,7 +3573,7 @@
         "uid": "825-forest-lawn-forest-heights-penbrooke-meadows-red-carpet-a-5a5506",
         "name": "Forest Lawn/Forest Heights/Penbrooke Meadows/Red Carpet/Applewood Park",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3501,7 +3609,7 @@
         "uid": "835-fort-saskatchewan",
         "name": "Fort Saskatchewan",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3510,7 +3618,7 @@
         "uid": "933-fraser-view-killarny",
         "name": "Fraser View/Killarny",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3528,7 +3636,7 @@
         "uid": "835-garneau",
         "name": "Garneau",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3537,7 +3645,7 @@
         "uid": "835-gateway-blvd-west",
         "name": "Gateway Blvd West",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3546,7 +3654,7 @@
         "uid": "835-genwood-west-jasper-place",
         "name": "Genwood/West Jasper Place",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3555,7 +3663,7 @@
         "uid": "825-glendale-glenbrook",
         "name": "Glendale/Glenbrook",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3564,7 +3672,7 @@
         "uid": "935-gonzales",
         "name": "Gonzales",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3573,7 +3681,7 @@
         "uid": "835-grandin",
         "name": "Grandin",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3582,7 +3690,7 @@
         "uid": "933-guildford",
         "name": "Guildford",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3591,10 +3699,19 @@
         "uid": "933-hastings-sunrise-grandview-woodlands",
         "name": "Hastings/Sunrise/Grandview/Woodlands",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
+      },
+      {
+        "uid": "835-highlands-alberta-ave",
+        "name": "Highlands/Alberta Ave.",
+        "prov": "48",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "835",
+        "parentName": "Edmonton"
       },
       {
         "uid": "835-highlands-alberta-avenue",
@@ -3609,7 +3726,7 @@
         "uid": "705-hillsdale",
         "name": "Hillsdale",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -3618,7 +3735,7 @@
         "uid": "935-hillside-quadra",
         "name": "Hillside-Quadra",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3642,6 +3759,15 @@
         "parentName": "Calgary"
       },
       {
+        "uid": "825-huntington-hills-beddington-heights-evanston-panorama-hil-c873bb",
+        "name": "Huntington Hills/Beddington Heights/Evanston/Panorama Hills/Country Hills/Coventry Hills/Country Hills Village/Harvest Hills/Hanson Ranch/Hidden Valley/Sandstone Valley/Macewan Glen",
+        "prov": "48",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "825",
+        "parentName": "Calgary"
+      },
+      {
         "uid": "602-inkster",
         "name": "Inkster",
         "prov": "46",
@@ -3654,7 +3780,7 @@
         "uid": "935-james-bay-north",
         "name": "James Bay (North)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3663,7 +3789,7 @@
         "uid": "935-james-bay-south",
         "name": "James Bay (South)",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3672,7 +3798,7 @@
         "uid": "935-jubilee",
         "name": "Jubilee",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -3681,7 +3807,7 @@
         "uid": "933-kerrisdale",
         "name": "Kerrisdale",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3690,7 +3816,7 @@
         "uid": "825-killarney-glengarry",
         "name": "Killarney/Glengarry",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3699,7 +3825,7 @@
         "uid": "933-kitsilano-point-grey-north",
         "name": "Kitsilano/Point Grey North",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3708,7 +3834,7 @@
         "uid": "933-kitsilano-point-grey-south",
         "name": "Kitsilano/Point Grey South",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3717,7 +3843,7 @@
         "uid": "933-ladner",
         "name": "Ladner",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3726,7 +3852,7 @@
         "uid": "705-lakeview-north",
         "name": "Lakeview North",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -3735,7 +3861,7 @@
         "uid": "705-lakeview-south",
         "name": "Lakeview South",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -3744,7 +3870,7 @@
         "uid": "725-lakewood-north",
         "name": "Lakewood North",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -3753,7 +3879,7 @@
         "uid": "725-lakewood-south",
         "name": "Lakewood South",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -3762,10 +3888,28 @@
         "uid": "935-langford",
         "name": "Langford",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
+      },
+      {
+        "uid": "933-langley-city",
+        "name": "Langley (City)",
+        "prov": "59",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "933",
+        "parentName": "Vancouver"
+      },
+      {
+        "uid": "933-langley-district-municipality",
+        "name": "Langley (District municipality)",
+        "prov": "59",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "933",
+        "parentName": "Vancouver"
       },
       {
         "uid": "933-langley-cy",
@@ -3789,7 +3933,7 @@
         "uid": "835-leduc",
         "name": "Leduc",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3798,7 +3942,7 @@
         "uid": "835-londonderry",
         "name": "Londonderry",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3807,7 +3951,7 @@
         "uid": "933-lonsdale-east",
         "name": "Lonsdale East",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3816,7 +3960,7 @@
         "uid": "933-lonsdale-north",
         "name": "Lonsdale North",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3825,7 +3969,7 @@
         "uid": "933-lonsdale-west",
         "name": "Lonsdale West",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3834,7 +3978,7 @@
         "uid": "835-lower-east-central",
         "name": "Lower East Central",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3843,7 +3987,7 @@
         "uid": "825-lower-mount-royal-cliff-bungalow",
         "name": "Lower Mount Royal/Cliff Bungalow",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3852,7 +3996,7 @@
         "uid": "725-lower-southwest",
         "name": "Lower Southwest",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -3861,7 +4005,7 @@
         "uid": "825-manchester-industrial-roxboro-erlton",
         "name": "Manchester Industrial/Roxboro/Erlton",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3870,7 +4014,7 @@
         "uid": "933-maple-ridge",
         "name": "Maple Ridge",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3879,7 +4023,7 @@
         "uid": "825-marlborough-park-marlborough-abbeydale",
         "name": "Marlborough Park/Marlborough/Abbeydale",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3888,7 +4032,7 @@
         "uid": "933-marpole-remainder",
         "name": "Marpole Remainder",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3897,7 +4041,7 @@
         "uid": "933-marpole-south",
         "name": "Marpole South",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3906,7 +4050,7 @@
         "uid": "835-mccauley",
         "name": "McCauley",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3915,7 +4059,7 @@
         "uid": "825-mckenzie-towne-new-brighton-copperfield-cranston-auburn-b-0995c6",
         "name": "McKenzie Towne/New Brighton/Copperfield/Cranston/Auburn Bay/Mahogany/McKenzie Lake/Douglasdale/Glen",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3924,10 +4068,19 @@
         "uid": "835-mcleod-park-casselman",
         "name": "McLeod Park/Casselman",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
+      },
+      {
+        "uid": "825-meridian-fanklin-albert-park-radisson-heights",
+        "name": "Meridian/Fanklin/Albert Park/Radisson Heights",
+        "prov": "48",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "825",
+        "parentName": "Calgary"
       },
       {
         "uid": "825-meridian-franklin-albert-park-radisson-heights",
@@ -3942,7 +4095,7 @@
         "uid": "933-metrotown",
         "name": "Metrotown",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -3951,7 +4104,7 @@
         "uid": "825-misson-beltline",
         "name": "Misson/Beltline",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3969,7 +4122,7 @@
         "uid": "825-montgomery-point-mckay-university-heights",
         "name": "Montgomery/Point McKay/University Heights",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3978,7 +4131,7 @@
         "uid": "835-morinville",
         "name": "Morinville",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -3987,7 +4140,7 @@
         "uid": "825-mount-pleasant",
         "name": "Mount Pleasant",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -3996,7 +4149,7 @@
         "uid": "933-mount-pleasant",
         "name": "Mount Pleasant",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4005,7 +4158,7 @@
         "uid": "933-new-westminster-east",
         "name": "New Westminster East",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4014,7 +4167,7 @@
         "uid": "933-new-westminster-west",
         "name": "New Westminster West",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4023,7 +4176,7 @@
         "uid": "933-newton",
         "name": "Newton",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4032,7 +4185,7 @@
         "uid": "705-normanview",
         "name": "Normanview",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -4041,7 +4194,7 @@
         "uid": "725-north",
         "name": "North",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -4050,7 +4203,7 @@
         "uid": "705-north-central",
         "name": "North Central",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -4059,7 +4212,7 @@
         "uid": "835-north-central-east",
         "name": "North Central (East)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4068,7 +4221,7 @@
         "uid": "835-north-central-west",
         "name": "North Central (West)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4077,7 +4230,7 @@
         "uid": "933-north-delta",
         "name": "North Delta",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4086,7 +4239,7 @@
         "uid": "835-north-east",
         "name": "North East",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4095,7 +4248,7 @@
         "uid": "933-north-false-creek",
         "name": "North False Creek",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4104,7 +4257,7 @@
         "uid": "825-north-glenmore-park-lakeview",
         "name": "North Glenmore Park/Lakeview",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4113,7 +4266,7 @@
         "uid": "825-north-haven-upper-north-haven-thorncliffe-highwood-greenv-8b95b7",
         "name": "North Haven/Upper North Haven/Thorncliffe/Highwood/Greenview/Cambrian Heights/Queens Park Village",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4122,7 +4275,7 @@
         "uid": "835-north-jasper-place",
         "name": "North Jasper Place",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4131,7 +4284,7 @@
         "uid": "835-north-millwoods",
         "name": "North Millwoods",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4155,10 +4308,28 @@
         "parentName": "Vancouver"
       },
       {
+        "uid": "933-north-vancouver-district-municipality-east",
+        "name": "North Vancouver District Municipality East",
+        "prov": "59",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "933",
+        "parentName": "Vancouver"
+      },
+      {
+        "uid": "933-north-vancouver-district-municipality-west",
+        "name": "North Vancouver District Municipality West",
+        "prov": "59",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "933",
+        "parentName": "Vancouver"
+      },
+      {
         "uid": "835-north-west-jasper-place",
         "name": "North West Jasper Place",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4167,7 +4338,7 @@
         "uid": "705-northeast",
         "name": "Northeast",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -4176,7 +4347,7 @@
         "uid": "705-northeast-arcola",
         "name": "Northeast Arcola",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -4185,7 +4356,7 @@
         "uid": "835-northmount-evansdale",
         "name": "Northmount/Evansdale",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4194,7 +4365,7 @@
         "uid": "705-northwest",
         "name": "Northwest",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -4203,7 +4374,7 @@
         "uid": "725-northwest",
         "name": "Northwest",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -4221,7 +4392,7 @@
         "uid": "725-nutana-north",
         "name": "Nutana North",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -4230,7 +4401,7 @@
         "uid": "725-nutana-south",
         "name": "Nutana South",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -4239,7 +4410,7 @@
         "uid": "935-oak-bay-north",
         "name": "Oak Bay North",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -4248,7 +4419,7 @@
         "uid": "935-oak-bay-south",
         "name": "Oak Bay South",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -4257,7 +4428,7 @@
         "uid": "935-oaklands",
         "name": "Oaklands",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -4275,7 +4446,7 @@
         "uid": "835-oliver",
         "name": "Oliver",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4293,7 +4464,7 @@
         "uid": "705-outlying-areas",
         "name": "Outlying Areas",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -4302,7 +4473,7 @@
         "uid": "725-outlying-areas",
         "name": "Outlying Areas",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -4311,7 +4482,7 @@
         "uid": "825-parkdale-st-andrews-heights-hounsfield-heights-briar-hill-5a2fbc",
         "name": "Parkdale/St. Andrews Heights/Hounsfield Heights/Briar Hill/Hillhurst/West Hillhurst",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4320,7 +4491,7 @@
         "uid": "933-pitt-meadows",
         "name": "Pitt Meadows",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4338,7 +4509,7 @@
         "uid": "933-point-grey",
         "name": "Point Grey",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4347,7 +4518,7 @@
         "uid": "933-port-coquitlam",
         "name": "Port Coquitlam",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4356,7 +4527,7 @@
         "uid": "933-port-moody",
         "name": "Port Moody",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4365,7 +4536,7 @@
         "uid": "835-queen-mary-park",
         "name": "Queen Mary Park",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4374,7 +4545,7 @@
         "uid": "825-ranchlands-hawkwood-arbour-lake-citadel-rocky-ridge-royal-oak",
         "name": "Ranchlands/Hawkwood/Arbour Lake/Citadel/Rocky Ridge/Royal Oak",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4383,7 +4554,7 @@
         "uid": "933-renfrew",
         "name": "Renfrew",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4392,7 +4563,7 @@
         "uid": "933-richmond-city-centre",
         "name": "Richmond City Centre",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4401,7 +4572,7 @@
         "uid": "933-richmond-east",
         "name": "Richmond East",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4410,7 +4581,7 @@
         "uid": "933-richmond-south",
         "name": "Richmond South",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4419,7 +4590,7 @@
         "uid": "933-richmond-west",
         "name": "Richmond West",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4428,7 +4599,7 @@
         "uid": "933-riley-park",
         "name": "Riley Park",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4455,7 +4626,7 @@
         "uid": "835-riverbend-whitemud-creek",
         "name": "Riverbend/Whitemud Creek",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4464,7 +4635,7 @@
         "uid": "935-rockland",
         "name": "Rockland",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -4473,7 +4644,7 @@
         "uid": "825-rosedale-sunnyside-crescent-heights-renfrew",
         "name": "Rosedale/Sunnyside/Crescent Heights/Renfrew",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4482,7 +4653,7 @@
         "uid": "705-rosemont-mount-royal",
         "name": "Rosemont/Mount Royal",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -4500,7 +4671,7 @@
         "uid": "825-rundle-pine-ridge-monterey-park",
         "name": "Rundle/Pine Ridge/Monterey Park",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4509,7 +4680,7 @@
         "uid": "825-rutland-park-glamorgan",
         "name": "Rutland Park/Glamorgan",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4518,7 +4689,7 @@
         "uid": "935-saanich-centre",
         "name": "Saanich-Centre",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -4527,7 +4698,7 @@
         "uid": "935-saanich-other",
         "name": "Saanich-Other",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -4536,7 +4707,7 @@
         "uid": "935-saanich-university",
         "name": "Saanich/University",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -4545,7 +4716,7 @@
         "uid": "825-scarboro-sunalta",
         "name": "Scarboro/Sunalta",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4563,7 +4734,7 @@
         "uid": "835-sherwood-park",
         "name": "Sherwood Park",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4572,7 +4743,7 @@
         "uid": "825-sherwood-kincora-hamptons-edgemont",
         "name": "Sherwood/Kincora/Hamptons/Edgemont",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4581,7 +4752,7 @@
         "uid": "935-sidney",
         "name": "Sidney",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -4590,7 +4761,7 @@
         "uid": "825-silver-springs-scenic-acres-tuscany",
         "name": "Silver Springs/Scenic Acres/Tuscany",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4599,7 +4770,7 @@
         "uid": "933-south-cambie",
         "name": "South Cambie",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4608,7 +4779,7 @@
         "uid": "933-south-false-creek",
         "name": "South False Creek",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4617,7 +4788,7 @@
         "uid": "933-south-granville",
         "name": "South Granville",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4626,7 +4797,7 @@
         "uid": "835-south-jasper-place",
         "name": "South Jasper Place",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4635,7 +4806,7 @@
         "uid": "835-south-millwoods",
         "name": "South Millwoods",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4662,7 +4833,7 @@
         "uid": "933-south-surrey",
         "name": "South Surrey",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4671,7 +4842,7 @@
         "uid": "835-south-west-jasper-place",
         "name": "South West Jasper Place",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4680,7 +4851,7 @@
         "uid": "705-southeast-arcola",
         "name": "Southeast Arcola",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -4689,7 +4860,7 @@
         "uid": "933-southeast-burnaby-south",
         "name": "Southeast Burnaby South",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4698,7 +4869,7 @@
         "uid": "825-southeast-industrial-area-and-surrounding-communities",
         "name": "Southeast Industrial Area and Surrounding Communities",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4707,7 +4878,7 @@
         "uid": "835-southgate-district",
         "name": "Southgate District",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4716,7 +4887,7 @@
         "uid": "705-southwest-cathedral-area",
         "name": "Southwest/Cathedral Area",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -4734,7 +4905,7 @@
         "uid": "835-spruce-grove",
         "name": "Spruce Grove",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4743,7 +4914,7 @@
         "uid": "835-st-albert",
         "name": "St. Albert",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4779,7 +4950,7 @@
         "uid": "835-stony-plain",
         "name": "Stony Plain",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4794,10 +4965,19 @@
         "parentName": "Edmonton"
       },
       {
+        "uid": "835-strathcona-county-remiander",
+        "name": "Strathcona County Remiander",
+        "prov": "48",
+        "yearMin": 2011,
+        "yearMax": 2015,
+        "parentUid": "835",
+        "parentName": "Edmonton"
+      },
+      {
         "uid": "825-strathcona-park-christie-park-patterson-coach-hill-signal-hill",
         "name": "Strathcona Park/Christie Park/Patterson/Coach Hill/Signal Hill",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4806,7 +4986,7 @@
         "uid": "835-strathearn-holyrood",
         "name": "Strathearn/Holyrood",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4815,7 +4995,7 @@
         "uid": "933-sunset",
         "name": "Sunset",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4824,7 +5004,7 @@
         "uid": "933-surrey-city-centre",
         "name": "Surrey City Centre",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4833,7 +5013,7 @@
         "uid": "835-terwillegar-rural-southwest",
         "name": "Terwillegar/Rural Southwest",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4842,7 +5022,7 @@
         "uid": "835-thorncliffe-aldergrove",
         "name": "Thorncliffe/Aldergrove",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4860,7 +5040,7 @@
         "uid": "933-tsawwassen",
         "name": "Tsawwassen",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4878,7 +5058,7 @@
         "uid": "835-university",
         "name": "University",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -4887,7 +5067,7 @@
         "uid": "933-university-endowment-lands",
         "name": "University Endowment Lands",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4896,7 +5076,7 @@
         "uid": "725-university-heights",
         "name": "University Heights",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -4905,7 +5085,7 @@
         "uid": "933-university-lougheed",
         "name": "University/Lougheed",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4914,7 +5094,7 @@
         "uid": "725-upper-southwest",
         "name": "Upper Southwest",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -4923,7 +5103,7 @@
         "uid": "933-uptown",
         "name": "Uptown",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -4932,7 +5112,7 @@
         "uid": "825-valley-ridge-crestmont-cougar-ridge-west-springs-aspen-wo-dc1739",
         "name": "Valley Ridge/Crestmont/Cougar Ridge/West Springs/Aspen Woods/Springbank Hill/Discovery Ridge",
         "prov": "48",
-        "yearMin": 2021,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4941,7 +5121,7 @@
         "uid": "825-varsity",
         "name": "Varsity",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4950,7 +5130,7 @@
         "uid": "935-vic-west",
         "name": "Vic West",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -4959,7 +5139,7 @@
         "uid": "935-view-royal",
         "name": "View Royal",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -4968,7 +5148,7 @@
         "uid": "825-vista-heights-skyline-east-pegasus-mccall-north-airways-s-be008a",
         "name": "Vista Heights/Skyline East/Pegasus/McCall/North Airways/South Airways/Mayland Heights/Mayland",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -4977,7 +5157,7 @@
         "uid": "705-west",
         "name": "West",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -4986,7 +5166,7 @@
         "uid": "725-west",
         "name": "West",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -5013,7 +5193,7 @@
         "uid": "835-west-castledowns",
         "name": "West Castledowns",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -5022,7 +5202,7 @@
         "uid": "725-west-central",
         "name": "West Central",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "725",
         "parentName": "Saskatoon"
@@ -5031,7 +5211,7 @@
         "uid": "835-west-central-north",
         "name": "West Central (North)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -5040,7 +5220,7 @@
         "uid": "835-west-central-south",
         "name": "West Central (South)",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -5058,7 +5238,7 @@
         "uid": "933-west-end-stanley-park-north",
         "name": "West End/Stanley Park North",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -5067,7 +5247,7 @@
         "uid": "933-west-end-stanley-park-south",
         "name": "West End/Stanley Park South",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -5076,7 +5256,7 @@
         "uid": "835-west-jasper-place-rural",
         "name": "West Jasper Place/Rural",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2014,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -5085,7 +5265,7 @@
         "uid": "935-west-shore-other",
         "name": "West Shore/Other",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "935",
         "parentName": "Victoria"
@@ -5094,7 +5274,7 @@
         "uid": "933-westside-heights",
         "name": "Westside Heights",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -5103,7 +5283,7 @@
         "uid": "933-westside-kerrisdale-remainder",
         "name": "Westside/Kerrisdale Remainder",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -5112,7 +5292,7 @@
         "uid": "835-westwood",
         "name": "Westwood",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
@@ -5121,7 +5301,7 @@
         "uid": "933-whalley",
         "name": "Whalley",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -5130,7 +5310,7 @@
         "uid": "933-white-rock",
         "name": "White Rock",
         "prov": "59",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "933",
         "parentName": "Vancouver"
@@ -5139,7 +5319,7 @@
         "uid": "825-whitehorn-temple",
         "name": "Whitehorn/Temple",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -5148,7 +5328,7 @@
         "uid": "705-whitmore-park",
         "name": "Whitmore Park",
         "prov": "47",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "705",
         "parentName": "Regina"
@@ -5157,7 +5337,7 @@
         "uid": "825-wildwood-spruce-cliff-shaganappi-westgate-rosscarrock",
         "name": "Wildwood/Spruce Cliff/Shaganappi/Westgate/Rosscarrock",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -5166,8 +5346,17 @@
         "uid": "825-willow-park-acadia-haysboro-southwood",
         "name": "Willow Park/Acadia/Haysboro/Southwood",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
+        "parentUid": "825",
+        "parentName": "Calgary"
+      },
+      {
+        "uid": "825-windsor-park-meadowlark-park-britania-elboya",
+        "name": "Windsor Park/Meadowlark Park/Britania/Elboya",
+        "prov": "48",
+        "yearMin": 2011,
+        "yearMax": 2015,
         "parentUid": "825",
         "parentName": "Calgary"
       },
@@ -5184,7 +5373,7 @@
         "uid": "825-winston-heights-mountview-tuxedo-park-highland-park",
         "name": "Winston Heights/Mountview/Tuxedo Park/Highland Park",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "825",
         "parentName": "Calgary"
@@ -5202,7 +5391,7 @@
         "uid": "835-woodcroft-inglewood",
         "name": "Woodcroft/Inglewood",
         "prov": "48",
-        "yearMin": 2016,
+        "yearMin": 2011,
         "yearMax": 2025,
         "parentUid": "835",
         "parentName": "Edmonton"
