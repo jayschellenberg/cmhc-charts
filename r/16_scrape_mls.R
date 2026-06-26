@@ -97,11 +97,41 @@ scrape_benchmark <- function() {
   fyr_i <- if (n > 60) n - 60 else 1L
   fyr_chg <- if (sf[fyr_i] != 0) round((sf[latest_i] / sf[fyr_i] - 1) * 100, 1) else NA_real_
 
+  # Additional city single-family benchmarks from the same national workbook (one
+  # sheet per board) — for the Affordability purchase factor (SK/AB/BC). Winnipeg
+  # keeps its full hpi summary above (used by the MB Economic Update tab).
+  EXTRA_CITIES <- list(
+    list(rx = "calgary",   id = "mls.hpi.calgary.sf",   geo = "Calgary"),
+    list(rx = "edmonton",  id = "mls.hpi.edmonton.sf",  geo = "Edmonton"),
+    list(rx = "saskatoon", id = "mls.hpi.saskatoon.sf", geo = "Saskatoon"),
+    list(rx = "regina",    id = "mls.hpi.regina.sf",    geo = "Regina"),
+    list(rx = "greater[ _]vancouver", id = "mls.hpi.vancouver.sf", geo = "Vancouver"),
+    list(rx = "victoria",  id = "mls.hpi.victoria.sf",  geo = "Victoria")
+  )
+  extra_series <- list(); extra_records <- list()
+  for (ct in EXTRA_CITIES) {
+    nm <- sheets[grepl(ct$rx, sheets, ignore.case = TRUE)]
+    if (!length(nm)) { message(sprintf("[16] no MLS sheet for %s — skipping", ct$geo)); next }
+    dd <- as.data.frame(readxl::read_excel(xlsx[1], sheet = nm[1]))
+    if (!all(c("Date", "Single_Family_Benchmark") %in% names(dd))) next
+    dt <- as.Date(dd$Date); v <- suppressWarnings(as.numeric(dd$Single_Family_Benchmark))
+    k <- !is.na(dt) & !is.na(v); dt <- dt[k]; v <- v[k]
+    if (length(v) < 12) next
+    o <- order(dt); dt <- dt[o]; v <- v[o]; li <- length(v)
+    extra_series[[length(extra_series) + 1]] <- list(id = ct$id, chartLabel = "Single-family benchmark",
+      units = "dollar", geo = ct$geo, frequency = "monthly",
+      latestDate = as.character(dt[li]), latestValue = v[li])
+    extra_records[[length(extra_records) + 1]] <- data.frame(id = ct$id,
+      date = as.character(dt), value = v, stringsAsFactors = FALSE)
+    message(sprintf("[16] %s benchmark: %d obs, latest %s = $%s", ct$geo, li, as.character(dt[li]), format(v[li], big.mark = ",")))
+  }
+
+  win_series <- list(id = "mls.hpi.winnipeg.sf", chartLabel = "Single-family benchmark",
+                     units = "dollar", geo = "Winnipeg", frequency = "monthly",
+                     latestDate = as.character(dates[latest_i]), latestValue = sf[latest_i])
   list(
-    series = list(list(id = "mls.hpi.winnipeg.sf", chartLabel = "Single-family benchmark",
-                       units = "dollar", geo = "Winnipeg", frequency = "monthly",
-                       latestDate = as.character(dates[latest_i]), latestValue = sf[latest_i])),
-    records = records,
+    series = c(list(win_series), extra_series),
+    records = do.call(rbind, c(list(records), extra_records)),
     hpi = list(
       benchmarkLatest = sf[latest_i], benchmarkLatestDate = format(dates[latest_i], "%B %Y"),
       isRecordHigh = is_record,

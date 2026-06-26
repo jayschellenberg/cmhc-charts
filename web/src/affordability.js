@@ -125,8 +125,15 @@ export async function initAffordability() {
   // --- Home prices (MLS HPI) keyed onto the matching area uids ----------------
   // Today: Winnipeg single-family benchmark → Winnipeg CMA (46602) + Winnipeg CSD (4611040).
   const priceByUid = new Map();
-  const wpgPrice = (mls?.series || []).find(s => /winnipeg/i.test(s.geo))?.latestValue;
-  if (wpgPrice) { priceByUid.set('46602', wpgPrice); priceByUid.set('4611040', wpgPrice); }
+  // CREA single-family benchmark series geo → affordability area uid(s).
+  const MLS_UID = {
+    winnipeg: ['46602', '4611040'], calgary: ['48825'], edmonton: ['48835'],
+    saskatoon: ['47725'], regina: ['47705'], vancouver: ['59933'], victoria: ['59935'],
+  };
+  for (const s of (mls?.series || [])) {
+    const uids = MLS_UID[String(s.geo || '').toLowerCase()];
+    if (uids && s.latestValue != null) for (const u of uids) priceByUid.set(u, s.latestValue);
+  }
   const priceAsOf = (mls?.series || []).find(s => /winnipeg/i.test(s.geo))?.latestDate || mls?.asOf;
 
   // --- Reference mortgage rates (Bank of Canada) ------------------------------
