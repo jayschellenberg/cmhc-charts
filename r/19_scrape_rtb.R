@@ -51,6 +51,14 @@ HISTORY_SEED <- list(
   `1990` = 3.0, `1989` = 3.0, `1988` = 3.0, `1987` = 3.0, `1986` = 3.0, `1985` = 4.5,
   `1984` = 6.0, `1983` = 8.0, `1982` = 9.0)
 
+# Economic adjustment factor (per cent) by year — a SEPARATE figure the RTB
+# publishes on the guideline page (used for above-guideline applications; NOT part
+# of the guideline's CPI formula). First published for 2024, so 2023 and earlier
+# have none (rendered "**"). Seeded from the RTB guideline pages (2024 via the
+# Internet Archive); the live current-year value is merged in from the scrape so
+# it advances as each year is published.
+EAF_SEED <- list(`2026` = 1.1, `2025` = 1.1, `2024` = 1.9)
+
 MONTHS <- c(January=1, February=2, March=3, April=4, May=5, June=6, July=7,
             August=8, September=9, October=10, November=11, December=12)
 
@@ -115,11 +123,15 @@ if (is.null(cur)) {
                   cur$economicAdjustmentFactorPct %||% "?", cur$exemptionThreshold %||% "?"))
 }
 
-# --- 2. History = seed + the live current value ------------------------------
+# --- 2. History = seed + the live current value (guideline + EAF per year) ----
 hist <- HISTORY_SEED
 hist[[as.character(cur$year)]] <- cur$guidelinePct
+eaf_map <- EAF_SEED
+if (!is.na(cur$economicAdjustmentFactorPct %||% NA))
+  eaf_map[[as.character(cur$year)]] <- cur$economicAdjustmentFactorPct   # advance with the live page
 history <- lapply(sort(as.integer(names(hist)), decreasing = TRUE),
-                  function(y) list(year = y, pct = hist[[as.character(y)]]))
+                  function(y) list(year = y, pct = hist[[as.character(y)]],
+                                   eaf = eaf_map[[as.character(y)]] %||% NA))
 
 # --- 3. Manitoba All-items CPI annual % change (best-effort) ------------------
 # v41691233 = StatsCan table 18-10-0004, Manitoba, All-items (not seasonally

@@ -197,14 +197,14 @@ function renderTable($table, data, cpiByYear) {
   const hist = data.history || [];
   const body = hist.map(h => {
     const cpi = cpiByYear.get(h.year);
-    return `<tr><td>${h.year}</td><td>${fPct(h.pct)}</td><td>${cpi == null ? '**' : fPct(cpi)}</td></tr>`;
+    return `<tr><td>${h.year}</td><td>${fPct(h.pct)}</td><td>${fPct(h.eaf)}</td><td>${cpi == null ? '**' : fPct(cpi)}</td></tr>`;
   }).join('');
   $table.innerHTML = `
     <section class="cmhc-table-block">
       <div class="cmhc-table-title">Rent increase guidelines by year — Manitoba</div>
-      <table class="cmhc-table"><thead><tr><th>Year</th><th>Guideline</th><th>MB All-Items CPI (annual change)</th></tr></thead>
+      <table class="cmhc-table"><thead><tr><th>Year</th><th>Guideline</th><th>Economic adjustment factor</th><th>MB All-Items CPI (annual change)</th></tr></thead>
         <tbody>${body}</tbody></table>
-      <p class="text-xs text-neutral-500 mt-2">Guideline: Manitoba Residential Tenancies Branch. CPI: Statistics Canada, Manitoba All-Items CPI (not seasonally adjusted), annual-average year-over-year change — the series the guideline is derived from (the guideline for a year reflects CPI measured the prior year, and is blended with the economic adjustment factor). “**” = not published.</p>
+      <p class="text-xs text-neutral-500 mt-2">Guideline + <strong>economic adjustment factor</strong>: Manitoba Residential Tenancies Branch (the economic adjustment factor is a separate figure used for above-guideline applications; first published for 2024, so earlier years show “**”). CPI: Statistics Canada, Manitoba All-Items CPI (not seasonally adjusted), annual-average year-over-year change — the series the guideline is derived from (the guideline for a year reflects CPI measured the prior year). “**” = not published.</p>
     </section>`;
 }
 
