@@ -90,6 +90,8 @@ export async function initRtb() {
         <div class="aff-stat-value">${fUsd(c.exemptionThreshold)}</div>
         <div class="aff-stat-sub">units at/above this rent are exempt</div>
       </div>
+      <button id="rtb-download-docx" type="button"
+        class="self-center text-sm bg-accent-500 hover:bg-accent-600 text-white rounded px-3 py-2 whitespace-nowrap">Download Word<br>(annual document)</button>
     </div>
     <p class="text-xs text-neutral-500 mt-1">The guideline is the maximum most landlords may raise rent in a year without applying for more; it is set from the change in Manitoba’s All-Items CPI (not seasonally adjusted) over the 12 months to June of the prior year, capped to the Bank of Canada 1–3% band. Tenants must get ≥3 months’ written notice and rents generally rise only once a year.</p>`;
 
@@ -119,11 +121,7 @@ export async function initRtb() {
 
   $narr.innerHTML = `
     <section class="cmhc-table-block">
-      <div class="flex items-start justify-between gap-3 flex-wrap">
-        <div class="cmhc-table-title">Rent Controls — appraisal narrative (${c.year})</div>
-        <button id="rtb-download-docx" type="button"
-          class="text-sm bg-accent-500 hover:bg-accent-600 text-white rounded px-3 py-1.5">Download Word (annual document)</button>
-      </div>
+      <div class="cmhc-table-title">Rent Controls — appraisal narrative (${c.year})</div>
       <div class="text-sm text-neutral-800 leading-relaxed mt-2 max-w-3xl">${narrBody}</div>
       <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
         ${links.map(([t, u]) => `<a href="${escapeHtml(u)}" target="_blank" rel="noopener" class="text-accent-600 hover:underline">${escapeHtml(t)} ↗</a>`).join('')}
@@ -166,7 +164,7 @@ function renderChart($chart, data, cpiByYear) {
   const maxV = Math.max(...rows.map(d => d.value), 5);
   const minV = Math.min(0, ...rows.map(d => d.value));
   const svg = Plot.plot(themed({
-    height: 300, marginBottom: 34, marginLeft: 40,
+    width: 520, height: 280, marginBottom: 34, marginLeft: 40,   // ~Housing-Starts card size; Plot adds max-width:100% so it still shrinks on narrow screens
     x: { label: null, tickFormat: 'd' },
     y: { label: '% change', tickFormat: v => `${v}%`, domain: [minV, maxV * 1.1], grid: true },
     color: { domain: series, range: [PALETTE[0], '#dc2626'], legend: true },
@@ -179,7 +177,7 @@ function renderChart($chart, data, cpiByYear) {
     ],
   }));
   const card = document.createElement('section');
-  card.className = 'chart-card';
+  card.className = 'chart-card';   // width is constrained by the #rtb-chart grid (matches Housing Starts cards)
   card.innerHTML = `<header class="chart-title">Rent increase guideline vs Manitoba CPI</header>
     <p class="chart-sub">${loY}–${hiY} — guideline vs the Manitoba All-items CPI change that sets it (change in the 12-month average ending June of the prior year). The guideline = that, capped to 1–3% — except the 2022–23 freezes (0%).</p>
     <div data-role="plot" class="cmhc-plot"></div>
