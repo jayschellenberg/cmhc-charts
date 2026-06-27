@@ -350,6 +350,7 @@ function renderSnapshotTile(c, meta, shard, $bar) {
     <div class="cmhc-kpi-value"></div>
     <div class="cmhc-kpi-meta"></div>
     <div class="cmhc-kpi-deltas"></div>
+    <div class="cmhc-kpi-source"></div>
   `;
   const fmtKey = (meta.units === 'dollar' && Math.abs(meta.latestValue ?? 0) >= 1e6)
     ? 'dollar_millions' : meta.units;
@@ -377,6 +378,18 @@ function renderSnapshotTile(c, meta, shard, $bar) {
     chip.innerHTML = `<span class="cmhc-kpi-delta-window">${w.label}</span> ${d.arrow} ${d.label}`;
     $deltas.appendChild(chip);
   });
+
+  // Source attribution per metric — provider name (linking to the source series
+  // where available). Built with DOM nodes so the URL is never string-injected.
+  const $src = tile.querySelector('.cmhc-kpi-source');
+  const srcName = PROVIDER_LABEL[meta.provider] || meta.provider || 'Source';
+  if (meta.sourceUrl) {
+    const a = document.createElement('a');
+    a.href = meta.sourceUrl; a.target = '_blank'; a.rel = 'noopener'; a.textContent = srcName;
+    $src.append('Source: ', a);
+  } else {
+    $src.textContent = `Source: ${srcName}`;
+  }
 
   $bar.appendChild(tile);
 }
