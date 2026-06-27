@@ -91,7 +91,7 @@ export async function initRtb() {
         <div class="aff-stat-sub">units at/above this rent are exempt</div>
       </div>
     </div>
-    <p class="text-xs text-neutral-500 mt-1">The guideline is the maximum most landlords may raise rent in a year without applying for more; it is set from the percentage change in Manitoba’s average annual All-Items CPI (not seasonally adjusted). Tenants must get ≥3 months’ written notice and rents generally rise only once a year.</p>`;
+    <p class="text-xs text-neutral-500 mt-1">The guideline is the maximum most landlords may raise rent in a year without applying for more; it is set from the change in Manitoba’s All-Items CPI (not seasonally adjusted) over the 12 months to June of the prior year, capped to the Bank of Canada 1–3% band. Tenants must get ≥3 months’ written notice and rents generally rise only once a year.</p>`;
 
   // ---- Narrative + download + links ---------------------------------------
   const blocks = narrativeBlocks(c);
@@ -159,9 +159,9 @@ function renderChart($chart, data, cpiByYear) {
   for (const h of hist) {
     rows.push({ year: h.year, series: 'Rent guideline', value: h.pct });
     const cpi = cpiByYear.get(h.year);
-    if (cpi != null) rows.push({ year: h.year, series: 'MB All-Items CPI (annual change)', value: cpi });
+    if (cpi != null) rows.push({ year: h.year, series: 'MB CPI (guideline basis)', value: cpi });
   }
-  const series = ['Rent guideline', 'MB All-Items CPI (annual change)'];
+  const series = ['Rent guideline', 'MB CPI (guideline basis)'];
   const loY = hist[0].year, hiY = hist[hist.length - 1].year;
   const maxV = Math.max(...rows.map(d => d.value), 5);
   const minV = Math.min(0, ...rows.map(d => d.value));
@@ -181,7 +181,7 @@ function renderChart($chart, data, cpiByYear) {
   const card = document.createElement('section');
   card.className = 'chart-card';
   card.innerHTML = `<header class="chart-title">Rent increase guideline vs Manitoba CPI</header>
-    <p class="chart-sub">${loY}–${hiY} — annual rent-increase guideline and the Manitoba All-Items CPI change it is derived from</p>
+    <p class="chart-sub">${loY}–${hiY} — guideline vs the Manitoba All-items CPI change that sets it (change in the 12-month average ending June of the prior year). The guideline = that, capped to 1–3% — except the 2022–23 freezes (0%).</p>
     <div data-role="plot" class="cmhc-plot"></div>
     <div class="chart-caption"><span class="chart-caption-left"></span>
       <span class="chart-source">Source: Manitoba RTB; StatsCan (MB All-Items CPI)</span></div>
@@ -202,9 +202,9 @@ function renderTable($table, data, cpiByYear) {
   $table.innerHTML = `
     <section class="cmhc-table-block">
       <div class="cmhc-table-title">Rent increase guidelines by year — Manitoba</div>
-      <table class="cmhc-table"><thead><tr><th>Year</th><th>Guideline</th><th>Economic adjustment factor</th><th>MB All-Items CPI (annual change)</th></tr></thead>
+      <table class="cmhc-table"><thead><tr><th>Year</th><th>Guideline</th><th>Economic adjustment factor</th><th>CPI change (guideline basis)</th></tr></thead>
         <tbody>${body}</tbody></table>
-      <p class="text-xs text-neutral-500 mt-2">Guideline + <strong>economic adjustment factor</strong>: Manitoba Residential Tenancies Branch (the economic adjustment factor is a separate figure used for above-guideline applications; first published for 2024, so earlier years show “**”). CPI: Statistics Canada, Manitoba All-Items CPI (not seasonally adjusted), annual-average year-over-year change — the series the guideline is derived from (the guideline for a year reflects CPI measured the prior year). “**” = not published.</p>
+      <p class="text-xs text-neutral-500 mt-2">Guideline + <strong>economic adjustment factor</strong>: Manitoba Residential Tenancies Branch (the EAF is a separate figure used for above-guideline applications; first published for 2024, so earlier years show “**”). <strong>CPI change (guideline basis)</strong>: Statistics Canada, Manitoba All-items CPI (not seasonally adjusted), measured as the guideline formula does — the change in the 12-month average ending June of the <em>prior</em> year. The guideline equals this rounded and capped to the Bank of Canada 1–3% band; <strong>2022 &amp; 2023 were frozen to 0%</strong> by provincial budget measures, so they fall below CPI. “**” = not published / no data.</p>
     </section>`;
 }
 
