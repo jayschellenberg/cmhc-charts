@@ -81,8 +81,19 @@ WPG_CSD  <- "4611040"   # City of Winnipeg (for DA-level fetch)
 # manageable. The Winnipeg virtual geographies (DA-aggregated clusters/community
 # areas, r/12b) stay Manitoba-only.
 ADD_PR     <- c("47", "48", "59")    # SK, AB, BC
-ADD_YEARS  <- c("2016", "2021")
-ADD_LEVELS <- c("PR", "CMA", "CD")   # not CSD
+ADD_YEARS  <- c("2016", "2021")      # MB+western COMBINED fetch_level scope (both cached)
+# Western back-year(s) fetched SEPARATELY and cap-tolerant — fetch_level pulls
+# only Manitoba for these years, so MB's cached back-years can never be lost to a
+# western quota stop, and a partial run defers the rest to a later run. 2011 is
+# the NHS, fetched leniently like the other earlier censuses.
+ADD_BACK_YEARS <- c("2011")
+ADD_LEVELS <- c("PR", "CMA", "CD")   # CSDs handled separately — see ADD_CSDS below
+# Municipal (CSD) demographics for SK/AB/BC. CensusMapper's free tier caps at 500
+# region identifiers/day, and SK/AB/BC have ~1,600 CSDs, so these are fetched
+# chunked + cap-tolerant (below): each daily run banks ~500 more in the persistent
+# cache and appends whatever is cached so far, so the set fills over several days.
+# Set FALSE to turn the municipal census/affordability rows back off.
+ADD_CSDS   <- as.logical(Sys.getenv("CENSUS_ADD_CSDS", unset = "TRUE"))
 
 # =============================================================================
 # Vector resolution (ported from MBCensusData/census_report.R)
@@ -213,6 +224,72 @@ fetch_level <- function(dataset, level, fields, lenient = FALSE) {
   out
 }
 
+# SK/AB/BC municipal (CSD) demographics, chunked + cap-tolerant. The CSD GeoUIDs
+# are read from the already-built census_housing.json (StatsCan-bulk sourced, so
+# enumerating them costs no CensusMapper quota); each chunk is wrapped so a
+# 500/day-cap rejection just skips that chunk (it fills on a later run via the
+# persistent cache) instead of aborting the build. MB CSDs are untouched (they
+# come from fetch_level as before) so they can never go partial.
+fetch_add_csds <- function(dataset, fields, lenient = FALSE, chunk_size = 40) {
+  vids <- if (lenient) resolve_fields_lenient(dataset, fields) else resolve_fields(dataset, fields)
+  chp <- file.path(WEB_DATA, "housing", "census_housing.json")
+  if (!file.exists(chp)) return(data.frame())
+  areas <- tryCatch(jsonlite::read_json(chp)$areas, error = function(e) NULL)
+  if (is.null(areas)) return(data.frame())
+  ids <- unique(vapply(areas, function(a) as.character(a$uid %||% ""), character(1)))
+  ids <- ids[grepl("^(47|48|59)[0-9]{5}$", ids)]
+  if (!length(ids)) return(data.frame())
+  chunks <- split(ids, ceiling(seq_along(ids) / chunk_size))
+  parts <- list(); banked <- 0L
+  for (i in seq_along(chunks)) {
+    df <- tryCatch(get_census(dataset = dataset, regions = list(CSD = chunks[[i]]), level = "CSD",
+                              vectors = unname(vids[!is.na(vids)]), use_cache = TRUE, quiet = TRUE, geo_format = NA),
+                   error = function(e) NULL)
+    if (is.null(df) || !nrow(df)) next   # cap reached or no data — fills on a later run
+    banked <- banked + nrow(df)
+    out <- data.frame(uid = as.character(df$GeoUID),
+                      name = as.character(df$`Region Name` %||% df$name),
+                      Population = suppressWarnings(as.numeric(df$Population)),
+                      Dwellings  = suppressWarnings(as.numeric(df$Dwellings)),
+                      Households = suppressWarnings(as.numeric(df$Households)),
+                      stringsAsFactors = FALSE)
+    for (nm in names(fields)) {
+      if (is.na(vids[[nm]])) { out[[nm]] <- NA_real_; next }
+      col <- grep(sprintf("^%s(:|$)", vids[[nm]]), names(df), value = TRUE)[1]
+      out[[nm]] <- if (is.na(col)) NA_real_ else suppressWarnings(as.numeric(df[[col]]))
+    }
+    parts[[length(parts) + 1]] <- out
+  }
+  message(sprintf("    SK/AB/BC CSDs: %d/%d chunks cached (%d / %d municipalities so far)",
+                  length(parts), length(chunks), banked, length(ids)))
+  if (!length(parts)) data.frame() else do.call(rbind, parts)
+}
+
+# Western (SK/AB/BC) PR/CMA/CD demographics for a back-year, cap-tolerant. Used
+# only for the years fetch_level pulls Manitoba-only (ADD_BACK_YEARS) — one
+# get_census() over the three western provinces, wrapped so a daily-cap rejection
+# returns nothing (it fills on a later run) instead of aborting and without ever
+# touching Manitoba's cached back-years. MB at these levels/years is unaffected.
+fetch_add_western <- function(dataset, level, fields, lenient = FALSE) {
+  vids <- if (lenient) resolve_fields_lenient(dataset, fields) else resolve_fields(dataset, fields)
+  df <- tryCatch(get_census(dataset = dataset, regions = list(PR = ADD_PR), level = level,
+                            vectors = unname(vids[!is.na(vids)]), use_cache = TRUE, quiet = TRUE, geo_format = NA),
+                 error = function(e) NULL)
+  if (is.null(df) || !nrow(df)) return(data.frame())   # cap reached or no data — fills on a later run
+  out <- data.frame(uid = as.character(df$GeoUID),
+                    name = as.character(df$`Region Name` %||% df$name),
+                    Population = suppressWarnings(as.numeric(df$Population)),
+                    Dwellings  = suppressWarnings(as.numeric(df$Dwellings)),
+                    Households = suppressWarnings(as.numeric(df$Households)),
+                    stringsAsFactors = FALSE)
+  for (nm in names(fields)) {
+    if (is.na(vids[[nm]])) { out[[nm]] <- NA_real_; next }
+    col <- grep(sprintf("^%s(:|$)", vids[[nm]]), names(df), value = TRUE)[1]
+    out[[nm]] <- if (is.na(col)) NA_real_ else suppressWarnings(as.numeric(df[[col]]))
+  }
+  out
+}
+
 # DA-level fetch for the City of Winnipeg (one row per dissemination area),
 # chunked because free CensusMapper keys are capped at 500 region identifiers
 # per day (5,000 per month) — so a single request for all ~1,130 Winnipeg DAs is
@@ -307,6 +384,33 @@ for (y in names(DEMO_DATASETS)) {
       NULL
     })
   if (!is.null(lv)) demo_raw[[y]] <- lv
+}
+
+# ---- SK/AB/BC municipal (CSD) demographics — chunked, cap-tolerant, multi-day --
+# Appended to the CSD level so the assembly picks them up automatically (MB CSDs
+# stay as fetched by fetch_level above). Trends (structural type) at CSD stay
+# MB-only — that series already exists per-municipality in the Dwelling Type tab.
+if (ADD_CSDS) {
+  # Municipalities (CSD) for every western year: 2016/2021 (their PR/CMA/CD come
+  # from fetch_level's combined pull) plus the back-years. Each chunk is
+  # cap-tolerant, so the set fills over runs; Manitoba CSDs are untouched.
+  for (y in unique(c(ADD_YEARS, ADD_BACK_YEARS))) {
+    if (is.null(demo_raw[[y]]) || is.null(demo_raw[[y]][["CSD"]])) next
+    message(sprintf("[12] SK/AB/BC CSD demographics %s (chunked, cap-tolerant)…", y))
+    ac <- fetch_add_csds(DEMO_DATASETS[[y]], demo_fields_for(y), lenient = (y != "2021"))
+    if (nrow(ac)) demo_raw[[y]][["CSD"]] <- rbind(demo_raw[[y]][["CSD"]], ac)
+  }
+  # Back-years also need western PR/CMA/CD (fetch_level pulls only MB for these),
+  # fetched separately + cap-tolerant so MB's cached back-years stay safe.
+  for (y in ADD_BACK_YEARS) {
+    if (is.null(demo_raw[[y]])) next
+    for (lv in c("PR", "CMA", "CD")) {
+      if (is.null(demo_raw[[y]][[lv]])) next
+      message(sprintf("[12] SK/AB/BC %s demographics %s (cap-tolerant back-year)…", lv, y))
+      aw <- fetch_add_western(DEMO_DATASETS[[y]], lv, demo_fields_for(y), lenient = (y != "2021"))
+      if (nrow(aw)) demo_raw[[y]][[lv]] <- rbind(demo_raw[[y]][[lv]], aw)
+    }
+  }
 }
 
 message("[12] Fetching Winnipeg DAs (2021, chunked)…")
