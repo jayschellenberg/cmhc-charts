@@ -215,7 +215,20 @@ function renderTable($table, data, cpiByYear) {
 }
 
 // Turn bare URLs in narrative text into links for the on-screen version.
+// Each segment — non-URL text and the matched URL (used in both the href
+// attribute and the link text) — is passed through escapeHtml exactly once,
+// so it stays safe (and never double-escapes) even if reused on arbitrary
+// scraped text. The scheme is constrained to http(s) by the regex.
 function linkify(s) {
-  return escapeHtml(s).replace(/(https?:\/\/[^\s]+)/g,
-    u => `<a href="${u}" target="_blank" rel="noopener" class="text-accent-600 hover:underline">${u}</a>`);
+  const str = String(s ?? '');
+  const re = /(https?:\/\/[^\s]+)/g;
+  let out = '', last = 0, m;
+  while ((m = re.exec(str)) !== null) {
+    out += escapeHtml(str.slice(last, m.index));
+    const u = escapeHtml(m[0]);
+    out += `<a href="${u}" target="_blank" rel="noopener" class="text-accent-600 hover:underline">${u}</a>`;
+    last = m.index + m[0].length;
+  }
+  out += escapeHtml(str.slice(last));
+  return out;
 }
