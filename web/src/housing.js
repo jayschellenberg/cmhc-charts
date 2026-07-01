@@ -16,6 +16,7 @@
 import * as Plot from '@observablehq/plot';
 import { themed, gridMarks, frameMark, PALETTE } from './plot-theme.js';
 import { downloadCard } from './chart.js';
+import { resolveProvince, rememberProvince } from './prefs.js';
 import { escapeHtml } from './escape.js';
 
 // Common age buckets for the comparison view — each census's own bands rolled
@@ -138,7 +139,11 @@ export async function initHousing() {
   const regionOpts = [{ uid: REGION_CANADA, name: 'Canada' }].concat(
     housing.areas.filter(a => a.level === 'province').sort(byName)
       .map(a => ({ uid: a.uid, name: a.name })));
-  const defaultRegion = regionOpts.some(r => r.uid === '46') ? '46' : (regionOpts[1]?.uid || REGION_CANADA);
+  // Honour the shared "home" province if the housing dataset carries it, else
+  // Manitoba (or Canada if MB is absent). 'CA' stays a valid manual choice.
+  const provinceCodes = regionOpts.map(r => r.uid).filter(u => /^\d{2}$/.test(u));
+  const defaultRegion = resolveProvince(provinceCodes,
+    regionOpts.some(r => r.uid === '46') ? '46' : (regionOpts[1]?.uid || REGION_CANADA));
   // The province total each region defaults to ('CA' → Canada).
   const regionDefaultArea = (region) =>
     region === REGION_CANADA ? (allAreas.find(a => a.region === REGION_CANADA)?.uid || '') : region;
@@ -524,6 +529,7 @@ export async function initHousing() {
   // Province change → rescope (and reset to the province total) the area list.
   $province.addEventListener('change', () => {
     const region = $province.value;
+    rememberProvince(region);                       // shared home province ('CA' is ignored)
     const def = regionDefaultArea(region);
     $area.innerHTML = buildAreaOptions(region);
     $area.value = def || $area.options[0]?.value || '';

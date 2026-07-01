@@ -15,6 +15,7 @@
 import * as Plot from '@observablehq/plot';
 import { themed, gridMarks, frameMark, PALETTE } from './plot-theme.js';
 import { downloadCard } from './chart.js';
+import { resolveProvince, rememberProvince } from './prefs.js';
 import { escapeHtml } from './escape.js';
 
 // Geography levels, in dropdown group order.
@@ -199,7 +200,14 @@ export async function initCensus() {
     .sort((a, b) => a.name.localeCompare(b.name))[0];
   const area1Def = firstClust?.uid || (byUid.has('4612047') ? '4612047' : firstCsd?.uid);
   const areaDefs = [area1Def, wpgCma?.uid, manitoba?.uid];
-  $prov.forEach((psel, i) => { fillProv(psel, '46'); fillArea($area[i], '46', areaDefs[i]); });
+  // Area 1 (the subject) opens on the shared "home" province; the two comparison
+  // pickers stay on Manitoba. Non-MB home → area defaults fall back to the first
+  // area in that province (the MB-specific uids above simply won't match).
+  const startProv = resolveProvince(provsPresent);
+  $prov.forEach((psel, i) => {
+    const prov = i === 0 ? startProv : '46';
+    fillProv(psel, prov); fillArea($area[i], prov, areaDefs[i]);
+  });
   if ($period && !DEMO_PERIODS.includes($period.value)) $period.value = '2021';
 
   // Ensure the two table containers exist before the first render.
@@ -497,7 +505,9 @@ export async function initCensus() {
   }
 
   // Changing a picker's province repopulates its area list (first item selected).
+  // The subject picker (Area 1) also records the shared "home" province.
   $prov.forEach((psel, i) => psel.addEventListener('change', () => {
+    if (i === 0) rememberProvince(psel.value);
     fillArea($area[i], psel.value);
     render();
   }));

@@ -17,6 +17,8 @@
 import * as Plot from '@observablehq/plot';
 import { themed, frameMark, PALETTE } from './plot-theme.js';
 import { downloadCard } from './chart.js';
+import { mapCard } from './map.js';
+import { getPref, setPref, resolveProvince, rememberProvince } from './prefs.js';
 import { escapeHtml } from './escape.js';
 
 const DEFAULT_RATE = 4.64;     // % — Royal LePage 2026 report assumption (3-yr fixed special)
@@ -43,15 +45,17 @@ export async function initAffordability() {
   const $rate    = document.getElementById('aff-rate');
   const $rateRef = document.getElementById('aff-rate-ref');
   const $headline = document.getElementById('aff-headline');
+  const $map     = document.getElementById('aff-map');
   const $charts  = document.getElementById('aff-chart-grid');
   const $tables  = document.getElementById('aff-tables');
   if (!$area || !$tables) return;
 
-  const [profile, mls, mortgage, extra] = await Promise.all([
+  const [profile, mls, mortgage, extra, mbCsdGeo] = await Promise.all([
     fetch('./data/housing/census_profile.json').then(r => r.ok ? r.json() : null).catch(() => null),
     fetch('./data/economy/mls_benchmark.json').then(r => r.ok ? r.json() : null).catch(() => null),
     fetch('./data/indicators/mortgage_market.json').then(r => r.ok ? r.json() : null).catch(() => null),
     fetch('./data/economy/affordability_extra.json').then(r => r.ok ? r.json() : null).catch(() => null),
+    fetch('./data/geo/mb_csd.geojson').then(r => r.ok ? r.json() : null).catch(() => null),
   ]);
   if (!profile || !Array.isArray(profile.regions)) {
     $tables.innerHTML = '<p class="text-sm text-red-700">Census profile data not found.</p>';
@@ -180,8 +184,19 @@ export async function initAffordability() {
     if (defaultUid && areas.some(a => a.uid === defaultUid && a.prov === prov)) $area.value = defaultUid;
     state.uid = $area.value;
   };
-  fillProv('46');
-  fillArea('46', byUid.has('46602') ? '46602' : (areas.find(a => a.prov === '46')?.uid || areas[0]?.uid || ''));  // default Winnipeg CMA
+  // Restore the visitor's last province + area (localStorage), falling back to
+  // the Manitoba / Winnipeg-CMA default.
+  const defaultAreaFor = (prov) => {
+    if (prov === '46' && byUid.has('46602')) return '46602';   // Winnipeg CMA
+    if (byUid.has(prov)) return prov;                          // province total
+    return areas.find(a => a.prov === prov)?.uid || areas[0]?.uid || '';
+  };
+  const startProv = resolveProvince(provsPresent);
+  const savedArea = getPref('affArea');
+  const startArea = (savedArea && areas.some(a => a.uid === savedArea && a.prov === startProv))
+    ? savedArea : defaultAreaFor(startProv);
+  fillProv(startProv);
+  fillArea(startProv, startArea);
   if ($rate) $rate.value = state.rate;
 
   // --- Per-area affordability computation -------------------------------------
@@ -200,16 +215,72 @@ export async function initAffordability() {
   }
   const band = (f) => miss(f) ? '' : f < AFFORD_LINE ? 'aff-ok' : f < 50 ? 'aff-warn' : 'aff-bad';
   const bandWord = (f) => miss(f) ? 'no data' : f < AFFORD_LINE ? 'affordable' : f < 50 ? 'burdened' : 'severely burdened';
+  // Choropleth fills mirror the aff-ok/aff-warn/aff-bad band colours; grey = no data.
+  const bandFill = (f) => miss(f) ? '#e5e7eb' : f < AFFORD_LINE ? '#16a34a' : f < 50 ? '#d97706' : '#dc2626';
+
+  // Manitoba municipality (CSD) choropleth. Reuses the shared map component;
+  // shown only for Manitoba (the level the PoC ships boundaries for) and only
+  // when the boundary file loaded. Extending to SK/AB/BC = add provinces to
+  // r/20_build_boundaries.R and load their geojson.
+  const map = ($map && mbCsdGeo) ? mapCard($map) : null;
 
   // --- Render -----------------------------------------------------------------
   function render() {
+    // Remember the current province + area so the next visit lands here.
+    rememberProvince(provOfUid(state.uid));
+    setPref('affArea', state.uid);
     const sel = factors(byUid.get(state.uid));
     const showRent = state.tenure !== 'purchase';
     const showBuy  = state.tenure !== 'rental';
 
     renderHeadline(sel, showRent, showBuy);
+    renderMap(showBuy && !showRent);
     renderChart(showRent, showBuy);
     renderTable(sel, showRent, showBuy);
+  }
+
+  // Manitoba municipalities shaded by the affordability factor (purchase when
+  // purchase-only, else rental — rental has near-full MB coverage). Clicking a
+  // municipality selects it, driving the headline / chart / table.
+  function renderMap(purchaseOnly) {
+    if (!map) return;
+    const isMB = state.uid && provOfUid(state.uid) === '46';
+    if (!isMB) { map.card.style.display = 'none'; return; }
+    map.card.style.display = '';
+
+    const key    = purchaseOnly ? 'buyFactor' : 'rentFactor';
+    const kLabel = purchaseOnly ? 'Purchase' : 'Rental';
+    const values = new Map();
+    for (const a of areas) {
+      if (a.prov !== '46' || a.level !== 'CSD') continue;
+      const v = factors(a)[key];
+      if (miss(v)) continue;
+      values.set(String(a.uid), { fill: bandFill(v), label: `${a.name}: ${kLabel} ${fPct(v)} (${bandWord(v)})` });
+    }
+    const selId = byUid.get(state.uid)?.level === 'CSD' ? state.uid : null;
+
+    map.render({
+      geojson: mbCsdGeo,
+      values,
+      selectedId: selId,
+      onSelect: (id) => {
+        if (!byUid.has(id)) return;
+        if ($prov && $prov.value !== '46') { $prov.value = '46'; fillArea('46', id); }
+        state.uid = id;
+        if ($area) $area.value = id;
+        render();
+      },
+      title: `Manitoba municipalities — ${kLabel.toLowerCase()} affordability`,
+      sub: `Affordability Factor by municipality (2021 Census) · click a municipality to select it`,
+      source: 'Boundaries: Statistics Canada 2021 (OGL–Canada) · Data: StatsCan Census / CMHC',
+      legend: [
+        { swatch: '#16a34a', text: `Affordable (< ${AFFORD_LINE}%)` },
+        { swatch: '#d97706', text: 'Burdened (30–50%)' },
+        { swatch: '#dc2626', text: 'Severely burdened (≥ 50%)' },
+        { swatch: '#e5e7eb', text: 'No data' },
+      ],
+      filename: `affordability_map_Manitoba_${kLabel}_${new Date().toISOString().slice(0, 10)}.png`,
+    });
   }
 
   function renderHeadline(sel, showRent, showBuy) {
