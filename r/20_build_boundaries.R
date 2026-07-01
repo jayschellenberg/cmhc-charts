@@ -20,8 +20,10 @@
 # fails, we fall back to sf::st_simplify so the build still produces output.
 # NB: rmapshaper is NOT used — its bundled V8 engine segfaults in this env.
 #
-# PoC scope: Manitoba (PRUID 46) at CD + CSD level, for the Affordability tab.
-# To extend: add province codes to PROVINCES and/or levels to LEVELS, re-run.
+# Scope: MB/SK/AB/BC (the provinces in the app's data) at CD + CSD level. Writes
+# one file per province+level — <slug>_<level>.geojson (mb_csd, sk_csd, ab_csd,
+# bc_csd, and the _cd counterparts) — so each map lazy-loads only its province.
+# To extend: add province codes to PROVINCES and slugs to SLUG, re-run.
 #
 # Run:  Rscript r/20_build_boundaries.R      (or: npm run data:geo, from web/)
 # ---------------------------------------------------------------------------
@@ -39,14 +41,18 @@ dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)
 dir.create(out_dir,   recursive = TRUE, showWarnings = FALSE)
 
 # --- Config ----------------------------------------------------------------
-PROVINCES <- c("46")                       # Manitoba (PoC). Add "47","48","59" to extend.
+PROVINCES <- c("46", "47", "48", "59")     # MB, SK, AB, BC — the provinces in the data
+SLUG      <- c("46" = "mb", "47" = "sk", "48" = "ab", "59" = "bc")
 BASE_URL  <- "https://www12.statcan.gc.ca/census-recensement/2021/geo/sip-pis/boundary-limites/files-fichiers"
 PRECISION <- 0.0001                        # mapshaper coordinate precision (~11 m)
 
 LEVELS <- list(
-  cd  = list(zip = "lcd_000b21a_e.zip", id = "CDUID",  name = "CDNAME",  out = "mb_cd.geojson",  simplify = "1.5%"),
-  csd = list(zip = "lcsd000b21a_e.zip", id = "CSDUID", name = "CSDNAME", out = "mb_csd.geojson", simplify = "1%")
+  cd  = list(zip = "lcd_000b21a_e.zip", id = "CDUID",  name = "CDNAME",  simplify = "1.5%"),
+  csd = list(zip = "lcsd000b21a_e.zip", id = "CSDUID", name = "CSDNAME", simplify = "1%")
 )
+# BC's fjorded coastline has huge vertex counts, so it needs a much harder simplify
+# than the prairie provinces to keep the files a reasonable size (keeps all features).
+SIMPLIFY_OVERRIDE <- list("59" = c(cd = "0.2%", csd = "0.2%"))
 
 # --- mapshaper (topology-preserving simplify) ------------------------------
 ms_bin <- (function() {
@@ -101,30 +107,33 @@ message("Building boundary files for provinces: ", paste(PROVINCES, collapse = "
 for (lv in names(LEVELS)) {
   cfg <- LEVELS[[lv]]
   message(sprintf("[%s]", toupper(lv)))
-  g <- read_shp(download_if_needed(cfg$zip))
+  g_all <- read_shp(download_if_needed(cfg$zip))       # national — read once per level
+  if (!"PRUID" %in% names(g_all)) stop("PRUID column not found in ", cfg$zip)
 
-  if (!"PRUID" %in% names(g)) stop("PRUID column not found in ", cfg$zip)
-  g <- g[as.character(g$PRUID) %in% PROVINCES, , drop = FALSE]
-  if (!nrow(g)) stop("no features for provinces ", paste(PROVINCES, collapse = ","), " in ", cfg$zip)
+  for (prov in PROVINCES) {
+    g <- g_all[as.character(g_all$PRUID) == prov, , drop = FALSE]
+    if (!nrow(g)) { message(sprintf("  %s: no features — skipped", prov)); next }
 
-  g <- sf::st_transform(g, 4326)
-  g <- sf::st_sf(id = as.character(g[[cfg$id]]), name = as.character(g[[cfg$name]]),
-                 geometry = sf::st_geometry(g))
-  g <- g[order(g$id), , drop = FALSE]
+    g <- sf::st_transform(g, 4326)                     # transform only the province subset
+    g <- sf::st_sf(id = as.character(g[[cfg$id]]), name = as.character(g[[cfg$name]]),
+                   geometry = sf::st_geometry(g))
+    g <- g[order(g$id), , drop = FALSE]
 
-  dest <- file.path(out_dir, cfg$out)
-  tmp  <- file.path(tempdir(), paste0(lv, "_full.geojson"))
-  write_geojson(g, tmp)
+    dest <- file.path(out_dir, sprintf("%s_%s.geojson", SLUG[[prov]], lv))
+    tmp  <- file.path(tempdir(), sprintf("%s_%s_full.geojson", SLUG[[prov]], lv))
+    write_geojson(g, tmp)
 
-  if (mapshaper_simplify(tmp, dest, cfg$simplify)) {
-    how <- "mapshaper"
-  } else {                                  # fallback: st_simplify in a metric CRS
-    gp <- sf::st_transform(g, 3347)
-    gp <- sf::st_simplify(gp, dTolerance = 200, preserveTopology = TRUE)
-    write_geojson(sf::st_transform(gp, 4326), dest)
-    how <- "st_simplify(fallback)"
+    pct <- if (!is.null(SIMPLIFY_OVERRIDE[[prov]])) SIMPLIFY_OVERRIDE[[prov]][[lv]] else cfg$simplify
+    if (mapshaper_simplify(tmp, dest, pct)) {
+      how <- "mapshaper"
+    } else {                                            # fallback: st_simplify in a metric CRS
+      gp <- sf::st_transform(g, 3347)
+      gp <- sf::st_simplify(gp, dTolerance = 200, preserveTopology = TRUE)
+      write_geojson(sf::st_transform(gp, 4326), dest)
+      how <- "st_simplify(fallback)"
+    }
+    message(sprintf("  wrote %s — %d features, %.0f KB [%s]",
+                    basename(dest), nrow(g), file.info(dest)$size / 1024, how))
   }
-  message(sprintf("  wrote %s — %d features, %.0f KB [%s]",
-                  cfg$out, nrow(g), file.info(dest)$size / 1024, how))
 }
 message("Done. Boundary files in web/public/data/geo/")

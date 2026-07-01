@@ -16,6 +16,7 @@ import * as Plot from '@observablehq/plot';
 import { themed, gridMarks, frameMark, PALETTE } from './plot-theme.js';
 import { downloadCard } from './chart.js';
 import { mapCard } from './map.js';
+import { provinceGeo, hasProvinceGeo } from './geo.js';
 import { resolveProvince, rememberProvince } from './prefs.js';
 import { escapeHtml } from './escape.js';
 
@@ -139,6 +140,7 @@ const MAP_METRICS = [
 ];
 const CHORO_RAMP = ['#dbeafe', '#93c5fd', '#3b82f6', '#1d4ed8', '#1e3a8a'];  // light→dark blue
 const MAP_NO_DATA = '#e5e7eb';
+const PROV_NAME = { '46': 'Manitoba', '47': 'Saskatchewan', '48': 'Alberta', '59': 'British Columbia' };
 
 const metricValue = (region, key, period) => {
   const d = demoFor(region, period);
@@ -200,10 +202,8 @@ export async function initCensus() {
   const $tables   = document.getElementById('census-tables');
   if (!$area[0] || !$tables) return;
 
-  const [data, mbCsdGeo] = await Promise.all([
-    fetch('./data/housing/census_profile.json').then(r => r.ok ? r.json() : null).catch(() => null),
-    fetch('./data/geo/mb_csd.geojson').then(r => r.ok ? r.json() : null).catch(() => null),
-  ]);
+  const data = await fetch('./data/housing/census_profile.json')
+    .then(r => r.ok ? r.json() : null).catch(() => null);
   if (!data || !Array.isArray(data.regions)) {
     $tables.innerHTML = '<p class="text-sm text-red-700">Census profile data not found. Run r/12_census_profile.R.</p>';
     return;
@@ -270,8 +270,8 @@ export async function initCensus() {
   // Shown only when Area 1's province is Manitoba (the level the PoC ships
   // boundaries for) and the boundary file loaded. A metric picker sits above it.
   const $mapHost = document.getElementById('census-map');
-  let censusMap = null, $mapMetric = null;
-  if ($mapHost && mbCsdGeo) {
+  let censusMap = null, $mapMetric = null, censusMapToken = 0;
+  if ($mapHost) {
     const controls = document.createElement('div');
     controls.className = 'census-map-controls';
     controls.innerHTML = `<label for="census-map-metric" class="text-sm text-neutral-600">Map metric:</label>
@@ -284,32 +284,38 @@ export async function initCensus() {
     $mapMetric.addEventListener('change', renderCensusMap);
   }
 
-  function renderCensusMap() {
+  async function renderCensusMap() {
     if (!censusMap) return;
-    if ($prov[0]?.value !== '46' || !mbCsdGeo) { censusMap.card.style.display = 'none'; return; }
+    const prov = $prov[0]?.value;
+    if (!prov || !hasProvinceGeo(prov)) { censusMap.card.style.display = 'none'; return; }
+    const token = ++censusMapToken;
+    const geojson = await provinceGeo(prov, 'csd');
+    if (token !== censusMapToken) return;           // a newer render superseded this one
+    if (!geojson) { censusMap.card.style.display = 'none'; return; }
     censusMap.card.style.display = '';
+    const provName = PROV_NAME[prov] || '';
     const metric = MAP_METRICS.find(m => m.key === $mapMetric.value) || MAP_METRICS[0];
     const period = $period?.value || '2021';
     const entries = [];
     for (const r of data.regions) {
-      if (r.level !== 'CSD' || provOf(r) !== '46') continue;
+      if (r.level !== 'CSD' || provOf(r) !== prov) continue;
       entries.push({ uid: r.uid, name: r.name, value: metricValue(r, metric.key, period) });
     }
     const { values, legend } = buildChoropleth(entries, metric.kind);
     const selId = byUid.get($area[0].value)?.level === 'CSD' ? $area[0].value : null;
     censusMap.render({
-      geojson: mbCsdGeo, values, selectedId: selId,
+      geojson, values, selectedId: selId,
       onSelect: (id) => {
         if (!byUid.has(id)) return;
-        fillProv($prov[0], '46');           // ensure Area 1 province = Manitoba
-        fillArea($area[0], '46', id);       // scope Area 1 list to MB + select the clicked CSD
+        fillProv($prov[0], prov);           // ensure Area 1 province matches the map
+        fillArea($area[0], prov, id);       // scope Area 1 list + select the clicked CSD
         render();
       },
-      title: `Manitoba municipalities — ${metric.label.toLowerCase()} (${period} Census)`,
+      title: `${provName} municipalities — ${metric.label.toLowerCase()} (${period} Census)`,
       sub: 'Click a municipality to set it as Area 1 (subject).',
       source: 'Boundaries: Statistics Canada 2021 (OGL–Canada) · Data: StatsCan Census',
       legend,
-      filename: `census_map_Manitoba_${metric.key}_${period}.png`,
+      filename: `census_map_${provName}_${metric.key}_${period}.png`.replace(/\s+/g, '-'),
     });
   }
 
