@@ -240,5 +240,18 @@ export function initFilters({ geographies, capabilities, categoryOrder = {}, ini
   }));
 
   applyToInputs();
-  return { getState: () => ({ ...state }), refresh: applyToInputs };
+
+  // Programmatic geography selection (used by the survey-zone map): behaves
+  // like the user picking the level + area, keeping the province cascade and
+  // every input in sync before committing.
+  function setGeo(level, uid) {
+    const p = provOf(uid);
+    if (p && provExists(p)) state.province = p;
+    state.geoLevel = level;
+    state.geoUid = uid;
+    applyToInputs();     // normalize() inside keeps level/uid/province consistent
+    commit();
+  }
+
+  return { getState: () => ({ ...state }), refresh: applyToInputs, setGeo };
 }

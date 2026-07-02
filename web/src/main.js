@@ -7,6 +7,7 @@
  */
 
 import { initFilters } from './filters.js';
+import { initChartsMap } from './charts-map.js';
 import { buildChartCard } from './chart.js';
 import { decodeState, syncURL } from './state.js';
 import { initTables } from './tables.js';
@@ -175,12 +176,19 @@ async function bootstrap() {
 
   const initialState = decodeState(window.location.search);
 
+  // Survey-zone/neighbourhood picker map (bottom of the charts page). Clicking
+  // a polygon routes through filters.setGeo, so the dropdowns + URL stay in sync.
+  const chartsMap = initChartsMap({
+    geographies,
+    onSelect: (level, uid) => filters.setGeo(level, uid),
+  });
+
   const filters = initFilters({
     geographies,
     capabilities,
     categoryOrder: CATEGORY_ORDER,
     initialState,
-    onChange: renderAll,
+    onChange: (s) => { renderAll(s); chartsMap.render(s); },
   });
 
   // Copy-link button
@@ -275,6 +283,7 @@ async function bootstrap() {
   });
 
   await renderAll(filters.getState());
+  chartsMap.render(filters.getState());
 
   async function renderAll(state) {
     syncURL(state);

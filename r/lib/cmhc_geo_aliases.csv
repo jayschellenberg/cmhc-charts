@@ -1,0 +1,14 @@
+app_uid,gdb_uid,note
+835-hudson-bay-reserve,835-hudson-s-bay-reserve,apostrophe variant (Hudson's Bay)
+933-north-vancouver-city,933-north-vancouver-cy,API spells out City; GDB abbreviates CY
+935-remainder-of-city-of-victoria,935-remainder-of-city,GDB truncates the zone name
+933-dt-eastside-strathcona,933-downtown-eastside-strathcona,API abbreviates Downtown as DT
+835-east-castledowns,835-east-castle-downs,spacing variant (Castle Downs)
+933-langley-city,933-langley-cy,API spells out City; GDB abbreviates CY
+933-langley-district-municipality,933-langley-dm,API spells out District Municipality; GDB abbreviates DM
+825-meridian-fanklin-albert-park-radisson-heights,825-meridian-franklin-albert-park-radisson-heights,API typo (fanklin)
+933-north-vancouver-district-municipality-east,933-north-vancouver-dm-east,API spells out District Municipality; GDB abbreviates DM
+933-north-vancouver-district-municipality-west,933-north-vancouver-dm-west,API spells out District Municipality; GDB abbreviates DM
+835-strathcona-county-remiander,835-strathcona-county-remainder,API typo (remiander)
+825-windsor-park-meadowlark-park-britania-elboya,825-windsor-park-meadowlark-park-britannia-elboya,API typo (britania)
+835-bitannia,835-britannia,API typo (bitannia); polygon may already be claimed by 835-britannia
