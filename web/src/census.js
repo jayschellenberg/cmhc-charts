@@ -19,6 +19,7 @@ import { mapCard, quantileChoropleth } from './map.js';
 import { provinceGeo, hasProvinceGeo } from './geo.js';
 import { resolveProvince, rememberProvince } from './prefs.js';
 import { escapeHtml } from './escape.js';
+import { fInt, fUsd, fDec1, fPctFrac0, fPctFrac1, fPctInt } from './format.js';
 
 // Geography levels, in dropdown group order.
 const LEVEL_GROUPS = [
@@ -114,15 +115,11 @@ const DEMO_SECTIONS = [
 ];
 
 // ---- formatters ------------------------------------------------------------
-const miss  = (v) => v == null || !Number.isFinite(Number(v));   // null / NaN / Infinity → "**"
-const fInt  = (v) => miss(v) ? '**' : Number(v).toLocaleString();
-const fUsd  = (v) => miss(v) ? '**' : `$${Math.round(Number(v)).toLocaleString()}`;
-const fDec1 = (v) => miss(v) ? '**' : Number(v).toFixed(1);
-const fPct0 = (v) => miss(v) ? '**' : `${Math.round(Number(v) * 100)}%`;          // fraction → "27%"
-const fPct1 = (v) => miss(v) ? '**' : `${(Number(v) * 100).toFixed(1)}%`;         // fraction → "5.2%"
-const fStir = (v) => miss(v) ? '**' : `${Math.round(Number(v))}%`;                // already 0–100
+// fInt/fUsd/fDec1 and the percent helpers live in ./format.js. Census rows hold
+// FRACTIONS, so the percent columns use fPctFrac0/fPctFrac1 (×100); the shelter
+// STIR column is already 0–100 so it uses fPctInt. See format.js for the gotcha.
 const fmtVal = (v, kind) => kind === 'usd' ? fUsd(v) : kind === 'dec1' ? fDec1(v)
-                          : kind === 'stir' ? fStir(v) : fInt(v);
+                          : kind === 'stir' ? fPctInt(v) : fInt(v);
 
 // Census periods offered by the Demographics period selector.
 const DEMO_PERIODS = ['2021', '2016', '2011'];
@@ -378,7 +375,7 @@ export async function initCensus() {
         const i = years.indexOf(y);
         if (i <= 0) return '';
         const prev = pop(years[i - 1]), cur = pop(y);
-        return (prev && cur != null) ? fPct1((cur - prev) / prev) : '';
+        return (prev && cur != null) ? fPctFrac1((cur - prev) / prev) : '';
       }
       return fmtVal(t[y]?.[row.key], row.fmt);
     };
@@ -419,7 +416,7 @@ export async function initCensus() {
     const pct = (r, row) => {
       if (!row.denom) return '';                          // row has no % (e.g. averages) — leave blank
       const d = val(r, row.denom), v = val(r, row.key);
-      return (d && v != null) ? fPct0(v / d) : '**';      // % row but no data for this area → "**"
+      return (d && v != null) ? fPctFrac0(v / d) : '**';      // % row but no data for this area → "**"
     };
 
     // Income/shelter section headers carry the income reference year, which is
