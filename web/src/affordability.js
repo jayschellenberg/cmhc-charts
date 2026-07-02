@@ -32,7 +32,8 @@ const fPct = (v) => miss(v) ? '**' : `${Number(v).toFixed(1)}%`;
 const fUsd = (v) => miss(v) ? '**' : `$${Math.round(Number(v)).toLocaleString()}`;
 
 // Monthly payment to amortize `principal` at annual `ratePct` over `years`.
-function monthlyPayment(principal, ratePct, years) {
+// Exported for unit testing (pure).
+export function monthlyPayment(principal, ratePct, years) {
   const r = ratePct / 100 / 12, n = years * 12;
   if (!(principal > 0)) return null;
   if (r === 0) return principal / n;

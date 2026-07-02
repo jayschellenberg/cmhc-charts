@@ -22,6 +22,14 @@ jobs:
         working-directory: web
         run: npm ci
 
+      - name: Lint
+        working-directory: web
+        run: npm run lint
+
+      - name: Unit tests
+        working-directory: web
+        run: npm test
+
       - name: Build static site
         working-directory: web
         run: npm run build

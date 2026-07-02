@@ -46,7 +46,8 @@ const HOUSING_MAP_METRICS = [
   { key: 'total',    label: 'Total private dwellings',  kind: 'int' },
 ];
 // Compute a map metric from one census year's { total, age[], condition[ok,major] }.
-function housingMetric(key, yd, year) {
+// Exported (with housingMetricLatest) for unit testing — both are pure.
+export function housingMetric(key, yd, year) {
   if (key === 'total') return Number.isFinite(Number(yd.total)) ? Number(yd.total) : null;
   if (key === 'major') {
     const c = yd.condition || [];
@@ -62,7 +63,7 @@ function housingMetric(key, yd, year) {
 }
 // Newest census year (of ALL_YEARS) for which the metric is computable, so every
 // municipality shows its most recent figure (MB has 2006–2021; western CSDs 2016+).
-function housingMetricLatest(area, key) {
+export function housingMetricLatest(area, key) {
   for (let i = ALL_YEARS.length - 1; i >= 0; i--) {
     const yd = area.census?.[ALL_YEARS[i]];
     if (!yd) continue;

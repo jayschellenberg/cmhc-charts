@@ -425,7 +425,7 @@ function computeDelta(records, daysBack, units) {
   let delta, label, threshold;
   if (units === 'percent' || units === 'balance_of_opinion') {
     delta = latest - prev;
-    label = `${delta > 0 ? '+' : ''}${delta.toFixed(2)} pp`;
+    label = `${delta > 0 ? '+' : ''}${delta.toFixed(2)} pp`;
     threshold = units === 'balance_of_opinion' ? 2 : 0.1;
   } else {
     delta = (latest - prev) / Math.abs(prev) * 100;
