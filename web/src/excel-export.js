@@ -225,7 +225,7 @@ export async function exportChartsToExcel(captures, { filename }) {
   captures.forEach((c, i) => {
     // Excel sheet names: max 31 chars, no \ / ? * [ ] : — and must be unique.
     let base = (c.title || `Chart ${i + 1}`)
-      .replace(/[\\\/\?\*\[\]:]/g, ' ').replace(/\s+/g, ' ').trim()
+      .replace(/[\\/?*[\]:]/g, ' ').replace(/\s+/g, ' ').trim()
       .slice(0, 28).trim() || `Chart ${i + 1}`;
     let name = base, k = 2;
     while (used.has(name.toLowerCase())) name = `${base} ${k++}`;
