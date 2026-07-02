@@ -25,3 +25,24 @@ export function provinceGeo(prov, level = 'csd') {
   }
   return cache.get(key);
 }
+
+// CMHC survey-zone / neighbourhood polygons, one file per surveyed CMA
+// (built by r/21_build_cmhc_zone_boundaries.R; feature ids join the rental- and
+// starts-family GeoUIDs like "602-st-boniface").
+const CMHC_CMAS = new Set(['602', '705', '725', '825', '835', '933', '935']);
+
+/** True if CMHC zone/neighbourhood boundary files exist for this CMA code. */
+export function hasCmaGeo(cma) {
+  return CMHC_CMAS.has(String(cma));
+}
+
+/** Fetch (and cache) zone or neighbourhood polygons for one CMA. */
+export function cmaGeo(cma, level = 'zone') {
+  if (!hasCmaGeo(cma)) return Promise.resolve(null);
+  const key = `${level === 'neighbourhood' ? 'nbhd' : 'zones'}_${cma}`;
+  if (!cache.has(key)) {
+    cache.set(key, fetch(`./data/geo/${key}.geojson`)
+      .then(r => r.ok ? r.json() : null).catch(() => null));
+  }
+  return cache.get(key);
+}
