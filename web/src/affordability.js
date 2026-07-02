@@ -22,6 +22,7 @@ import { provinceGeo, hasProvinceGeo } from './geo.js';
 import { getPref, setPref, resolveProvince, rememberProvince } from './prefs.js';
 import { escapeHtml } from './escape.js';
 import { miss, fUsd, fPct1 as fPct } from './format.js';
+import { PROV_LABEL, provOfUid, cleanName } from './geography.js';
 
 const DEFAULT_RATE = 4.64;     // % — Royal LePage 2026 report assumption (3-yr fixed special)
 const DOWN_PCT     = 20;       // % down payment
@@ -61,7 +62,7 @@ export async function initAffordability() {
   }
 
   // --- Area model: income + rent per area, grouped by province + level --------
-  const PROV_LABEL = { '46': 'Manitoba', '47': 'Saskatchewan', '48': 'Alberta', '59': 'British Columbia' };
+  // PROV_LABEL/provOfUid/cleanName come from ./geography.js.
   const LEVEL_LABEL = {
     PR: 'Province', CMA: 'CMAs / CAs', CD: 'Census divisions', CSD: 'Municipalities',
     WPG_CA: 'Winnipeg — Community Areas', WPG_Cluster: 'Winnipeg — Clusters', WPG_Nbhd: 'Winnipeg — Neighbourhoods',
@@ -79,18 +80,6 @@ export async function initAffordability() {
   // CMHC average rent for MB centres (keyed by census_profile uid) — pairs with
   // the census median rent so MB & SK centre factors share the CMHC basis.
   const mbCmhc = new Map((extra?.mbCmhcRent || []).map(m => [String(m.uid), m]));
-  // Strip cancensus type codes from region names (same as the Census Profile
-  // tab): "Manitoba (Man.)" → "Manitoba", "Winnipeg (B)" → "Winnipeg (CMA)",
-  // "Brandon (D)" → "Brandon (CA)". CSD codes are kept (they disambiguate
-  // same-named municipalities).
-  const cleanName = (name, level) => {
-    let n = String(name || '').replace(/\s{2,}/g, ' ').trim();
-    if (level === 'PR')  n = n.replace(/\s*\([^)]*\)$/, '');
-    if (level === 'CMA') n = n.replace(/\s*\(B\)$/, ' (CMA)').replace(/\s*\((D|K)\)$/, ' (CA)');
-    if (level === 'CD')  n = n.replace(/\s*\(CDR\)$/, '');
-    return n;
-  };
-  const provOfUid = (uid) => /^WPG/.test(String(uid)) ? '46' : String(uid).slice(0, 2);
   const areas = [];
   for (const r of profile.regions) {                // census income + median rent (CMHC avg rent for MB centres)
     // census_profile.json carries Manitoba in full plus SK/AB/BC at PR/CMA/CD
