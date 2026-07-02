@@ -21,6 +21,7 @@ import { provinceGeo, hasProvinceGeo } from './geo.js';
 import { resolveProvince, rememberProvince } from './prefs.js';
 import { escapeHtml } from './escape.js';
 import { miss, fInt as fmtN, fPct1 as fmtP } from './format.js';
+import { PROV_LABEL } from './geography.js';
 
 // Common age buckets for the comparison view — each census's own bands rolled
 // up to a shared set so the years line up despite different banding.
@@ -39,7 +40,6 @@ const ALL_YEARS = ['2006', '2011', '2016', '2021'];
 const CLUSTER_ROLLUP = [[0], [1], [2], [3], [4, 5], [6, 7]];
 
 // ---- Map (choropleth) config ----------------------------------------------
-const PROV_NAME = { '46': 'Manitoba', '47': 'Saskatchewan', '48': 'Alberta', '59': 'British Columbia' };
 const HOUSING_MAP_METRICS = [
   { key: 'major',    label: 'Needing major repairs',   kind: 'pct' },
   { key: 'pre1961',  label: 'Built 1960 or before',    kind: 'pct' },
@@ -254,7 +254,7 @@ export async function initHousing() {
     if (!geojson) { housingMap.card.style.display = 'none'; return; }
     housingMap.card.style.display = '';
     const metric = HOUSING_MAP_METRICS.find(m => m.key === $mapMetric.value) || HOUSING_MAP_METRICS[0];
-    const provName = PROV_NAME[prov] || '';
+    const provName = PROV_LABEL[prov] || '';
     const entries = [];
     for (const a of hByUid.values()) {
       if (a.level !== 'csd' || String(a.uid).slice(0, 2) !== prov) continue;

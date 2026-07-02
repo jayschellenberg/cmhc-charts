@@ -20,6 +20,7 @@ import { provinceGeo, hasProvinceGeo } from './geo.js';
 import { resolveProvince, rememberProvince } from './prefs.js';
 import { escapeHtml } from './escape.js';
 import { fInt, fUsd, fDec1, fPctFrac0, fPctFrac1, fPctInt } from './format.js';
+import { PROV_LABEL, PROV_ORDER, provOfUid, cleanName } from './geography.js';
 
 // Geography levels, in dropdown group order.
 const LEVEL_GROUPS = [
@@ -32,11 +33,9 @@ const LEVEL_GROUPS = [
   { tag: 'WPG_Nbhd',    label: 'Winnipeg — Neighbourhoods' },
 ];
 
-// Province scoping for the area cascade. Winnipeg virtual geos (WPG_*) belong to
-// Manitoba; every other region's province is the first two digits of its uid.
-const PROV_LABEL = { '46': 'Manitoba', '47': 'Saskatchewan', '48': 'Alberta', '59': 'British Columbia' };
-const PROV_ORDER = ['46', '47', '48', '59'];
-const provOf = (r) => String(r.uid).startsWith('WPG') ? '46' : String(r.uid).slice(0, 2);
+// Province scoping for the area cascade — PROV_LABEL/PROV_ORDER/provOfUid come
+// from ./geography.js. `provOf` adapts the shared uid helper to a region object.
+const provOf = (r) => provOfUid(r.uid);
 
 // Trends table layout (mirrors MBCensusData display_trends). `key` reads from a
 // year's trend object; `popchg` is computed; `header` is a section divider.
@@ -135,7 +134,6 @@ const MAP_METRICS = [
   { key: 'median_age',          label: 'Median age',              kind: 'dec1' },
   { key: 'population',           label: 'Population',              kind: 'int' },
 ];
-const PROV_NAME = { '46': 'Manitoba', '47': 'Saskatchewan', '48': 'Alberta', '59': 'British Columbia' };
 
 const metricValue = (region, key, period) => {
   const d = demoFor(region, period);
@@ -187,17 +185,8 @@ export async function initCensus() {
     return;
   }
 
-  // Clean cancensus type codes for display: "Manitoba (Man.)" → "Manitoba",
-  // "Winnipeg (B)" → "Winnipeg (CMA)", "Brandon (D)" → "Brandon (CA)". CSD codes
-  // ("(RM)", "(CY)", "(T)", "(IRI)"…) are kept — they distinguish same-named
-  // municipalities and match the census naming appraisers expect.
-  for (const r of data.regions) {
-    let n = String(r.name || '').replace(/\s{2,}/g, ' ').trim();
-    if (r.level === 'PR')  n = n.replace(/\s*\([^)]*\)$/, '');                         // (Man.)/(Sask.)/(Alta.)
-    if (r.level === 'CMA') n = n.replace(/\s*\(B\)$/, ' (CMA)').replace(/\s*\((D|K)\)$/, ' (CA)');
-    if (r.level === 'CD')  n = n.replace(/\s*\(CDR\)$/, '');                           // census-division type code
-    r.name = n;
-  }
+  // Clean cancensus type codes for display (see cleanName in ./geography.js).
+  for (const r of data.regions) r.name = cleanName(r.name, r.level);
 
   const years  = (data.censusYears || []).map(String);
   const byUid  = new Map(data.regions.map(r => [r.uid, r]));
@@ -271,7 +260,7 @@ export async function initCensus() {
     if (token !== censusMapToken) return;           // a newer render superseded this one
     if (!geojson) { censusMap.card.style.display = 'none'; return; }
     censusMap.card.style.display = '';
-    const provName = PROV_NAME[prov] || '';
+    const provName = PROV_LABEL[prov] || '';
     const metric = MAP_METRICS.find(m => m.key === $mapMetric.value) || MAP_METRICS[0];
     const period = $period?.value || '2021';
     const entries = [];
